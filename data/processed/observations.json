@@ -1,0 +1,5594 @@
+[
+  {
+    "citySlug": "new-york-ny",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1780,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-york-ny",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-york-ny",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.5404,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-york-ny",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 43.4972,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-york-ny",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 35.9822,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-york-ny",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 6.5087,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-york-ny",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 56.8,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "los-angeles-ca",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1987,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "los-angeles-ca",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 33.8,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "los-angeles-ca",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.6163,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "los-angeles-ca",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 37.389,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "los-angeles-ca",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 29.86,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "los-angeles-ca",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.2296,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "los-angeles-ca",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 65.8,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "chicago-il",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1378,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chicago-il",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.2,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chicago-il",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.0609,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chicago-il",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 40.8894,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chicago-il",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 30.6605,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chicago-il",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.6095,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chicago-il",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 52.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "dallas-tx",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1509,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dallas-tx",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.5,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dallas-tx",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.5211,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dallas-tx",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 38.4869,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dallas-tx",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 28.0078,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dallas-tx",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 16.3107,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dallas-tx",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 66.6,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "houston-tx",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1378,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "houston-tx",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.2,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "houston-tx",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.9595,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "houston-tx",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.3622,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "houston-tx",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 29.8979,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "houston-tx",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 18.6889,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "houston-tx",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 71.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "washington-dc",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1975,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "washington-dc",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "washington-dc",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.725,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "washington-dc",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 53.7832,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "washington-dc",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 33.0026,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "washington-dc",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.3696,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "washington-dc",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 55.7,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "philadelphia-pa",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1413,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "philadelphia-pa",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.5,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "philadelphia-pa",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.9464,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "philadelphia-pa",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 41.4521,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "philadelphia-pa",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 29.0102,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "philadelphia-pa",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.2655,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "philadelphia-pa",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 56.3,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "atlanta-ga",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1563,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "atlanta-ga",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.6,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "atlanta-ga",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.9647,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "atlanta-ga",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 41.4515,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "atlanta-ga",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 31.2292,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "atlanta-ga",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 12.1649,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "atlanta-ga",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 63.6,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "miami-fl",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1770,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "miami-fl",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 37.2,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "miami-fl",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.0098,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "miami-fl",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.6138,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "miami-fl",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 29.3075,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "miami-fl",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 13.7128,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "miami-fl",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 77.3,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "phoenix-az",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1581,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "phoenix-az",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.5,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "phoenix-az",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.6989,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "phoenix-az",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 34.5673,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "phoenix-az",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 26.5274,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "phoenix-az",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 10.6603,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "phoenix-az",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 75.6,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "boston-ma",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1940,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boston-ma",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.2,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boston-ma",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.8298,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boston-ma",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 51.2277,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boston-ma",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 30.4996,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boston-ma",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 2.7708,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boston-ma",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 49.8,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "san-francisco-ca",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 2426,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-francisco-ca",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.8,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-francisco-ca",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.3745,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-francisco-ca",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 52.365,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-francisco-ca",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 31.7988,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-francisco-ca",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 4.114,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-francisco-ca",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 58.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "riverside-ca",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1756,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "riverside-ca",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 34.1,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "riverside-ca",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.8455,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "riverside-ca",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 24.0703,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "riverside-ca",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 33.1948,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "riverside-ca",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.235,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "riverside-ca",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 67.9,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "detroit-mi",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1162,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "detroit-mi",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "detroit-mi",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.4608,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "detroit-mi",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 34.0558,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "detroit-mi",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 26.3294,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "detroit-mi",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 4.8649,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "detroit-mi",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 48.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "seattle-wa",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1932,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "seattle-wa",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.4,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "seattle-wa",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.6186,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "seattle-wa",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 46.3124,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "seattle-wa",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 29.6289,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "seattle-wa",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.6013,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "seattle-wa",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 53.6,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "minneapolis-mn",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1396,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "minneapolis-mn",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.1,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "minneapolis-mn",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.8789,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "minneapolis-mn",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 44.8629,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "minneapolis-mn",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.4507,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "minneapolis-mn",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 4.2804,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "minneapolis-mn",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 45.8,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "san-diego-ca",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 2154,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-diego-ca",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 33.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-diego-ca",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.2311,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-diego-ca",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 42.0899,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-diego-ca",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 25.911,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-diego-ca",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 6.773,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-diego-ca",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 61.2,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "tampa-fl",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1497,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tampa-fl",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 33.1,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tampa-fl",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.6762,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tampa-fl",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 34.0162,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tampa-fl",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 28.1157,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tampa-fl",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 11.1262,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tampa-fl",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 74.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "denver-co",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1805,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "denver-co",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.6,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "denver-co",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.2908,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "denver-co",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 48.3794,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "denver-co",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 27.3437,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "denver-co",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.7559,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "denver-co",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 50.2,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "baltimore-md",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1562,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baltimore-md",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baltimore-md",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.6665,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baltimore-md",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 43.2845,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baltimore-md",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 29.6844,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baltimore-md",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 4.8643,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baltimore-md",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 59.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "st-louis-mo",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1073,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "st-louis-mo",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "st-louis-mo",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.1524,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "st-louis-mo",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 37.5587,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "st-louis-mo",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 25.0686,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "st-louis-mo",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 6.03,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "st-louis-mo",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 57.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "orlando-fl",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1659,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "orlando-fl",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 34.4,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "orlando-fl",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.1394,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "orlando-fl",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.8283,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "orlando-fl",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 29.4351,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "orlando-fl",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 11.3201,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "orlando-fl",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 73,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "charlotte-nc",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1377,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charlotte-nc",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.1,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charlotte-nc",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.472,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charlotte-nc",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 38.9953,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charlotte-nc",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 26.6794,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charlotte-nc",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 10.1111,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charlotte-nc",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 61.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "san-antonio-tx",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1299,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-antonio-tx",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-antonio-tx",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.1802,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-antonio-tx",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 31.9262,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-antonio-tx",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 26.847,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-antonio-tx",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 15.0313,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-antonio-tx",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 70,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "portland-or",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1654,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "portland-or",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.8,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "portland-or",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.9799,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "portland-or",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 42.051,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "portland-or",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 25.4154,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "portland-or",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.85,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "portland-or",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 54.7,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "pittsburgh-pa",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1011,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "pittsburgh-pa",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 27.3,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "pittsburgh-pa",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.993,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "pittsburgh-pa",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 37.4037,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "pittsburgh-pa",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 26.2436,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "pittsburgh-pa",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 3.8193,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "pittsburgh-pa",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 52.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "sacramento-ca",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1729,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "sacramento-ca",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 32.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "sacramento-ca",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.891,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "sacramento-ca",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 36.3111,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "sacramento-ca",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 27.3627,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "sacramento-ca",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 4.7076,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "sacramento-ca",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 63.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "austin-tx",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1646,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "austin-tx",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.4,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "austin-tx",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.2655,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "austin-tx",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 49.8899,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "austin-tx",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 27.2711,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "austin-tx",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 12.0597,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "austin-tx",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 68.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "las-vegas-nv",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1518,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "las-vegas-nv",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 33.2,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "las-vegas-nv",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 7.4234,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "las-vegas-nv",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 27.3086,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "las-vegas-nv",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 25.1724,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "las-vegas-nv",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 12.0699,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "las-vegas-nv",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 68.8,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "cincinnati-oh",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1047,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cincinnati-oh",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cincinnati-oh",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.3003,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cincinnati-oh",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 36.8788,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cincinnati-oh",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.9508,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cincinnati-oh",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.4917,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cincinnati-oh",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 54.8,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "kansas-city-mo",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1201,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kansas-city-mo",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 27.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kansas-city-mo",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.0578,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kansas-city-mo",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 39.178,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kansas-city-mo",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.3099,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kansas-city-mo",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.8654,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kansas-city-mo",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 55.7,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "cleveland-oh",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 996,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cleveland-oh",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.8,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cleveland-oh",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.7801,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cleveland-oh",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 33.4423,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cleveland-oh",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.3931,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cleveland-oh",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.6178,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cleveland-oh",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 52.3,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "columbus-oh",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1208,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbus-oh",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 27.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbus-oh",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.0956,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbus-oh",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 39.4167,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbus-oh",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.9111,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbus-oh",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.3503,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbus-oh",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 53.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "indianapolis-in",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1142,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "indianapolis-in",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.1,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "indianapolis-in",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.083,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "indianapolis-in",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 37.8498,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "indianapolis-in",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 25.3697,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "indianapolis-in",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 6.9591,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "indianapolis-in",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 53.7,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "nashville-tn",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1434,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "nashville-tn",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.8,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "nashville-tn",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.5805,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "nashville-tn",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 39.8724,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "nashville-tn",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 27.8661,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "nashville-tn",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 9.4479,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "nashville-tn",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 60.8,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "san-jose-ca",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 2794,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-jose-ca",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 27.6,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-jose-ca",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.5091,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-jose-ca",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 54.8128,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-jose-ca",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 27.3169,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-jose-ca",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 4.0567,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "san-jose-ca",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 58.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "virginia-beach-va",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1416,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "virginia-beach-va",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.5,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "virginia-beach-va",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.0796,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "virginia-beach-va",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.122,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "virginia-beach-va",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.7658,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "virginia-beach-va",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 6.7413,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "virginia-beach-va",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 61.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "providence-ri",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1236,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "providence-ri",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.4,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "providence-ri",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.6679,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "providence-ri",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.0014,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "providence-ri",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 26.5006,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "providence-ri",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 3.8878,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "providence-ri",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 52.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "jacksonville-fl",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1416,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jacksonville-fl",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jacksonville-fl",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.2713,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jacksonville-fl",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.122,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jacksonville-fl",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 26.1962,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jacksonville-fl",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 9.8807,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jacksonville-fl",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 71.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "milwaukee-wi",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1105,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "milwaukee-wi",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "milwaukee-wi",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.7735,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "milwaukee-wi",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 38.7887,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "milwaukee-wi",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 22.7959,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "milwaukee-wi",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.4021,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "milwaukee-wi",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 49.3,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "raleigh-nc",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1459,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "raleigh-nc",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "raleigh-nc",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.1842,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "raleigh-nc",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 50.2307,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "raleigh-nc",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 26.94,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "raleigh-nc",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.6995,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "raleigh-nc",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 61.2,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "oklahoma-city-ok",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1081,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oklahoma-city-ok",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oklahoma-city-ok",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.6764,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oklahoma-city-ok",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 33.4202,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oklahoma-city-ok",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.4791,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oklahoma-city-ok",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 12.2833,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oklahoma-city-ok",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 60.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "louisville-jefferson-county-ky",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1064,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "louisville-jefferson-county-ky",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.1,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "louisville-jefferson-county-ky",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.34,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "louisville-jefferson-county-ky",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 32.1481,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "louisville-jefferson-county-ky",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.1426,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "louisville-jefferson-county-ky",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.3278,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "louisville-jefferson-county-ky",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 57.8,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "memphis-tn",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1153,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "memphis-tn",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.3,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "memphis-tn",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.5247,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "memphis-tn",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 30.7372,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "memphis-tn",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.4092,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "memphis-tn",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 11.1452,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "memphis-tn",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 63.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "richmond-va",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1388,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "richmond-va",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.8,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "richmond-va",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.6361,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "richmond-va",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 40.2036,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "richmond-va",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 25.5202,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "richmond-va",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 6.7836,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "richmond-va",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 59,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "salt-lake-city-ut",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1486,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "salt-lake-city-ut",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "salt-lake-city-ut",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.6634,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "salt-lake-city-ut",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 37.7626,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "salt-lake-city-ut",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 22.8629,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "salt-lake-city-ut",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 9.3809,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "salt-lake-city-ut",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 54.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "birmingham-al",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1114,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "birmingham-al",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.6,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "birmingham-al",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.5188,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "birmingham-al",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 33.213,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "birmingham-al",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 27.2147,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "birmingham-al",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.7572,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "birmingham-al",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 63.9,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "fresno-ca",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1301,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "fresno-ca",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 32.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "fresno-ca",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 8.8095,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "fresno-ca",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 22.9323,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "fresno-ca",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.064,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "fresno-ca",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.1036,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "fresno-ca",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 65,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "buffalo-ny",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1005,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "buffalo-ny",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "buffalo-ny",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.0385,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "buffalo-ny",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.1227,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "buffalo-ny",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 21.4599,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "buffalo-ny",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 2.7159,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "buffalo-ny",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 48.8,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "grand-rapids-mi",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1138,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "grand-rapids-mi",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.1,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "grand-rapids-mi",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.1019,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "grand-rapids-mi",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.3819,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "grand-rapids-mi",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 22.1384,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "grand-rapids-mi",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 4.735,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "grand-rapids-mi",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 49.3,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "hartford-ct",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1357,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "hartford-ct",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "hartford-ct",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.0477,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "hartford-ct",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 42.1276,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "hartford-ct",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.9057,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "hartford-ct",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 4.0976,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "hartford-ct",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 52,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "rochester-ny",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1102,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "rochester-ny",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "rochester-ny",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.8444,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "rochester-ny",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 37.843,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "rochester-ny",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 21.0471,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "rochester-ny",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 3.4823,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "rochester-ny",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 49.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "tucson-az",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1154,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tucson-az",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.2,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tucson-az",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.6862,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tucson-az",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.8706,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tucson-az",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.3822,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tucson-az",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.9478,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tucson-az",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 69.7,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "tulsa-ok",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1034,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tulsa-ok",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 27.8,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tulsa-ok",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.1884,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tulsa-ok",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 29.7874,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tulsa-ok",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 21.9386,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tulsa-ok",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 13.1505,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "tulsa-ok",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 61.3,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "urban-honolulu-hi",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 2054,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "urban-honolulu-hi",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 33.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "urban-honolulu-hi",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.8004,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "urban-honolulu-hi",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 37.723,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "urban-honolulu-hi",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 27.0578,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "urban-honolulu-hi",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 3.4284,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "urban-honolulu-hi",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 77,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "new-orleans-la",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1182,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-orleans-la",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 33.3,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-orleans-la",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.8037,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-orleans-la",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 33.0494,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-orleans-la",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.4592,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-orleans-la",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 9.2444,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-orleans-la",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 70.3,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "omaha-ne",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1152,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "omaha-ne",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.5,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "omaha-ne",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.3648,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "omaha-ne",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 39.0925,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "omaha-ne",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 20.8913,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "omaha-ne",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.0525,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "omaha-ne",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 51.3,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "bridgeport-ct",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1827,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bridgeport-ct",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 32,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bridgeport-ct",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.1213,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bridgeport-ct",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 50.5327,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bridgeport-ct",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 31.0446,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bridgeport-ct",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.7934,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bridgeport-ct",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 49.6,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "greenville-sc",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1100,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greenville-sc",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.8,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greenville-sc",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.3409,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greenville-sc",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 33.7042,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greenville-sc",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.9278,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greenville-sc",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 10.1681,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greenville-sc",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 63.2,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "knoxville-tn",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1080,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "knoxville-tn",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.8,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "knoxville-tn",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.8852,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "knoxville-tn",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 31.8602,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "knoxville-tn",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.4227,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "knoxville-tn",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.6741,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "knoxville-tn",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 59.8,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "albuquerque-nm",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1102,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albuquerque-nm",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.8,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albuquerque-nm",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.4809,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albuquerque-nm",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.0255,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albuquerque-nm",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.6293,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albuquerque-nm",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.0614,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albuquerque-nm",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 57.9,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "bakersfield-ca",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1220,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bakersfield-ca",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 33.2,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bakersfield-ca",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 8.3519,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bakersfield-ca",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 18.5736,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bakersfield-ca",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.4087,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bakersfield-ca",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.8484,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "bakersfield-ca",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 66.2,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "albany-ny",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1230,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albany-ny",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.1,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albany-ny",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.8247,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albany-ny",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 40.9056,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albany-ny",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.4405,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albany-ny",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 3.048,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "albany-ny",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 49.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "mcallen-tx",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 925,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "mcallen-tx",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "mcallen-tx",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 7.5687,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "mcallen-tx",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 20.3267,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "mcallen-tx",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 22.8695,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "mcallen-tx",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 29.7219,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "mcallen-tx",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 74.9,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "baton-rouge-la",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1108,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baton-rouge-la",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 32.3,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baton-rouge-la",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.5434,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baton-rouge-la",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 29.9872,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baton-rouge-la",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 27.0938,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baton-rouge-la",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.1745,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "baton-rouge-la",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 68.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "el-paso-tx",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1045,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "el-paso-tx",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.2,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "el-paso-tx",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.2203,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "el-paso-tx",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 25.3091,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "el-paso-tx",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.2338,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "el-paso-tx",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 21.8883,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "el-paso-tx",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 61.3,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "allentown-pa",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1309,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "allentown-pa",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "allentown-pa",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.3666,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "allentown-pa",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 32.7302,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "allentown-pa",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 27.667,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "allentown-pa",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.2457,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "allentown-pa",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 53.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "north-port-fl",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1637,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "north-port-fl",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 33.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "north-port-fl",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.3605,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "north-port-fl",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 37.1786,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "north-port-fl",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 25.8876,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "north-port-fl",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 10.7994,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "north-port-fl",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 74.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "worcester-ma",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1347,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "worcester-ma",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "worcester-ma",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.3435,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "worcester-ma",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 39.0256,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "worcester-ma",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 29.5591,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "worcester-ma",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 2.6191,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "worcester-ma",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 48.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "columbia-sc",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1145,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbia-sc",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 32.2,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbia-sc",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.4894,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbia-sc",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.0418,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbia-sc",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 25.0514,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbia-sc",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.9999,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "columbia-sc",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 65.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "oxnard-ca",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 2248,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oxnard-ca",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 34.4,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oxnard-ca",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.4631,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oxnard-ca",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.6658,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oxnard-ca",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 25.9506,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oxnard-ca",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.9393,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "oxnard-ca",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 62.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "charleston-sc",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1488,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charleston-sc",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charleston-sc",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.8177,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charleston-sc",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 39.9501,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charleston-sc",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 27.3536,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charleston-sc",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 9.6872,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "charleston-sc",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 66.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "dayton-oh",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 984,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dayton-oh",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 27.6,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dayton-oh",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.1618,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dayton-oh",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 31.9638,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dayton-oh",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 21.8855,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dayton-oh",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 6.0376,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "dayton-oh",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 53.9,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "cape-coral-fl",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1597,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cape-coral-fl",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 34.4,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cape-coral-fl",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.1645,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cape-coral-fl",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 30.7593,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cape-coral-fl",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 28.3902,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cape-coral-fl",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 12.4521,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "cape-coral-fl",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 75.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "boise-city-id",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1383,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boise-city-id",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boise-city-id",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.1606,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boise-city-id",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 36.6033,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boise-city-id",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 22.9053,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boise-city-id",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.6428,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "boise-city-id",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 48.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "stockton-ca",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1633,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "stockton-ca",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.3,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "stockton-ca",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 7.3668,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "stockton-ca",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 21.573,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "stockton-ca",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 34.625,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "stockton-ca",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 6.4358,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "stockton-ca",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 63,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "greensboro-nc",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1045,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greensboro-nc",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.6,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greensboro-nc",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.7197,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greensboro-nc",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 31.416,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greensboro-nc",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.3651,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greensboro-nc",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 9.77,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "greensboro-nc",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 59.6,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "lakeland-fl",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1272,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "lakeland-fl",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 32.1,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "lakeland-fl",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.3886,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "lakeland-fl",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 22.6409,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "lakeland-fl",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 30.1638,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "lakeland-fl",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 12.9549,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "lakeland-fl",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 74.6,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "colorado-springs-co",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1611,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "colorado-springs-co",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "colorado-springs-co",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.3964,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "colorado-springs-co",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 40.9946,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "colorado-springs-co",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.7512,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "colorado-springs-co",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.0978,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "colorado-springs-co",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 50.4,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "little-rock-ar",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1007,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "little-rock-ar",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.4,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "little-rock-ar",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.3966,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "little-rock-ar",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 32.8641,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "little-rock-ar",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.3923,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "little-rock-ar",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 8.2569,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "little-rock-ar",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 61.7,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "des-moines-ia",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1113,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "des-moines-ia",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 27,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "des-moines-ia",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.0343,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "des-moines-ia",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 39.0964,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "des-moines-ia",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 20.8131,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "des-moines-ia",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 4.5099,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "des-moines-ia",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 50.9,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "kiryas-joel-ny",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1568,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kiryas-joel-ny",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 32.3,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kiryas-joel-ny",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.1421,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kiryas-joel-ny",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.6078,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kiryas-joel-ny",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 32.948,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kiryas-joel-ny",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 4.5134,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "kiryas-joel-ny",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 50.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "akron-oh",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1005,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "akron-oh",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.4,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "akron-oh",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.2377,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "akron-oh",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 34.4607,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "akron-oh",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.7618,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "akron-oh",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.5248,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "akron-oh",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 52.3,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "provo-ut",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1434,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "provo-ut",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.5,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "provo-ut",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.5202,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "provo-ut",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 43.3726,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "provo-ut",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 21.988,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "provo-ut",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.6548,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "provo-ut",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 50.6,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "deltona-fl",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1407,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "deltona-fl",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 34,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "deltona-fl",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.9462,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "deltona-fl",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 27.778,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "deltona-fl",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 27.2346,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "deltona-fl",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 10.9952,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "deltona-fl",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 71.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "madison-wi",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1300,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "madison-wi",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "madison-wi",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 2.5572,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "madison-wi",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 49.2931,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "madison-wi",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 21.7383,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "madison-wi",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 3.7319,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "madison-wi",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 47,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "winston-nc",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 973,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "winston-nc",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "winston-nc",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.9195,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "winston-nc",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 29.581,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "winston-nc",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.3475,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "winston-nc",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 10.4179,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "winston-nc",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 59.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "syracuse-ny",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1036,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "syracuse-ny",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.8,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "syracuse-ny",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.3114,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "syracuse-ny",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 34.2152,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "syracuse-ny",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 21.547,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "syracuse-ny",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 3.5125,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "syracuse-ny",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 48.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "wichita-ks",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 969,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "wichita-ks",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 27.3,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "wichita-ks",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.9816,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "wichita-ks",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 31.5112,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "wichita-ks",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 20.3632,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "wichita-ks",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 10.2872,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "wichita-ks",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 57,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "ogden-ut",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1393,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "ogden-ut",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 27.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "ogden-ut",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 2.7141,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "ogden-ut",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 34.1578,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "ogden-ut",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.2082,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "ogden-ut",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 7.0332,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "ogden-ut",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 51.7,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "palm-bay-fl",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1456,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "palm-bay-fl",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 32.2,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "palm-bay-fl",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.8334,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "palm-bay-fl",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 33.5399,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "palm-bay-fl",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 25.4025,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "palm-bay-fl",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 9.8859,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "palm-bay-fl",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 73.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "augusta-ga",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1075,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "augusta-ga",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.5,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "augusta-ga",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.0703,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "augusta-ga",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 28.776,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "augusta-ga",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.884,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "augusta-ga",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 10.0446,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "augusta-ga",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 67.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "jackson-ms",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1034,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jackson-ms",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jackson-ms",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.8875,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jackson-ms",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 31.5522,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jackson-ms",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 25.1333,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jackson-ms",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 11.0188,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "jackson-ms",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 66,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "toledo-oh",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 917,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "toledo-oh",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 27.3,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "toledo-oh",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 6.0807,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "toledo-oh",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 29.6252,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "toledo-oh",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 20.8476,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "toledo-oh",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.0693,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "toledo-oh",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 52.2,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "harrisburg-pa",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1151,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "harrisburg-pa",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 26.9,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "harrisburg-pa",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.8472,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "harrisburg-pa",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 35.3684,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "harrisburg-pa",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 22.7267,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "harrisburg-pa",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 6.1916,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "harrisburg-pa",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 55.2,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "durham-nc",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1374,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "durham-nc",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 29.6,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "durham-nc",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 3.8694,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "durham-nc",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 52.3369,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "durham-nc",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 24.1397,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "durham-nc",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 9.756,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "durham-nc",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 59.1,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "spokane-wa",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1187,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "spokane-wa",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 30.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "spokane-wa",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.7,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "spokane-wa",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 31.2371,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "spokane-wa",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.1128,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "spokane-wa",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.1769,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "spokane-wa",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 45.5,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "chattanooga-tn",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1084,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chattanooga-tn",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.3,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chattanooga-tn",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 4.4146,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chattanooga-tn",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 31.3359,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chattanooga-tn",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.8883,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chattanooga-tn",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 10.2109,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "chattanooga-tn",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 61.9,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "scranton-pa",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 963,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "scranton-pa",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 28.3,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "scranton-pa",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.3066,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "scranton-pa",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 26.7685,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "scranton-pa",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 22.8135,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "scranton-pa",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.5297,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "scranton-pa",
+    "metricKey": "annual_mean_temperature",
+    "dimension": "climate",
+    "rawValue": 51.3,
+    "unit": "degrees_fahrenheit",
+    "sourceKey": "noaa-normals-1991-2020"
+  },
+  {
+    "citySlug": "new-haven-ct",
+    "metricKey": "median_gross_rent",
+    "dimension": "housing",
+    "rawValue": 1463,
+    "unit": "usd_per_month",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-haven-ct",
+    "metricKey": "rent_share_of_income",
+    "dimension": "cost",
+    "rawValue": 31.6,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-haven-ct",
+    "metricKey": "unemployment_rate",
+    "dimension": "career",
+    "rawValue": 5.9139,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-haven-ct",
+    "metricKey": "bachelors_or_higher_share",
+    "dimension": "education",
+    "rawValue": 41.0715,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-haven-ct",
+    "metricKey": "mean_commute_minutes",
+    "dimension": "transport",
+    "rawValue": 23.7213,
+    "unit": "minutes",
+    "sourceKey": "acs-2023-5yr"
+  },
+  {
+    "citySlug": "new-haven-ct",
+    "metricKey": "uninsured_share",
+    "dimension": "healthcare",
+    "rawValue": 5.1331,
+    "unit": "percent",
+    "sourceKey": "acs-2023-5yr"
+  }
+]

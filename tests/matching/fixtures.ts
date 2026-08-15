@@ -1,0 +1,196 @@
+import { PREFERENCE_WEIGHT_KEYS } from "@/lib/constants";
+import type { CandidateCity, MetricSourceRef } from "@/lib/matching/types";
+import type {
+  PreferenceWeightKey,
+  PreferenceWeights,
+  Profile,
+} from "@/types/profile";
+
+/**
+ * The golden fixture: four synthetic cities with deliberately opposed
+ * characteristics, chosen so every expected score can be worked out by hand.
+ *
+ * With four candidates and distinct values, mid-rank percentiles are always
+ * 12.5 / 37.5 / 62.5 / 87.5, which makes the arithmetic in the tests checkable
+ * on paper rather than merely reproducible.
+ *
+ *            rent    unemployment   mean temp
+ *   Alpha     900        7.0%          45°F     cheap, weak jobs, cold
+ *   Beta     2400        2.5%          52°F     expensive, strong jobs
+ *   Gamma    1500        4.0%          57°F     balanced, ideal climate
+ *   Delta    1800        6.0%          70°F     middling, hot
+ */
+
+export const TEST_SOURCE: MetricSourceRef = {
+  key: "test-source",
+  organization: "Test Organization",
+  dataset: "Synthetic Fixture",
+  url: "https://example.test/dataset",
+  period: "2020-2024",
+  geographyLevel: "cbsa",
+};
+
+interface FixtureSpec {
+  id: string;
+  slug: string;
+  city: string;
+  rent?: number;
+  unemployment?: number;
+  temperature?: number;
+}
+
+const METRIC_BY_DIMENSION: Partial<
+  Record<PreferenceWeightKey, { key: string; unit: string }>
+> = {
+  housing: { key: "median_gross_rent", unit: "usd_per_month" },
+  career: { key: "unemployment_rate", unit: "percent" },
+  climate: { key: "annual_mean_temperature", unit: "degrees_fahrenheit" },
+};
+
+function buildCity(spec: FixtureSpec): CandidateCity {
+  const observations: CandidateCity["observations"] = {};
+
+  const add = (dimension: PreferenceWeightKey, value: number | undefined) => {
+    if (value === undefined) return;
+    const metric = METRIC_BY_DIMENSION[dimension];
+    if (!metric) return;
+    observations[dimension] = {
+      metricKey: metric.key,
+      dimension,
+      rawValue: value,
+      unit: metric.unit,
+      source: TEST_SOURCE,
+    };
+  };
+
+  add("housing", spec.rent);
+  add("career", spec.unemployment);
+  add("climate", spec.temperature);
+
+  return {
+    id: spec.id,
+    slug: spec.slug,
+    city: spec.city,
+    state: "TX",
+    metro: `${spec.city} Metro Area`,
+    population: 1_000_000,
+    latitude: 30,
+    longitude: -97,
+    observations,
+  };
+}
+
+export const CITY_ALPHA = buildCity({
+  id: "00000000-0000-4000-8000-00000000000a",
+  slug: "alpha",
+  city: "Alpha",
+  rent: 900,
+  unemployment: 7.0,
+  temperature: 45,
+});
+
+export const CITY_BETA = buildCity({
+  id: "00000000-0000-4000-8000-00000000000b",
+  slug: "beta",
+  city: "Beta",
+  rent: 2400,
+  unemployment: 2.5,
+  temperature: 52,
+});
+
+export const CITY_GAMMA = buildCity({
+  id: "00000000-0000-4000-8000-00000000000c",
+  slug: "gamma",
+  city: "Gamma",
+  rent: 1500,
+  unemployment: 4.0,
+  temperature: 57,
+});
+
+export const CITY_DELTA = buildCity({
+  id: "00000000-0000-4000-8000-00000000000d",
+  slug: "delta",
+  city: "Delta",
+  rent: 1800,
+  unemployment: 6.0,
+  temperature: 70,
+});
+
+export const GOLDEN_CITIES: CandidateCity[] = [
+  CITY_ALPHA,
+  CITY_BETA,
+  CITY_GAMMA,
+  CITY_DELTA,
+];
+
+/** Weights with every dimension at zero, ready to be overridden. */
+export function zeroWeights(): PreferenceWeights {
+  return Object.fromEntries(
+    PREFERENCE_WEIGHT_KEYS.map((key) => [key, 0]),
+  ) as PreferenceWeights;
+}
+
+export function weightsWith(
+  overrides: Partial<PreferenceWeights>,
+): PreferenceWeights {
+  return { ...zeroWeights(), ...overrides };
+}
+
+/**
+ * A profile whose budget is high enough that the hard filter never fires,
+ * so scoring tests observe scoring alone.
+ */
+export function testProfile(overrides: Partial<Profile> = {}): Profile {
+  return {
+    id: "11111111-1111-4111-8111-111111111111",
+    userId: "22222222-2222-4222-8222-222222222222",
+    ageRange: "25-34",
+    householdIncome: 100_000,
+    occupation: "Tester",
+    relationshipStatus: "single",
+    children: 0,
+    householdSize: 1,
+    currentCity: "Brooklyn",
+    currentState: "NY",
+    housingBudget: 10_000,
+    workPreference: "remote",
+    freeTextGoals: null,
+    createdAt: "2026-08-15T00:00:00.000Z",
+    updatedAt: "2026-08-15T00:00:00.000Z",
+    ...overrides,
+  };
+}
+
+/** Builds a city with an explicit set of observations, for targeted tests. */
+export function cityWith(
+  id: string,
+  observations: Partial<Record<PreferenceWeightKey, number>>,
+): CandidateCity {
+  const built: CandidateCity["observations"] = {};
+
+  for (const [dimension, value] of Object.entries(observations) as [
+    PreferenceWeightKey,
+    number,
+  ][]) {
+    const metric = METRIC_BY_DIMENSION[dimension];
+    built[dimension] = {
+      metricKey: metric?.key ?? `${dimension}_metric`,
+      dimension,
+      rawValue: value,
+      unit: metric?.unit ?? "index",
+      source: TEST_SOURCE,
+    };
+  }
+
+  return {
+    id,
+    slug: `city-${id.slice(-4)}`,
+    city: `City ${id.slice(-4)}`,
+    state: "TX",
+    metro: null,
+    population: 500_000,
+    latitude: 30,
+    longitude: -97,
+    observations: built,
+  };
+}
