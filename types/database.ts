@@ -366,12 +366,8 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      replace_recommendations: {
-        Args: {
-          p_algorithm_version: string
-          p_profile_id: string
-          p_rows: Json
-        }
+      replace_my_recommendations: {
+        Args: { p_algorithm_version: string; p_rows: Json }
         Returns: number
       }
     }

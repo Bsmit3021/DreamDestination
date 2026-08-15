@@ -15,6 +15,11 @@
 -- Everything runs inside a transaction that is rolled back, so it leaves no
 -- data behind. It raises an exception on the first failure.
 --
+-- Fixture slugs are prefixed `rlssmoke-` so they cannot collide with seeded
+-- reference data, and visibility checks are scoped to the fixture rows rather
+-- than to absolute table counts. Both were needed once the real 100-metro
+-- dataset was loaded: the suite previously assumed an empty `cities` table.
+--
 -- Two distinct denial mechanisms are asserted, and they are not
 -- interchangeable:
 --   * missing GRANT  -> raises insufficient_privilege
@@ -50,7 +55,7 @@ insert into public.preferences (profile_id)
 values ('11111111-1111-4111-8111-111111111111');
 
 insert into public.cities (id, slug, city, state, latitude, longitude)
-values ('22222222-2222-4222-8222-222222222222', 'austin-tx', 'Austin', 'TX',
+values ('22222222-2222-4222-8222-222222222222', 'rlssmoke-alpha-tx', 'RlsSmokeAlpha', 'TX',
         30.267153, -97.743057);
 
 insert into public.city_metrics (city_id, median_rent)
@@ -287,7 +292,7 @@ end $$;
 do $$
 declare n int;
 begin
-  select count(*) into n from public.cities;
+  select count(*) into n from public.cities where id = '22222222-2222-4222-8222-222222222222';
   if n = 1 then
     raise notice 'PASS  A can read city reference data';
   else
@@ -369,14 +374,14 @@ set local request.jwt.claims = '{"role":"anon"}';
 do $$
 declare n int;
 begin
-  select count(*) into n from public.cities;
+  select count(*) into n from public.cities where id = '22222222-2222-4222-8222-222222222222';
   if n = 1 then
     raise notice 'PASS  anon can read cities';
   else
     raise exception 'FAIL: anon sees % cities', n;
   end if;
 
-  select count(*) into n from public.city_metrics;
+  select count(*) into n from public.city_metrics where city_id = '22222222-2222-4222-8222-222222222222';
   if n = 1 then
     raise notice 'PASS  anon can read city_metrics';
   else

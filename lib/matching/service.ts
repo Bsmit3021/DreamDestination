@@ -67,12 +67,9 @@ export async function generateRecommendationsForCurrentUser(
 
   const result = generateMatches(cities, profile, preferences.weights, options);
 
-  // profile.id came from the session-scoped read above, never from input.
-  await persistRecommendations(
-    profile.id,
-    result.recommendations,
-    result.algorithmVersion,
-  );
+  // No profile id is passed: the database derives the owner from auth.uid()
+  // inside replace_my_recommendations.
+  await persistRecommendations(result.recommendations, result.algorithmVersion);
 
   return result;
 }

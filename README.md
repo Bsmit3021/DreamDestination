@@ -271,11 +271,13 @@ Conventions worth knowing:
 
 - **No secrets are committed.** `.env.example` holds placeholders; `.env.local`
   is gitignored.
-- **The service-role key is server-only.** It carries no `NEXT_PUBLIC_` prefix,
-  so Next.js never inlines it into a client bundle, and the modules that read it
-  (`lib/supabase/server.ts`, `lib/supabase/admin.ts`) import `server-only`,
-  which turns an import from a Client Component into a build error.
-  `getServerEnv()` additionally throws if it is ever reached in a browser.
+- **No service-role credential is used in the application at all.** The web app
+  runs entirely on the anon key under RLS. Recommendations — which users may not
+  author directly — are written by `replace_my_recommendations`, a
+  `SECURITY DEFINER` function that derives the owner from `auth.uid()` and
+  accepts no profile id, so a cross-user write cannot be expressed. The
+  service-role key is read only by `scripts/city-data/seed.ts`, an offline
+  developer task. `getServerEnv()` still throws if reached in a browser.
 - **RLS is enabled on all five tables**, and where no policy grants an action,
   that action is denied.
   - `profiles` and `preferences`: full read/write, scoped to the owning user.

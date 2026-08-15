@@ -155,18 +155,152 @@ begin
   end;
 end $$;
 
--- The regeneration function must not be callable by an ordinary user.
+-- --------------------------------------------------------------------------
+-- replace_my_recommendations: direct RPC abuse attempts as User A
+--
+-- The function takes no profile id, so "target another user" is not something
+-- the caller can even express. These prove the surrounding guarantees.
+-- --------------------------------------------------------------------------
+
+-- A can replace their OWN recommendations through the function.
+do $$
+declare n int; owned int;
+begin
+  n := public.replace_my_recommendations('v1', jsonb_build_array(
+    jsonb_build_object(
+      'city_id', '22222222-2222-4222-8222-222222222222',
+      'dream_score', 0.75, 'rank', 1, 'reason_json', '{}'::jsonb
+    )
+  ));
+  select count(*) into owned from public.recommendations;
+  if n = 1 and owned = 1 then
+    raise notice 'PASS  A can replace their own recommendations via RPC';
+  else
+    raise exception 'FAIL: inserted=% visible=%', n, owned;
+  end if;
+end $$;
+
+-- Doing so must not have touched B's rows.
+do $$
+declare total int;
+begin
+  -- Counted as the table owner, since RLS hides B's rows from A.
+  set local role postgres;
+  select count(*) into total from public.recommendations
+    where profile_id = '11111111-1111-4111-8111-11111111111b';
+  set local role authenticated;
+  if total = 1 then
+    raise notice 'PASS  A''s RPC call left B''s recommendations untouched';
+  else
+    raise exception 'FAIL: B now has % recommendation rows', total;
+  end if;
+end $$;
+
+-- Rerunning replaces rather than duplicating.
+do $$
+declare owned int;
+begin
+  perform public.replace_my_recommendations('v1', jsonb_build_array(
+    jsonb_build_object('city_id', '22222222-2222-4222-8222-222222222222',
+                       'dream_score', 0.5, 'rank', 1, 'reason_json', '{}'::jsonb)
+  ));
+  select count(*) into owned from public.recommendations;
+  if owned = 1 then
+    raise notice 'PASS  RPC rerun replaces instead of duplicating';
+  else
+    raise exception 'FAIL: rerun left % rows', owned;
+  end if;
+end $$;
+
+-- Malformed payloads must fail loudly, not write partial data.
 do $$
 begin
   begin
-    perform public.replace_recommendations(
-      '11111111-1111-4111-8111-11111111111b', 'v1', '[]'::jsonb
-    );
-    raise exception 'FAIL: A executed replace_recommendations';
+    perform public.replace_my_recommendations('v1', '{"not":"an array"}'::jsonb);
+    raise exception 'FAIL: RPC accepted a non-array payload';
   exception
-    when insufficient_privilege then
-      raise notice 'PASS  A cannot execute replace_recommendations';
+    when sqlstate '22023' then
+      raise notice 'PASS  RPC rejects a non-array payload';
   end;
+end $$;
+
+do $$
+begin
+  begin
+    perform public.replace_my_recommendations('v1', jsonb_build_array(
+      jsonb_build_object('city_id', '99999999-9999-4999-8999-999999999999',
+                         'dream_score', 0.5, 'rank', 1)
+    ));
+    raise exception 'FAIL: RPC accepted a non-existent city';
+  exception
+    when foreign_key_violation then
+      raise notice 'PASS  RPC rejects an unknown city id';
+  end;
+end $$;
+
+do $$
+begin
+  begin
+    perform public.replace_my_recommendations('v1', jsonb_build_array(
+      jsonb_build_object('city_id', '22222222-2222-4222-8222-222222222222',
+                         'dream_score', 0.5, 'rank', 1),
+      jsonb_build_object('city_id', '22222222-2222-4222-8222-222222222222',
+                         'dream_score', 0.4, 'rank', 1)
+    ));
+    raise exception 'FAIL: RPC accepted duplicate ranks';
+  exception
+    when unique_violation then
+      raise notice 'PASS  RPC rejects duplicate ranks';
+  end;
+end $$;
+
+do $$
+begin
+  begin
+    perform public.replace_my_recommendations('not-a-version', jsonb_build_array(
+      jsonb_build_object('city_id', '22222222-2222-4222-8222-222222222222',
+                         'dream_score', 0.5, 'rank', 1)
+    ));
+    raise exception 'FAIL: RPC accepted an invalid algorithm version';
+  exception
+    when check_violation then
+      raise notice 'PASS  RPC rejects an invalid algorithm version';
+  end;
+end $$;
+
+do $$
+begin
+  begin
+    perform public.replace_my_recommendations('v1', jsonb_build_array(
+      jsonb_build_object('city_id', '22222222-2222-4222-8222-222222222222',
+                         'dream_score', 9.9, 'rank', 1)
+    ));
+    raise exception 'FAIL: RPC accepted an out-of-range score';
+  exception
+    when check_violation then
+      raise notice 'PASS  RPC rejects an out-of-range dream_score';
+  end;
+end $$;
+
+-- Extra fields in the payload are ignored, not smuggled into the row.
+do $$
+declare owner_ok boolean;
+begin
+  perform public.replace_my_recommendations('v1', jsonb_build_array(
+    jsonb_build_object(
+      'city_id', '22222222-2222-4222-8222-222222222222',
+      'dream_score', 0.6, 'rank', 1,
+      'profile_id', '11111111-1111-4111-8111-11111111111b',
+      'user_id', 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb'
+    )
+  ));
+  select bool_and(profile_id = '11111111-1111-4111-8111-11111111111a')
+    into owner_ok from public.recommendations;
+  if owner_ok then
+    raise notice 'PASS  RPC ignores injected profile_id/user_id fields';
+  else
+    raise exception 'FAIL: injected ownership field took effect';
+  end if;
 end $$;
 
 -- --------------------------------------------------------------------------
@@ -202,13 +336,11 @@ end $$;
 do $$
 begin
   begin
-    perform public.replace_recommendations(
-      '11111111-1111-4111-8111-11111111111b', 'v1', '[]'::jsonb
-    );
-    raise exception 'FAIL: anon executed replace_recommendations';
+    perform public.replace_my_recommendations('v1', '[]'::jsonb);
+    raise exception 'FAIL: anon executed replace_my_recommendations';
   exception
     when insufficient_privilege then
-      raise notice 'PASS  anon cannot execute replace_recommendations';
+      raise notice 'PASS  anon cannot execute replace_my_recommendations';
   end;
 end $$;
 

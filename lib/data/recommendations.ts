@@ -4,7 +4,6 @@ import { z } from "zod";
 
 import { PREFERENCE_WEIGHT_KEYS } from "@/lib/constants";
 import { DataAccessError } from "@/lib/data/errors";
-import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { RankedRecommendation } from "@/lib/matching/types";
 import type { PreferenceWeightKey, UsStateCode } from "@/types/profile";
@@ -12,15 +11,15 @@ import type { PreferenceWeightKey, UsStateCode } from "@/types/profile";
 /**
  * Reading and writing stored recommendations.
  *
- * Reads go through the ordinary server client, so RLS scopes them to the
- * signed-in user's own rows.
+ * Both directions use the ordinary session-scoped client. Reads are limited by
+ * RLS to the caller's own rows.
  *
- * Writes go through the service-role client, on purpose. `recommendations`
- * deliberately grants users no INSERT policy: they are derived data, and a user
- * who could write them could fabricate their own results. Ownership is still
- * resolved from `auth.uid()` before anything is written — the elevated client
- * is only used to write rows the user is not permitted to author, never to
- * reach another user's data.
+ * Writes go through `replace_my_recommendations`, a SECURITY DEFINER function
+ * that resolves the owner from `auth.uid()` itself. `recommendations` still
+ * grants users no direct INSERT — they are derived data, and a user able to
+ * write them could fabricate their own results — but the function performs
+ * that write on the caller's behalf for their own profile only. No
+ * service-role credential is involved in the user request path.
  */
 
 /** The scoring snapshot stored in `recommendations.reason_json`. */
@@ -106,17 +105,20 @@ function buildReasonJson(recommendation: RankedRecommendation): ReasonJson {
 }
 
 /**
- * Replaces a profile's stored recommendations atomically.
+ * Replaces the signed-in user's stored recommendations atomically.
  *
- * @param profileId must already have been resolved from the authenticated
- *   session by the caller; this function never derives ownership itself.
+ * Takes no profile or user id. The database resolves the owner from
+ * `auth.uid()` inside `replace_my_recommendations`, so there is no argument
+ * here that could name someone else's profile — cross-user writes are
+ * unexpressible rather than merely forbidden.
  */
 export async function persistRecommendations(
-  profileId: string,
   recommendations: readonly RankedRecommendation[],
   algorithmVersion: string,
 ): Promise<void> {
-  const admin = createSupabaseAdminClient();
+  // The ordinary session-scoped client: the caller's JWT is what the function
+  // reads to identify them. No elevated credential is involved.
+  const supabase = await createSupabaseServerClient();
 
   const rows = recommendations.map((recommendation) => ({
     city_id: recommendation.city.id,
@@ -125,10 +127,9 @@ export async function persistRecommendations(
     reason_json: buildReasonJson(recommendation),
   }));
 
-  // One statement: delete + insert inside a single transaction, so the unique
+  // One call: delete + insert inside a single transaction, so the unique
   // (profile_id, rank) constraint cannot be violated by a concurrent rerun.
-  const { error } = await admin.rpc("replace_recommendations", {
-    p_profile_id: profileId,
+  const { error } = await supabase.rpc("replace_my_recommendations", {
     p_algorithm_version: algorithmVersion,
     p_rows: rows,
   });
