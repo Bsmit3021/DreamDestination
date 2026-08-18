@@ -1,0 +1,17 @@
+{
+  "period": "May 2025",
+  "dreamDestinationMetros": 100,
+  "careerSourceMetros": 393,
+  "metrosMatched": 100,
+  "metrosUnmatched": [],
+  "metrosAmbiguous": 0,
+  "supportedOccupations": 867,
+  "careerSourceOccupations": 824,
+  "occupationsMatched": 809,
+  "occupationsUnmatched": 58,
+  "rowsWritten": 55609,
+  "duplicatePairsSkipped": 0,
+  "suppressedEmployment": 1758,
+  "suppressedWage": 823,
+  "wageTopCoded": 114
+}

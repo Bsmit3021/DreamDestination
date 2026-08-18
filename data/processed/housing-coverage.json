@@ -1,0 +1,10 @@
+{
+  "period": "2019-2023",
+  "dreamDestinationMetros": 100,
+  "housingSourceMetros": 935,
+  "matched": 100,
+  "unmatched": [],
+  "ambiguous": 0,
+  "withHomeValue": 100,
+  "withTwoBedroom": 100
+}

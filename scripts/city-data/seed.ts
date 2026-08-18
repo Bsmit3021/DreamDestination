@@ -77,6 +77,9 @@ async function main(): Promise<void> {
       city: city.city,
       state: city.state,
       metro: city.metro,
+      // The CBSA code is the join key every Phase 4 source uses. Joining on
+      // metro name instead would be quietly wrong.
+      cbsa_geoid: city.cbsaGeoid,
       population: city.population,
       latitude: city.latitude,
       longitude: city.longitude,

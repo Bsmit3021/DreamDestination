@@ -1,0 +1,30 @@
+{
+  "archive": "oesm25ma.zip",
+  "sha256": "cc3e6fa80edf64ab8fd0e8a6472ef1b513a6bcaef2f5018e9649c485793b0b99",
+  "bytes": 39932338,
+  "sourceUrl": "https://www.bls.gov/oes/special-requests/oesm25ma.zip",
+  "organization": "U.S. Bureau of Labor Statistics",
+  "dataset": "Occupational Employment and Wage Statistics (OEWS), metropolitan area estimates",
+  "period": "May 2025",
+  "geographyLevel": "cbsa",
+  "retrievalMethod": "Manual browser download by the repository owner. BLS blocks automated clients from every file host (403 on www.bls.gov and download.bls.gov), so the archive cannot be fetched by script from this environment.",
+  "members": [
+    {
+      "name": "oesm25ma/MSA_M2025_dl.xlsx",
+      "bytes": 30628700,
+      "role": "metropolitan estimates (primary)"
+    },
+    {
+      "name": "oesm25ma/BOS_M2025_dl.xlsx",
+      "bytes": 9891462,
+      "role": "nonmetropolitan estimates (unused)"
+    },
+    {
+      "name": "oesm25ma/file_descriptions.xlsx",
+      "bytes": 11986,
+      "role": "column documentation"
+    }
+  ],
+  "validatedOn": "2026-08-18",
+  "validation": "Archive listing verified; MSA member confirmed to be a well-formed xlsx (PK header). Contents not yet parsed."
+}

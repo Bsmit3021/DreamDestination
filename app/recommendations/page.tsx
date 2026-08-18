@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { DestinationComparison } from "@/app/recommendations/comparison";
 import { GenerateButton } from "@/app/recommendations/generate-button";
 import {
   Card,
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getOnboardingStatus } from "@/lib/data/preferences";
+import { getDestinationComparisonForCurrentUser } from "@/lib/opportunity/service";
 import {
   getStoredRecommendations,
   snapshotDimensions,
@@ -36,6 +38,7 @@ export default async function RecommendationsPage() {
   }
 
   const recommendations = await getStoredRecommendations();
+  const comparison = await getDestinationComparisonForCurrentUser();
 
   return (
     <div className="flex flex-col gap-6">
@@ -77,6 +80,13 @@ export default async function RecommendationsPage() {
             </li>
           ))}
         </ul>
+      )}
+
+      {recommendations.length > 0 && (
+        <DestinationComparison
+          rows={comparison.rows}
+          occupation={comparison.occupation}
+        />
       )}
 
       {recommendations.length > 0 && (
@@ -180,6 +190,13 @@ function RecommendationCard({
         )}
 
         <Separator />
+
+        <Link
+          href={`/recommendations/${city.id}`}
+          className="text-sm font-medium underline underline-offset-4"
+        >
+          Explore destination
+        </Link>
 
         <details className="group">
           <summary className="cursor-pointer text-sm font-medium">

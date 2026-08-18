@@ -11,6 +11,7 @@ export type Database = {
     Tables: {
       cities: {
         Row: {
+          cbsa_geoid: string | null
           city: string
           created_at: string
           id: string
@@ -23,6 +24,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          cbsa_geoid?: string | null
           city: string
           created_at?: string
           id?: string
@@ -35,6 +37,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          cbsa_geoid?: string | null
           city?: string
           created_at?: string
           id?: string
@@ -158,6 +161,69 @@ export type Database = {
           },
         ]
       }
+      housing_market_stats: {
+        Row: {
+          city_id: string
+          created_at: string
+          four_bedroom_rent: number | null
+          id: string
+          median_gross_rent: number | null
+          median_home_value: number | null
+          one_bedroom_rent: number | null
+          period: string
+          source_id: string
+          studio_rent: number | null
+          three_bedroom_rent: number | null
+          two_bedroom_rent: number | null
+          updated_at: string
+        }
+        Insert: {
+          city_id: string
+          created_at?: string
+          four_bedroom_rent?: number | null
+          id?: string
+          median_gross_rent?: number | null
+          median_home_value?: number | null
+          one_bedroom_rent?: number | null
+          period: string
+          source_id: string
+          studio_rent?: number | null
+          three_bedroom_rent?: number | null
+          two_bedroom_rent?: number | null
+          updated_at?: string
+        }
+        Update: {
+          city_id?: string
+          created_at?: string
+          four_bedroom_rent?: number | null
+          id?: string
+          median_gross_rent?: number | null
+          median_home_value?: number | null
+          one_bedroom_rent?: number | null
+          period?: string
+          source_id?: string
+          studio_rent?: number | null
+          three_bedroom_rent?: number | null
+          two_bedroom_rent?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "housing_market_stats_city_id_fkey"
+            columns: ["city_id"]
+            isOneToOne: false
+            referencedRelation: "cities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "housing_market_stats_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "metric_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       metric_sources: {
         Row: {
           created_at: string
@@ -199,6 +265,155 @@ export type Database = {
           url?: string
         }
         Relationships: []
+      }
+      metro_occupation_stats: {
+        Row: {
+          city_id: string
+          created_at: string
+          employment: number | null
+          employment_per_1000: number | null
+          id: string
+          location_quotient: number | null
+          mean_annual_wage: number | null
+          median_annual_wage: number | null
+          p25_annual_wage: number | null
+          p75_annual_wage: number | null
+          period: string
+          soc_code: string
+          source_id: string
+          updated_at: string
+          wage_top_coded: boolean
+        }
+        Insert: {
+          city_id: string
+          created_at?: string
+          employment?: number | null
+          employment_per_1000?: number | null
+          id?: string
+          location_quotient?: number | null
+          mean_annual_wage?: number | null
+          median_annual_wage?: number | null
+          p25_annual_wage?: number | null
+          p75_annual_wage?: number | null
+          period: string
+          soc_code: string
+          source_id: string
+          updated_at?: string
+          wage_top_coded?: boolean
+        }
+        Update: {
+          city_id?: string
+          created_at?: string
+          employment?: number | null
+          employment_per_1000?: number | null
+          id?: string
+          location_quotient?: number | null
+          mean_annual_wage?: number | null
+          median_annual_wage?: number | null
+          p25_annual_wage?: number | null
+          p75_annual_wage?: number | null
+          period?: string
+          soc_code?: string
+          source_id?: string
+          updated_at?: string
+          wage_top_coded?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "metro_occupation_stats_city_id_fkey"
+            columns: ["city_id"]
+            isOneToOne: false
+            referencedRelation: "cities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "metro_occupation_stats_soc_code_fkey"
+            columns: ["soc_code"]
+            isOneToOne: false
+            referencedRelation: "occupations"
+            referencedColumns: ["soc_code"]
+          },
+          {
+            foreignKeyName: "metro_occupation_stats_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "metric_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      occupation_titles: {
+        Row: {
+          created_at: string
+          id: string
+          normalized_title: string
+          soc_code: string
+          title: string
+          title_kind: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          normalized_title: string
+          soc_code: string
+          title: string
+          title_kind: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          normalized_title?: string
+          soc_code?: string
+          title?: string
+          title_kind?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "occupation_titles_soc_code_fkey"
+            columns: ["soc_code"]
+            isOneToOne: false
+            referencedRelation: "occupations"
+            referencedColumns: ["soc_code"]
+          },
+        ]
+      }
+      occupations: {
+        Row: {
+          created_at: string
+          description: string | null
+          onet_code: string | null
+          soc_code: string
+          source_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          onet_code?: string | null
+          soc_code: string
+          source_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          onet_code?: string | null
+          soc_code?: string
+          source_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "occupations_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "metric_sources"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       preferences: {
         Row: {
@@ -256,6 +471,57 @@ export type Database = {
             isOneToOne: true
             referencedRelation: "profiles"
             referencedColumns: ["id"]
+          },
+        ]
+      }
+      profile_career_targets: {
+        Row: {
+          confirmed_by_user: boolean
+          created_at: string
+          id: string
+          match_confidence: number
+          match_method: string
+          profile_id: string
+          soc_code: string
+          source_text: string
+          updated_at: string
+        }
+        Insert: {
+          confirmed_by_user?: boolean
+          created_at?: string
+          id?: string
+          match_confidence: number
+          match_method: string
+          profile_id: string
+          soc_code: string
+          source_text: string
+          updated_at?: string
+        }
+        Update: {
+          confirmed_by_user?: boolean
+          created_at?: string
+          id?: string
+          match_confidence?: number
+          match_method?: string
+          profile_id?: string
+          soc_code?: string
+          source_text?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profile_career_targets_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profile_career_targets_soc_code_fkey"
+            columns: ["soc_code"]
+            isOneToOne: false
+            referencedRelation: "occupations"
+            referencedColumns: ["soc_code"]
           },
         ]
       }
@@ -374,11 +640,7 @@ export type Database = {
     Enums: {
       age_range: "18-24" | "25-34" | "35-44" | "45-54" | "55-64" | "65+"
       relationship_status:
-        | "single"
-        | "partnered"
-        | "married"
-        | "divorced"
-        | "widowed"
+        "single" | "partnered" | "married" | "divorced" | "widowed"
       work_preference: "remote" | "hybrid" | "onsite" | "flexible"
     }
     CompositeTypes: {
@@ -395,12 +657,12 @@ export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -422,13 +684,12 @@ export type Tables<
 
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+    keyof DefaultSchema["Tables"] | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -447,13 +708,12 @@ export type TablesInsert<
 
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+    keyof DefaultSchema["Tables"] | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -472,13 +732,12 @@ export type TablesUpdate<
 
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
-    | keyof DefaultSchema["Enums"]
-    | { schema: keyof DatabaseWithoutInternals },
-  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    keyof DefaultSchema["Enums"] | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaEnumNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -491,11 +750,11 @@ export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof DatabaseWithoutInternals },
-  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never,
+    : never) = never,
 > = PublicCompositeTypeNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -519,4 +778,3 @@ export const Constants = {
     },
   },
 } as const
-

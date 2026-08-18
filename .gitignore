@@ -43,3 +43,7 @@ next-env.d.ts
 
 # Raw source downloads: reproducible via npm run data:fetch, not committed
 /data/raw/
+
+# Derived from the manually-downloaded BLS archive (also ignored); 12 MB.
+# Reproduce with: npm run data:career:extract && npm run data:career:transform
+/data/processed/career-stats.json

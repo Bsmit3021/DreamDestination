@@ -15,7 +15,18 @@
     "data:fetch": "tsx scripts/city-data/fetch.ts",
     "data:transform": "tsx scripts/city-data/transform.ts",
     "data:validate": "tsx scripts/city-data/validate.ts",
-    "data:seed": "tsx --env-file=.env.local scripts/city-data/seed.ts"
+    "data:seed": "tsx --env-file=.env.local scripts/city-data/seed.ts",
+    "data:occupations:transform": "tsx scripts/occupations/transform.ts",
+    "data:occupations:seed": "tsx --env-file=.env.local scripts/occupations/seed.ts",
+    "data:occupations:fetch": "tsx scripts/occupations/fetch.ts",
+    "data:career:extract": "python3 scripts/career/extract_oews.py",
+    "data:career:transform": "tsx scripts/career/transform.ts",
+    "data:career:validate": "tsx scripts/career/validate.ts",
+    "data:career:seed": "tsx --env-file=.env.local scripts/career/seed.ts",
+    "data:housing:fetch": "tsx scripts/housing/pipeline.ts fetch",
+    "data:housing:transform": "tsx scripts/housing/pipeline.ts transform",
+    "data:housing:validate": "tsx scripts/housing/pipeline.ts validate",
+    "data:housing:seed": "tsx --env-file=.env.local scripts/housing/seed.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",
@@ -34,6 +45,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@supabase/postgres-meta": "^0.98.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

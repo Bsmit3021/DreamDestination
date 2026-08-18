@@ -1,0 +1,1002 @@
+[
+  {
+    "cbsaGeoid": "35620",
+    "medianGrossRent": 1780,
+    "studioRent": 1534,
+    "oneBedroomRent": 1639,
+    "twoBedroomRent": 1815,
+    "threeBedroomRent": 2091,
+    "fourBedroomRent": 2382,
+    "medianHomeValue": 587400
+  },
+  {
+    "cbsaGeoid": "31080",
+    "medianGrossRent": 1987,
+    "studioRent": 1534,
+    "oneBedroomRent": 1720,
+    "twoBedroomRent": 2140,
+    "threeBedroomRent": 2540,
+    "fourBedroomRent": 3034,
+    "medianHomeValue": 825300
+  },
+  {
+    "cbsaGeoid": "16980",
+    "medianGrossRent": 1378,
+    "studioRent": 1157,
+    "oneBedroomRent": 1203,
+    "twoBedroomRent": 1391,
+    "threeBedroomRent": 1642,
+    "fourBedroomRent": 1873,
+    "medianHomeValue": 301900
+  },
+  {
+    "cbsaGeoid": "19100",
+    "medianGrossRent": 1509,
+    "studioRent": 1317,
+    "oneBedroomRent": 1319,
+    "twoBedroomRent": 1558,
+    "threeBedroomRent": 1833,
+    "fourBedroomRent": 2322,
+    "medianHomeValue": 330300
+  },
+  {
+    "cbsaGeoid": "26420",
+    "medianGrossRent": 1378,
+    "studioRent": 1153,
+    "oneBedroomRent": 1170,
+    "twoBedroomRent": 1382,
+    "threeBedroomRent": 1706,
+    "fourBedroomRent": 2179,
+    "medianHomeValue": 275200
+  },
+  {
+    "cbsaGeoid": "47900",
+    "medianGrossRent": 1975,
+    "studioRent": 1720,
+    "oneBedroomRent": 1799,
+    "twoBedroomRent": 1985,
+    "threeBedroomRent": 2303,
+    "fourBedroomRent": 2775,
+    "medianHomeValue": 553000
+  },
+  {
+    "cbsaGeoid": "37980",
+    "medianGrossRent": 1413,
+    "studioRent": 1137,
+    "oneBedroomRent": 1232,
+    "twoBedroomRent": 1494,
+    "threeBedroomRent": 1575,
+    "fourBedroomRent": 1822,
+    "medianHomeValue": 326700
+  },
+  {
+    "cbsaGeoid": "12060",
+    "medianGrossRent": 1563,
+    "studioRent": 1494,
+    "oneBedroomRent": 1418,
+    "twoBedroomRent": 1516,
+    "threeBedroomRent": 1638,
+    "fourBedroomRent": 1968,
+    "medianHomeValue": 335100
+  },
+  {
+    "cbsaGeoid": "33100",
+    "medianGrossRent": 1770,
+    "studioRent": 1365,
+    "oneBedroomRent": 1476,
+    "twoBedroomRent": 1796,
+    "threeBedroomRent": 2173,
+    "fourBedroomRent": 2550,
+    "medianHomeValue": 405600
+  },
+  {
+    "cbsaGeoid": "38060",
+    "medianGrossRent": 1581,
+    "studioRent": 1246,
+    "oneBedroomRent": 1337,
+    "twoBedroomRent": 1555,
+    "threeBedroomRent": 1853,
+    "fourBedroomRent": 2084,
+    "medianHomeValue": 401400
+  },
+  {
+    "cbsaGeoid": "14460",
+    "medianGrossRent": 1940,
+    "studioRent": 1613,
+    "oneBedroomRent": 1643,
+    "twoBedroomRent": 2077,
+    "threeBedroomRent": 2206,
+    "fourBedroomRent": 2468,
+    "medianHomeValue": 610900
+  },
+  {
+    "cbsaGeoid": "41860",
+    "medianGrossRent": 2426,
+    "studioRent": 1786,
+    "oneBedroomRent": 2183,
+    "twoBedroomRent": 2591,
+    "threeBedroomRent": 3103,
+    "fourBedroomRent": 3501,
+    "medianHomeValue": 1113800
+  },
+  {
+    "cbsaGeoid": "40140",
+    "medianGrossRent": 1756,
+    "studioRent": 1313,
+    "oneBedroomRent": 1357,
+    "twoBedroomRent": 1668,
+    "threeBedroomRent": 1999,
+    "fourBedroomRent": 2438,
+    "medianHomeValue": 493600
+  },
+  {
+    "cbsaGeoid": "19820",
+    "medianGrossRent": 1162,
+    "studioRent": 874,
+    "oneBedroomRent": 936,
+    "twoBedroomRent": 1200,
+    "threeBedroomRent": 1352,
+    "fourBedroomRent": 1498,
+    "medianHomeValue": 237100
+  },
+  {
+    "cbsaGeoid": "42660",
+    "medianGrossRent": 1932,
+    "studioRent": 1613,
+    "oneBedroomRent": 1713,
+    "twoBedroomRent": 1987,
+    "threeBedroomRent": 2359,
+    "fourBedroomRent": 2819,
+    "medianHomeValue": 673500
+  },
+  {
+    "cbsaGeoid": "33460",
+    "medianGrossRent": 1396,
+    "studioRent": 1087,
+    "oneBedroomRent": 1200,
+    "twoBedroomRent": 1487,
+    "threeBedroomRent": 1775,
+    "fourBedroomRent": 2049,
+    "medianHomeValue": 354400
+  },
+  {
+    "cbsaGeoid": "41740",
+    "medianGrossRent": 2154,
+    "studioRent": 1697,
+    "oneBedroomRent": 1803,
+    "twoBedroomRent": 2198,
+    "threeBedroomRent": 2712,
+    "fourBedroomRent": 3268,
+    "medianHomeValue": 791600
+  },
+  {
+    "cbsaGeoid": "45300",
+    "medianGrossRent": 1497,
+    "studioRent": 1230,
+    "oneBedroomRent": 1275,
+    "twoBedroomRent": 1497,
+    "threeBedroomRent": 1752,
+    "fourBedroomRent": 2153,
+    "medianHomeValue": 306100
+  },
+  {
+    "cbsaGeoid": "19740",
+    "medianGrossRent": 1805,
+    "studioRent": 1536,
+    "oneBedroomRent": 1579,
+    "twoBedroomRent": 1881,
+    "threeBedroomRent": 2257,
+    "fourBedroomRent": 2541,
+    "medianHomeValue": 570300
+  },
+  {
+    "cbsaGeoid": "12580",
+    "medianGrossRent": 1562,
+    "studioRent": 1234,
+    "oneBedroomRent": 1262,
+    "twoBedroomRent": 1623,
+    "threeBedroomRent": 1840,
+    "fourBedroomRent": 2103,
+    "medianHomeValue": 373300
+  },
+  {
+    "cbsaGeoid": "41180",
+    "medianGrossRent": 1073,
+    "studioRent": 880,
+    "oneBedroomRent": 883,
+    "twoBedroomRent": 1097,
+    "threeBedroomRent": 1277,
+    "fourBedroomRent": 1520,
+    "medianHomeValue": 232100
+  },
+  {
+    "cbsaGeoid": "36740",
+    "medianGrossRent": 1659,
+    "studioRent": 1401,
+    "oneBedroomRent": 1422,
+    "twoBedroomRent": 1624,
+    "threeBedroomRent": 1836,
+    "fourBedroomRent": 2179,
+    "medianHomeValue": 338500
+  },
+  {
+    "cbsaGeoid": "16740",
+    "medianGrossRent": 1377,
+    "studioRent": 1290,
+    "oneBedroomRent": 1303,
+    "twoBedroomRent": 1311,
+    "threeBedroomRent": 1479,
+    "fourBedroomRent": 1994,
+    "medianHomeValue": 319400
+  },
+  {
+    "cbsaGeoid": "41700",
+    "medianGrossRent": 1299,
+    "studioRent": 1041,
+    "oneBedroomRent": 1096,
+    "twoBedroomRent": 1332,
+    "threeBedroomRent": 1593,
+    "fourBedroomRent": 1895,
+    "medianHomeValue": 258700
+  },
+  {
+    "cbsaGeoid": "38900",
+    "medianGrossRent": 1654,
+    "studioRent": 1338,
+    "oneBedroomRent": 1446,
+    "twoBedroomRent": 1664,
+    "threeBedroomRent": 2066,
+    "fourBedroomRent": 2476,
+    "medianHomeValue": 526500
+  },
+  {
+    "cbsaGeoid": "38300",
+    "medianGrossRent": 1011,
+    "studioRent": 841,
+    "oneBedroomRent": 833,
+    "twoBedroomRent": 1054,
+    "threeBedroomRent": 1203,
+    "fourBedroomRent": 1340,
+    "medianHomeValue": 204500
+  },
+  {
+    "cbsaGeoid": "40900",
+    "medianGrossRent": 1729,
+    "studioRent": 1348,
+    "oneBedroomRent": 1396,
+    "twoBedroomRent": 1712,
+    "threeBedroomRent": 2080,
+    "fourBedroomRent": 2393,
+    "medianHomeValue": 559000
+  },
+  {
+    "cbsaGeoid": "12420",
+    "medianGrossRent": 1646,
+    "studioRent": 1356,
+    "oneBedroomRent": 1427,
+    "twoBedroomRent": 1717,
+    "threeBedroomRent": 2018,
+    "fourBedroomRent": 2376,
+    "medianHomeValue": 434800
+  },
+  {
+    "cbsaGeoid": "29820",
+    "medianGrossRent": 1518,
+    "studioRent": 1136,
+    "oneBedroomRent": 1233,
+    "twoBedroomRent": 1434,
+    "threeBedroomRent": 1790,
+    "fourBedroomRent": 2080,
+    "medianHomeValue": 400800
+  },
+  {
+    "cbsaGeoid": "17140",
+    "medianGrossRent": 1047,
+    "studioRent": 830,
+    "oneBedroomRent": 841,
+    "twoBedroomRent": 1088,
+    "threeBedroomRent": 1297,
+    "fourBedroomRent": 1463,
+    "medianHomeValue": 240200
+  },
+  {
+    "cbsaGeoid": "28140",
+    "medianGrossRent": 1201,
+    "studioRent": 965,
+    "oneBedroomRent": 1043,
+    "twoBedroomRent": 1190,
+    "threeBedroomRent": 1426,
+    "fourBedroomRent": 1721,
+    "medianHomeValue": 265400
+  },
+  {
+    "cbsaGeoid": "17410",
+    "medianGrossRent": 996,
+    "studioRent": 727,
+    "oneBedroomRent": 823,
+    "twoBedroomRent": 1031,
+    "threeBedroomRent": 1209,
+    "fourBedroomRent": 1310,
+    "medianHomeValue": 201000
+  },
+  {
+    "cbsaGeoid": "18140",
+    "medianGrossRent": 1208,
+    "studioRent": 994,
+    "oneBedroomRent": 1030,
+    "twoBedroomRent": 1246,
+    "threeBedroomRent": 1346,
+    "fourBedroomRent": 1565,
+    "medianHomeValue": 274300
+  },
+  {
+    "cbsaGeoid": "26900",
+    "medianGrossRent": 1142,
+    "studioRent": 932,
+    "oneBedroomRent": 980,
+    "twoBedroomRent": 1132,
+    "threeBedroomRent": 1368,
+    "fourBedroomRent": 1723,
+    "medianHomeValue": 244000
+  },
+  {
+    "cbsaGeoid": "34980",
+    "medianGrossRent": 1434,
+    "studioRent": 1329,
+    "oneBedroomRent": 1289,
+    "twoBedroomRent": 1401,
+    "threeBedroomRent": 1667,
+    "fourBedroomRent": 1997,
+    "medianHomeValue": 376800
+  },
+  {
+    "cbsaGeoid": "41940",
+    "medianGrossRent": 2794,
+    "studioRent": 2157,
+    "oneBedroomRent": 2469,
+    "twoBedroomRent": 2881,
+    "threeBedroomRent": 3501,
+    "fourBedroomRent": 3501,
+    "medianHomeValue": 1342700
+  },
+  {
+    "cbsaGeoid": "47260",
+    "medianGrossRent": 1416,
+    "studioRent": 1181,
+    "oneBedroomRent": 1173,
+    "twoBedroomRent": 1340,
+    "threeBedroomRent": 1677,
+    "fourBedroomRent": 2036,
+    "medianHomeValue": 318000
+  },
+  {
+    "cbsaGeoid": "39300",
+    "medianGrossRent": 1236,
+    "studioRent": 963,
+    "oneBedroomRent": 939,
+    "twoBedroomRent": 1321,
+    "threeBedroomRent": 1444,
+    "fourBedroomRent": 1676,
+    "medianHomeValue": 385900
+  },
+  {
+    "cbsaGeoid": "27260",
+    "medianGrossRent": 1416,
+    "studioRent": 1152,
+    "oneBedroomRent": 1160,
+    "twoBedroomRent": 1408,
+    "threeBedroomRent": 1577,
+    "fourBedroomRent": 1975,
+    "medianHomeValue": 308900
+  },
+  {
+    "cbsaGeoid": "33340",
+    "medianGrossRent": 1105,
+    "studioRent": 881,
+    "oneBedroomRent": 915,
+    "twoBedroomRent": 1137,
+    "threeBedroomRent": 1270,
+    "fourBedroomRent": 1383,
+    "medianHomeValue": 283800
+  },
+  {
+    "cbsaGeoid": "39580",
+    "medianGrossRent": 1459,
+    "studioRent": 1272,
+    "oneBedroomRent": 1323,
+    "twoBedroomRent": 1426,
+    "threeBedroomRent": 1653,
+    "fourBedroomRent": 2184,
+    "medianHomeValue": 381000
+  },
+  {
+    "cbsaGeoid": "36420",
+    "medianGrossRent": 1081,
+    "studioRent": 792,
+    "oneBedroomRent": 860,
+    "twoBedroomRent": 1054,
+    "threeBedroomRent": 1332,
+    "fourBedroomRent": 1543,
+    "medianHomeValue": 214700
+  },
+  {
+    "cbsaGeoid": "31140",
+    "medianGrossRent": 1064,
+    "studioRent": 840,
+    "oneBedroomRent": 884,
+    "twoBedroomRent": 1080,
+    "threeBedroomRent": 1254,
+    "fourBedroomRent": 1483,
+    "medianHomeValue": 236400
+  },
+  {
+    "cbsaGeoid": "32820",
+    "medianGrossRent": 1153,
+    "studioRent": 888,
+    "oneBedroomRent": 975,
+    "twoBedroomRent": 1078,
+    "threeBedroomRent": 1296,
+    "fourBedroomRent": 1546,
+    "medianHomeValue": 228100
+  },
+  {
+    "cbsaGeoid": "40060",
+    "medianGrossRent": 1388,
+    "studioRent": 1240,
+    "oneBedroomRent": 1213,
+    "twoBedroomRent": 1367,
+    "threeBedroomRent": 1524,
+    "fourBedroomRent": 1894,
+    "medianHomeValue": 325800
+  },
+  {
+    "cbsaGeoid": "41620",
+    "medianGrossRent": 1486,
+    "studioRent": 1119,
+    "oneBedroomRent": 1234,
+    "twoBedroomRent": 1478,
+    "threeBedroomRent": 1801,
+    "fourBedroomRent": 2059,
+    "medianHomeValue": 478200
+  },
+  {
+    "cbsaGeoid": "13820",
+    "medianGrossRent": 1114,
+    "studioRent": 877,
+    "oneBedroomRent": 1011,
+    "twoBedroomRent": 1070,
+    "threeBedroomRent": 1241,
+    "fourBedroomRent": 1388,
+    "medianHomeValue": 226200
+  },
+  {
+    "cbsaGeoid": "23420",
+    "medianGrossRent": 1301,
+    "studioRent": 1069,
+    "oneBedroomRent": 992,
+    "twoBedroomRent": 1240,
+    "threeBedroomRent": 1590,
+    "fourBedroomRent": 1839,
+    "medianHomeValue": 363300
+  },
+  {
+    "cbsaGeoid": "15380",
+    "medianGrossRent": 1005,
+    "studioRent": 835,
+    "oneBedroomRent": 830,
+    "twoBedroomRent": 1013,
+    "threeBedroomRent": 1125,
+    "fourBedroomRent": 1293,
+    "medianHomeValue": 209600
+  },
+  {
+    "cbsaGeoid": "24340",
+    "medianGrossRent": 1138,
+    "studioRent": 948,
+    "oneBedroomRent": 952,
+    "twoBedroomRent": 1166,
+    "threeBedroomRent": 1345,
+    "fourBedroomRent": 1563,
+    "medianHomeValue": 261600
+  },
+  {
+    "cbsaGeoid": "25540",
+    "medianGrossRent": 1357,
+    "studioRent": 946,
+    "oneBedroomRent": 1146,
+    "twoBedroomRent": 1457,
+    "threeBedroomRent": 1568,
+    "fourBedroomRent": 1707,
+    "medianHomeValue": 309300
+  },
+  {
+    "cbsaGeoid": "40380",
+    "medianGrossRent": 1102,
+    "studioRent": 810,
+    "oneBedroomRent": 916,
+    "twoBedroomRent": 1177,
+    "threeBedroomRent": 1318,
+    "fourBedroomRent": 1376,
+    "medianHomeValue": 190100
+  },
+  {
+    "cbsaGeoid": "46060",
+    "medianGrossRent": 1154,
+    "studioRent": 812,
+    "oneBedroomRent": 934,
+    "twoBedroomRent": 1203,
+    "threeBedroomRent": 1552,
+    "fourBedroomRent": 1686,
+    "medianHomeValue": 286900
+  },
+  {
+    "cbsaGeoid": "46140",
+    "medianGrossRent": 1034,
+    "studioRent": 792,
+    "oneBedroomRent": 850,
+    "twoBedroomRent": 1031,
+    "threeBedroomRent": 1258,
+    "fourBedroomRent": 1515,
+    "medianHomeValue": 204400
+  },
+  {
+    "cbsaGeoid": "46520",
+    "medianGrossRent": 2054,
+    "studioRent": 1400,
+    "oneBedroomRent": 1555,
+    "twoBedroomRent": 2071,
+    "threeBedroomRent": 2894,
+    "fourBedroomRent": 3427,
+    "medianHomeValue": 873000
+  },
+  {
+    "cbsaGeoid": "35380",
+    "medianGrossRent": 1182,
+    "studioRent": 915,
+    "oneBedroomRent": 980,
+    "twoBedroomRent": 1217,
+    "threeBedroomRent": 1438,
+    "fourBedroomRent": 1735,
+    "medianHomeValue": 248000
+  },
+  {
+    "cbsaGeoid": "36540",
+    "medianGrossRent": 1152,
+    "studioRent": 928,
+    "oneBedroomRent": 982,
+    "twoBedroomRent": 1175,
+    "threeBedroomRent": 1432,
+    "fourBedroomRent": 1662,
+    "medianHomeValue": 248100
+  },
+  {
+    "cbsaGeoid": "14860",
+    "medianGrossRent": 1827,
+    "studioRent": 1112,
+    "oneBedroomRent": 1590,
+    "twoBedroomRent": 1902,
+    "threeBedroomRent": 2086,
+    "fourBedroomRent": 2521,
+    "medianHomeValue": 530800
+  },
+  {
+    "cbsaGeoid": "24860",
+    "medianGrossRent": 1100,
+    "studioRent": 993,
+    "oneBedroomRent": 991,
+    "twoBedroomRent": 1081,
+    "threeBedroomRent": 1190,
+    "fourBedroomRent": 1387,
+    "medianHomeValue": 242700
+  },
+  {
+    "cbsaGeoid": "28940",
+    "medianGrossRent": 1080,
+    "studioRent": 848,
+    "oneBedroomRent": 839,
+    "twoBedroomRent": 1090,
+    "threeBedroomRent": 1241,
+    "fourBedroomRent": 1491,
+    "medianHomeValue": 255300
+  },
+  {
+    "cbsaGeoid": "10740",
+    "medianGrossRent": 1102,
+    "studioRent": 795,
+    "oneBedroomRent": 884,
+    "twoBedroomRent": 1123,
+    "threeBedroomRent": 1423,
+    "fourBedroomRent": 1676,
+    "medianHomeValue": 263500
+  },
+  {
+    "cbsaGeoid": "12540",
+    "medianGrossRent": 1220,
+    "studioRent": 925,
+    "oneBedroomRent": 876,
+    "twoBedroomRent": 1138,
+    "threeBedroomRent": 1477,
+    "fourBedroomRent": 1860,
+    "medianHomeValue": 310600
+  },
+  {
+    "cbsaGeoid": "10580",
+    "medianGrossRent": 1230,
+    "studioRent": 959,
+    "oneBedroomRent": 1069,
+    "twoBedroomRent": 1311,
+    "threeBedroomRent": 1400,
+    "fourBedroomRent": 1400,
+    "medianHomeValue": 268400
+  },
+  {
+    "cbsaGeoid": "32580",
+    "medianGrossRent": 925,
+    "studioRent": 801,
+    "oneBedroomRent": 696,
+    "twoBedroomRent": 922,
+    "threeBedroomRent": 1108,
+    "fourBedroomRent": 1290,
+    "medianHomeValue": 124000
+  },
+  {
+    "cbsaGeoid": "12940",
+    "medianGrossRent": 1108,
+    "studioRent": 942,
+    "oneBedroomRent": 928,
+    "twoBedroomRent": 1091,
+    "threeBedroomRent": 1271,
+    "fourBedroomRent": 1618,
+    "medianHomeValue": 232300
+  },
+  {
+    "cbsaGeoid": "21340",
+    "medianGrossRent": 1045,
+    "studioRent": 702,
+    "oneBedroomRent": 812,
+    "twoBedroomRent": 985,
+    "threeBedroomRent": 1238,
+    "fourBedroomRent": 1570,
+    "medianHomeValue": 167000
+  },
+  {
+    "cbsaGeoid": "10900",
+    "medianGrossRent": 1309,
+    "studioRent": 1012,
+    "oneBedroomRent": 1083,
+    "twoBedroomRent": 1370,
+    "threeBedroomRent": 1556,
+    "fourBedroomRent": 1700,
+    "medianHomeValue": 277800
+  },
+  {
+    "cbsaGeoid": "35840",
+    "medianGrossRent": 1637,
+    "studioRent": 1422,
+    "oneBedroomRent": 1389,
+    "twoBedroomRent": 1595,
+    "threeBedroomRent": 1835,
+    "fourBedroomRent": 2196,
+    "medianHomeValue": 367700
+  },
+  {
+    "cbsaGeoid": "49340",
+    "medianGrossRent": 1347,
+    "studioRent": 1039,
+    "oneBedroomRent": 1014,
+    "twoBedroomRent": 1403,
+    "threeBedroomRent": 1654,
+    "fourBedroomRent": 1784,
+    "medianHomeValue": 390700
+  },
+  {
+    "cbsaGeoid": "17900",
+    "medianGrossRent": 1145,
+    "studioRent": 887,
+    "oneBedroomRent": 1035,
+    "twoBedroomRent": 1096,
+    "threeBedroomRent": 1285,
+    "fourBedroomRent": 1514,
+    "medianHomeValue": 213400
+  },
+  {
+    "cbsaGeoid": "37100",
+    "medianGrossRent": 2248,
+    "studioRent": 1745,
+    "oneBedroomRent": 1839,
+    "twoBedroomRent": 2174,
+    "threeBedroomRent": 2690,
+    "fourBedroomRent": 3170,
+    "medianHomeValue": 768400
+  },
+  {
+    "cbsaGeoid": "16700",
+    "medianGrossRent": 1488,
+    "studioRent": 1416,
+    "oneBedroomRent": 1347,
+    "twoBedroomRent": 1461,
+    "threeBedroomRent": 1697,
+    "fourBedroomRent": 1946,
+    "medianHomeValue": 345400
+  },
+  {
+    "cbsaGeoid": "19430",
+    "medianGrossRent": 984,
+    "studioRent": 705,
+    "oneBedroomRent": 767,
+    "twoBedroomRent": 974,
+    "threeBedroomRent": 1164,
+    "fourBedroomRent": 1317,
+    "medianHomeValue": 186200
+  },
+  {
+    "cbsaGeoid": "15980",
+    "medianGrossRent": 1597,
+    "studioRent": 1522,
+    "oneBedroomRent": 1336,
+    "twoBedroomRent": 1496,
+    "threeBedroomRent": 1756,
+    "fourBedroomRent": 1997,
+    "medianHomeValue": 326300
+  },
+  {
+    "cbsaGeoid": "14260",
+    "medianGrossRent": 1383,
+    "studioRent": 1058,
+    "oneBedroomRent": 1089,
+    "twoBedroomRent": 1297,
+    "threeBedroomRent": 1658,
+    "fourBedroomRent": 1882,
+    "medianHomeValue": 434400
+  },
+  {
+    "cbsaGeoid": "44700",
+    "medianGrossRent": 1633,
+    "studioRent": 1160,
+    "oneBedroomRent": 1214,
+    "twoBedroomRent": 1485,
+    "threeBedroomRent": 1884,
+    "fourBedroomRent": 2372,
+    "medianHomeValue": 494500
+  },
+  {
+    "cbsaGeoid": "24660",
+    "medianGrossRent": 1045,
+    "studioRent": 894,
+    "oneBedroomRent": 922,
+    "twoBedroomRent": 1001,
+    "threeBedroomRent": 1181,
+    "fourBedroomRent": 1457,
+    "medianHomeValue": 207600
+  },
+  {
+    "cbsaGeoid": "29460",
+    "medianGrossRent": 1272,
+    "studioRent": 1014,
+    "oneBedroomRent": 968,
+    "twoBedroomRent": 1185,
+    "threeBedroomRent": 1537,
+    "fourBedroomRent": 1938,
+    "medianHomeValue": 240000
+  },
+  {
+    "cbsaGeoid": "17820",
+    "medianGrossRent": 1611,
+    "studioRent": 982,
+    "oneBedroomRent": 1303,
+    "twoBedroomRent": 1498,
+    "threeBedroomRent": 1908,
+    "fourBedroomRent": 2184,
+    "medianHomeValue": 431600
+  },
+  {
+    "cbsaGeoid": "30780",
+    "medianGrossRent": 1007,
+    "studioRent": 896,
+    "oneBedroomRent": 843,
+    "twoBedroomRent": 966,
+    "threeBedroomRent": 1216,
+    "fourBedroomRent": 1437,
+    "medianHomeValue": 199300
+  },
+  {
+    "cbsaGeoid": "19780",
+    "medianGrossRent": 1113,
+    "studioRent": 953,
+    "oneBedroomRent": 926,
+    "twoBedroomRent": 1127,
+    "threeBedroomRent": 1410,
+    "fourBedroomRent": 1498,
+    "medianHomeValue": 252400
+  },
+  {
+    "cbsaGeoid": "28880",
+    "medianGrossRent": 1568,
+    "studioRent": 1054,
+    "oneBedroomRent": 1294,
+    "twoBedroomRent": 1674,
+    "threeBedroomRent": 1926,
+    "fourBedroomRent": 2009,
+    "medianHomeValue": 364400
+  },
+  {
+    "cbsaGeoid": "10420",
+    "medianGrossRent": 1005,
+    "studioRent": 742,
+    "oneBedroomRent": 782,
+    "twoBedroomRent": 1029,
+    "threeBedroomRent": 1131,
+    "fourBedroomRent": 1229,
+    "medianHomeValue": 199000
+  },
+  {
+    "cbsaGeoid": "39340",
+    "medianGrossRent": 1434,
+    "studioRent": 1334,
+    "oneBedroomRent": 1099,
+    "twoBedroomRent": 1232,
+    "threeBedroomRent": 1657,
+    "fourBedroomRent": 1939,
+    "medianHomeValue": 487200
+  },
+  {
+    "cbsaGeoid": "19660",
+    "medianGrossRent": 1407,
+    "studioRent": 1064,
+    "oneBedroomRent": 1080,
+    "twoBedroomRent": 1353,
+    "threeBedroomRent": 1683,
+    "fourBedroomRent": 1827,
+    "medianHomeValue": 287200
+  },
+  {
+    "cbsaGeoid": "31540",
+    "medianGrossRent": 1300,
+    "studioRent": 1068,
+    "oneBedroomRent": 1177,
+    "twoBedroomRent": 1354,
+    "threeBedroomRent": 1633,
+    "fourBedroomRent": 1754,
+    "medianHomeValue": 344600
+  },
+  {
+    "cbsaGeoid": "49180",
+    "medianGrossRent": 973,
+    "studioRent": 828,
+    "oneBedroomRent": 874,
+    "twoBedroomRent": 927,
+    "threeBedroomRent": 1128,
+    "fourBedroomRent": 1386,
+    "medianHomeValue": 213300
+  },
+  {
+    "cbsaGeoid": "45060",
+    "medianGrossRent": 1036,
+    "studioRent": 757,
+    "oneBedroomRent": 839,
+    "twoBedroomRent": 1102,
+    "threeBedroomRent": 1208,
+    "fourBedroomRent": 1294,
+    "medianHomeValue": 175300
+  },
+  {
+    "cbsaGeoid": "48620",
+    "medianGrossRent": 969,
+    "studioRent": 714,
+    "oneBedroomRent": 750,
+    "twoBedroomRent": 972,
+    "threeBedroomRent": 1189,
+    "fourBedroomRent": 1529,
+    "medianHomeValue": 188200
+  },
+  {
+    "cbsaGeoid": "36260",
+    "medianGrossRent": 1393,
+    "studioRent": 974,
+    "oneBedroomRent": 1009,
+    "twoBedroomRent": 1299,
+    "threeBedroomRent": 1633,
+    "fourBedroomRent": 1913,
+    "medianHomeValue": 437700
+  },
+  {
+    "cbsaGeoid": "37340",
+    "medianGrossRent": 1456,
+    "studioRent": 1083,
+    "oneBedroomRent": 1182,
+    "twoBedroomRent": 1382,
+    "threeBedroomRent": 1704,
+    "fourBedroomRent": 1965,
+    "medianHomeValue": 304400
+  },
+  {
+    "cbsaGeoid": "12260",
+    "medianGrossRent": 1075,
+    "studioRent": 716,
+    "oneBedroomRent": 910,
+    "twoBedroomRent": 1021,
+    "threeBedroomRent": 1175,
+    "fourBedroomRent": 1418,
+    "medianHomeValue": 207300
+  },
+  {
+    "cbsaGeoid": "27140",
+    "medianGrossRent": 1034,
+    "studioRent": 965,
+    "oneBedroomRent": 874,
+    "twoBedroomRent": 1044,
+    "threeBedroomRent": 1116,
+    "fourBedroomRent": 1250,
+    "medianHomeValue": 188500
+  },
+  {
+    "cbsaGeoid": "45780",
+    "medianGrossRent": 917,
+    "studioRent": 675,
+    "oneBedroomRent": 690,
+    "twoBedroomRent": 950,
+    "threeBedroomRent": 1113,
+    "fourBedroomRent": 1183,
+    "medianHomeValue": 168500
+  },
+  {
+    "cbsaGeoid": "25420",
+    "medianGrossRent": 1151,
+    "studioRent": 928,
+    "oneBedroomRent": 947,
+    "twoBedroomRent": 1182,
+    "threeBedroomRent": 1426,
+    "fourBedroomRent": 1353,
+    "medianHomeValue": 239100
+  },
+  {
+    "cbsaGeoid": "20500",
+    "medianGrossRent": 1374,
+    "studioRent": 1206,
+    "oneBedroomRent": 1238,
+    "twoBedroomRent": 1383,
+    "threeBedroomRent": 1571,
+    "fourBedroomRent": 1827,
+    "medianHomeValue": 359400
+  },
+  {
+    "cbsaGeoid": "44060",
+    "medianGrossRent": 1187,
+    "studioRent": 965,
+    "oneBedroomRent": 938,
+    "twoBedroomRent": 1201,
+    "threeBedroomRent": 1436,
+    "fourBedroomRent": 1811,
+    "medianHomeValue": 365700
+  },
+  {
+    "cbsaGeoid": "16860",
+    "medianGrossRent": 1084,
+    "studioRent": 870,
+    "oneBedroomRent": 974,
+    "twoBedroomRent": 1058,
+    "threeBedroomRent": 1194,
+    "fourBedroomRent": 1329,
+    "medianHomeValue": 246000
+  },
+  {
+    "cbsaGeoid": "42540",
+    "medianGrossRent": 963,
+    "studioRent": 618,
+    "oneBedroomRent": 749,
+    "twoBedroomRent": 957,
+    "threeBedroomRent": 1160,
+    "fourBedroomRent": 1176,
+    "medianHomeValue": 176500
+  },
+  {
+    "cbsaGeoid": "35300",
+    "medianGrossRent": 1463,
+    "studioRent": 1138,
+    "oneBedroomRent": 1240,
+    "twoBedroomRent": 1536,
+    "threeBedroomRent": 1743,
+    "fourBedroomRent": 2033,
+    "medianHomeValue": 328300
+  }
+]

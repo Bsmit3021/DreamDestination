@@ -13,6 +13,7 @@ export const ROUTES = {
   onboarding: "/onboarding",
   onboardingProfile: "/onboarding/profile",
   onboardingPreferences: "/onboarding/preferences",
+  onboardingOccupation: "/onboarding/occupation",
   recommendations: "/recommendations",
 } as const;
 
