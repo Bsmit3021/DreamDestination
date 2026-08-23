@@ -1,5 +1,7 @@
 import type {
   AGE_RANGES,
+  CLIMATE_PREFERENCES,
+  DESIRED_BEDROOMS,
   PREFERENCE_WEIGHT_KEYS,
   RELATIONSHIP_STATUSES,
   US_STATE_CODES,
@@ -18,6 +20,8 @@ export type AgeRange = (typeof AGE_RANGES)[number];
 export type RelationshipStatus = (typeof RELATIONSHIP_STATUSES)[number];
 export type WorkPreference = (typeof WORK_PREFERENCES)[number];
 export type UsStateCode = (typeof US_STATE_CODES)[number];
+export type DesiredBedrooms = (typeof DESIRED_BEDROOMS)[number];
+export type ClimatePreference = (typeof CLIMATE_PREFERENCES)[number];
 
 /**
  * A value normalised to the inclusive range 0–1.
@@ -46,6 +50,22 @@ export interface Profile {
   currentState: UsStateCode;
   /** Monthly housing budget in USD. */
   housingBudget: number;
+  /**
+   * The housing size the user wants, as they stated it.
+   *
+   * Null for profiles created before this question existed. Null means "not
+   * stated", never "studio": matching falls back to the overall median rent
+   * rather than assuming a size on the user's behalf.
+   */
+  desiredBedrooms: DesiredBedrooms | null;
+  /**
+   * The climate the user wants.
+   *
+   * Null for profiles created before this question existed, and read exactly
+   * like `no_preference`: climate is left out of their score instead of being
+   * judged against a target they never chose.
+   */
+  climatePreference: ClimatePreference | null;
   workPreference: WorkPreference;
   /** Free-form description of what the user wants out of a move. */
   freeTextGoals: string | null;

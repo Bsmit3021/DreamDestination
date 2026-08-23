@@ -35,6 +35,38 @@ export const WORK_PREFERENCES = [
 ] as const;
 
 /**
+ * The housing size a user says they want.
+ *
+ * Deliberately an explicit answer rather than something inferred from
+ * household size: two people may want a one-bedroom or a three-bedroom, and
+ * guessing would silently change which ACS rent a metro is judged on. Each
+ * value maps to exactly one bedroom-specific ACS B25031 rent already stored in
+ * `housing_market_stats`.
+ */
+export const DESIRED_BEDROOMS = [
+  "studio",
+  "one",
+  "two",
+  "three",
+  "four_plus",
+] as const;
+
+/**
+ * The climate a user says they want to live in.
+ *
+ * `no_preference` is a real answer, not a missing one: it means climate should
+ * neither reward nor punish a metro, which the engine implements by removing
+ * the dimension's weight rather than by inventing a target temperature.
+ */
+export const CLIMATE_PREFERENCES = [
+  "warm",
+  "mild",
+  "four_seasons",
+  "cool",
+  "no_preference",
+] as const;
+
+/**
  * The scoring dimensions a user can weight during onboarding. The same keys
  * name the `*_weight` columns on `preferences` and the `*_score` columns on
  * `city_metrics`.

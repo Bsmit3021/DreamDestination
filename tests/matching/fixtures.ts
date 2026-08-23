@@ -1,5 +1,14 @@
 import { PREFERENCE_WEIGHT_KEYS } from "@/lib/constants";
-import type { CandidateCity, MetricSourceRef } from "@/lib/matching/types";
+import type {
+  MetroOccupationStats,
+  OccupationTarget,
+} from "@/lib/matching/career";
+import type { MetroBedroomRents } from "@/lib/matching/housing";
+import type {
+  CandidateCity,
+  MetricSourceRef,
+  Personalization,
+} from "@/lib/matching/types";
 import type {
   PreferenceWeightKey,
   PreferenceWeights,
@@ -137,8 +146,12 @@ export function weightsWith(
 }
 
 /**
- * A profile whose budget is high enough that the hard filter never fires,
- * so scoring tests observe scoring alone.
+ * A profile whose budget is high enough that the hard filter never fires, so
+ * scoring tests observe scoring alone.
+ *
+ * `climatePreference` is set explicitly because the alternative — null — means
+ * "no preference", which removes climate from the weighting altogether. Tests
+ * that want that behaviour ask for it (see `legacyProfile`).
  */
 export function testProfile(overrides: Partial<Profile> = {}): Profile {
   return {
@@ -153,11 +166,81 @@ export function testProfile(overrides: Partial<Profile> = {}): Profile {
     currentCity: "Brooklyn",
     currentState: "NY",
     housingBudget: 10_000,
+    desiredBedrooms: null,
+    climatePreference: "mild",
     workPreference: "remote",
     freeTextGoals: null,
     createdAt: "2026-08-15T00:00:00.000Z",
     updatedAt: "2026-08-15T00:00:00.000Z",
     ...overrides,
+  };
+}
+
+/**
+ * A profile as it exists for a user who onboarded before Phase 6A: both new
+ * questions unanswered.
+ */
+export function legacyProfile(overrides: Partial<Profile> = {}): Profile {
+  return testProfile({
+    desiredBedrooms: null,
+    climatePreference: null,
+    ...overrides,
+  });
+}
+
+/** The personalisation the scorer derives from a profile, for direct calls. */
+export function personalizationFor(
+  profile: Profile,
+  occupation: OccupationTarget | null = null,
+): Personalization {
+  return {
+    desiredBedrooms: profile.desiredBedrooms,
+    climatePreference: profile.climatePreference,
+    housingBudget: profile.housingBudget,
+    occupation,
+  };
+}
+
+/** Attaches OEWS stats and/or bedroom rents to a candidate, for career tests. */
+export function withMetroData(
+  city: CandidateCity,
+  data: {
+    career?: Partial<MetroOccupationStats> | null;
+    bedroomRents?: Partial<MetroBedroomRents> | null;
+  },
+): CandidateCity {
+  return {
+    ...city,
+    career:
+      data.career === undefined
+        ? city.career
+        : data.career === null
+          ? null
+          : {
+              socCode: "15-1252",
+              title: "Software Developers",
+              employment: null,
+              employmentPer1000: null,
+              locationQuotient: null,
+              medianAnnualWage: null,
+              wageTopCoded: false,
+              period: "May 2025",
+              source: TEST_SOURCE,
+              ...data.career,
+            },
+    bedroomRents:
+      data.bedroomRents === undefined
+        ? city.bedroomRents
+        : data.bedroomRents === null
+          ? null
+          : {
+              studio: null,
+              one: null,
+              two: null,
+              three: null,
+              four: null,
+              ...data.bedroomRents,
+            },
   };
 }
 

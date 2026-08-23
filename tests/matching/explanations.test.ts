@@ -6,12 +6,28 @@ import { generateMatches } from "@/lib/matching/ranking";
 import { scoreCities } from "@/lib/matching/scoring";
 import { normalizeWeights } from "@/lib/matching/weights";
 
-import { GOLDEN_CITIES, testProfile, weightsWith } from "./fixtures";
+import {
+  GOLDEN_CITIES,
+  personalizationFor,
+  testProfile,
+  weightsWith,
+} from "./fixtures";
 
 const BALANCED = weightsWith({ housing: 1, career: 1, climate: 1 });
 
-function scoreFor(slug: string, weights = BALANCED) {
-  const scored = scoreCities(GOLDEN_CITIES, normalizeWeights(weights));
+/** A confirmed occupation the golden fixture publishes no OEWS data for. */
+const NURSE = { socCode: "29-1141", title: "Registered Nurses" };
+
+function scoreFor(
+  slug: string,
+  weights = BALANCED,
+  occupation: { socCode: string; title: string } | null = null,
+) {
+  const scored = scoreCities(
+    GOLDEN_CITIES,
+    normalizeWeights(weights),
+    personalizationFor(testProfile(), occupation),
+  );
   return scored.find((s) => s.city.slug === slug)!;
 }
 
@@ -37,12 +53,60 @@ describe("buildReasons", () => {
   });
 
   it("flags the user's highest-weighted dimension", () => {
+    // Gamma is inside the requested mild band, so climate scores 100 and
+    // clears the strength threshold on its own merits.
+    const reasons = buildReasons(
+      scoreFor("gamma", weightsWith({ climate: 1.0, housing: 0.05 })),
+    );
+
+    expect(reasons[0]?.dimension).toBe("climate");
+    expect(reasons[0]?.detail).toContain("highest-weighted priority");
+  });
+
+  it("stops offering a discounted fallback career score as a strength", () => {
+    // Beta has the best unemployment rate in the fixture (87.5 percentile) but
+    // no OEWS data for the nurse's occupation, so the effective score is
+    // 56.875 — below the strength threshold. A generic labour-market number
+    // must not be sold as evidence that this is a good city for nursing.
+    const reasons = buildReasons(
+      scoreFor("beta", weightsWith({ career: 1.0, housing: 0.05 }), NURSE),
+    );
+
+    expect(reasons.map((r) => r.dimension)).not.toContain("career");
+  });
+
+  it("still offers the same score as a strength when no occupation was asked about", () => {
+    // Identical city, identical unemployment rate, no occupation named: the
+    // metro-wide labour market is what this user asked for, so 87.5 stands.
     const reasons = buildReasons(
       scoreFor("beta", weightsWith({ career: 1.0, housing: 0.05 })),
     );
 
-    expect(reasons[0]?.dimension).toBe("career");
-    expect(reasons[0]?.detail).toContain("highest-weighted priority");
+    expect(reasons.map((r) => r.dimension)).toContain("career");
+  });
+
+  it("says plainly that an occupation fallback is not about the occupation", () => {
+    const tradeoffs = buildTradeoffs(
+      scoreFor("alpha", weightsWith({ career: 1.0 }), NURSE),
+    );
+    const detail = tradeoffs[0]?.detail ?? "";
+
+    expect(detail).toContain("metro-wide, not Registered Nurses");
+    expect(detail).toContain("scaled back for the weaker evidence");
+  });
+
+  it("does not claim missing evidence when no occupation was selected", () => {
+    const tradeoffs = buildTradeoffs(
+      scoreFor("alpha", weightsWith({ career: 1.0 })),
+    );
+    const detail = tradeoffs[0]?.detail ?? "";
+
+    expect(detail).toContain("no occupation selected");
+    expect(detail).toContain("rather than a specific occupation");
+    // Nothing was substituted, so nothing may be described as held back.
+    expect(detail).not.toContain("scaled back");
+    expect(detail).not.toContain("weaker evidence");
+    expect(detail).not.toContain("publishes too little");
   });
 
   it("omits dimensions that scored poorly", () => {

@@ -1,5 +1,7 @@
 import type {
   AgeRange,
+  ClimatePreference,
+  DesiredBedrooms,
   PreferenceWeightKey,
   RelationshipStatus,
   WorkPreference,
@@ -36,6 +38,34 @@ export const WORK_PREFERENCE_LABELS = {
   onsite: "On-site",
   flexible: "Flexible / no strong preference",
 } satisfies Record<WorkPreference, string>;
+
+export const DESIRED_BEDROOMS_LABELS = {
+  studio: "Studio",
+  one: "1 bedroom",
+  two: "2 bedrooms",
+  three: "3 bedrooms",
+  four_plus: "4 or more bedrooms",
+} satisfies Record<DesiredBedrooms, string>;
+
+/**
+ * Short forms used inside sentences — filter reasons and match explanations —
+ * where the full label ("4 or more bedrooms") would not read as English.
+ */
+export const BEDROOM_SHORT_LABELS = {
+  studio: "Studio",
+  one: "1-bedroom",
+  two: "2-bedroom",
+  three: "3-bedroom",
+  four_plus: "4+-bedroom",
+} satisfies Record<DesiredBedrooms, string>;
+
+export const CLIMATE_PREFERENCE_LABELS = {
+  warm: "Warm all year",
+  mild: "Mild and temperate",
+  four_seasons: "Four distinct seasons",
+  cool: "Cool",
+  no_preference: "No preference",
+} satisfies Record<ClimatePreference, string>;
 
 /** Label and explanation for each scoring dimension. */
 export const PREFERENCE_LABELS = {

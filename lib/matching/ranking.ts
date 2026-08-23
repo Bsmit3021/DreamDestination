@@ -1,4 +1,5 @@
 import { PREFERENCE_WEIGHT_KEYS } from "@/lib/constants";
+import { climateAffectsScoring } from "@/lib/matching/climate";
 import { UNSCORED_DIMENSIONS } from "@/lib/matching/dimensions";
 import { buildReasons, buildTradeoffs } from "@/lib/matching/explanations";
 import {
@@ -7,10 +8,12 @@ import {
 } from "@/lib/matching/filters";
 import { scoreCities } from "@/lib/matching/scoring";
 import { normalizeWeights } from "@/lib/matching/weights";
+import type { OccupationTarget } from "@/lib/matching/career";
 import type {
   CandidateCity,
   ExcludedCity,
   MatchingResult,
+  Personalization,
 } from "@/lib/matching/types";
 import type {
   PreferenceWeightKey,
@@ -28,8 +31,15 @@ import type {
  * saving around it.
  */
 
-/** Bumped when the scoring model changes in a way that alters results. */
-export const MATCHING_ALGORITHM_VERSION = "v1";
+/**
+ * Bumped when the scoring model changes in a way that alters results.
+ *
+ * v2: career fit scored for the user's own occupation, housing scored on the
+ * rent for the home size they asked for, climate scored against the climate
+ * they asked for. Stored on every row, so a v1 result is never silently
+ * compared with a v2 one.
+ */
+export const MATCHING_ALGORITHM_VERSION = "v2";
 
 export const DEFAULT_RECOMMENDATION_LIMIT = 5;
 
@@ -38,6 +48,16 @@ export interface MatchingOptions {
   limit?: number;
   /** Minimum share of user weight that must be measurable. */
   minimumCoverage?: number;
+  /**
+   * The user's confirmed occupation, when they have one.
+   *
+   * User data rather than a tuning knob, and it sits here only because it does
+   * not live on `Profile`: the confirmed SOC code comes from the separate
+   * career-target record, which the caller has already resolved. Omitting it
+   * means "no occupation was chosen", which Career Fit treats as an answer
+   * rather than as absent evidence.
+   */
+  occupation?: OccupationTarget | null;
 }
 
 /**
@@ -74,11 +94,38 @@ export function generateMatches(
     }
   }
 
-  const normalized = normalizeWeights(weights);
+  const personalization: Personalization = {
+    desiredBedrooms: profile.desiredBedrooms,
+    climatePreference: profile.climatePreference,
+    housingBudget: profile.housingBudget,
+    occupation: options.occupation ?? null,
+  };
+
+  /**
+   * A waived dimension is one the user told us not to care about.
+   *
+   * Climate is the only one today: "no preference" — and a legacy profile that
+   * was never asked — means no metro should gain or lose for its weather. The
+   * correct arithmetic is to take the dimension's weight out before
+   * normalisation, so it redistributes proportionally across the priorities the
+   * user does hold. The alternatives are all worse: scoring every metro 50
+   * invents a measurement, and treating it as *missing* data would count
+   * against coverage and could drop metros below the coverage floor for a
+   * user who simply does not care about the weather.
+   */
+  const waived: PreferenceWeightKey[] = [];
+  const effectiveWeights = { ...weights };
+
+  if (!climateAffectsScoring(profile.climatePreference)) {
+    if (effectiveWeights.climate > 0) waived.push("climate");
+    effectiveWeights.climate = 0;
+  }
+
+  const normalized = normalizeWeights(effectiveWeights);
 
   // Scored together: a percentile only means something relative to the rest of
   // the eligible set.
-  const scored = scoreCities(eligible, normalized);
+  const scored = scoreCities(eligible, normalized, personalization);
 
   const ranked = scored
     .filter((score) => {
@@ -119,5 +166,6 @@ export function generateMatches(
     excluded,
     algorithmVersion: MATCHING_ALGORITHM_VERSION,
     unscoredWeightedDimensions,
+    dimensionsWaivedByUser: waived,
   };
 }

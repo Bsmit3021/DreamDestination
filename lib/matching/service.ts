@@ -1,13 +1,18 @@
 import "server-only";
 
 import { requireUser } from "@/lib/auth/session";
+import { getCurrentUserCareerTarget } from "@/lib/data/career-targets";
 import { loadCandidateCities } from "@/lib/data/cities";
 import { MissingProfileError } from "@/lib/data/errors";
+import {
+  loadBedroomRentsForScoring,
+  loadOccupationStatsForScoring,
+} from "@/lib/data/opportunity";
 import { getCurrentUserPreferences } from "@/lib/data/preferences";
 import { getCurrentUserProfile } from "@/lib/data/profiles";
 import { persistRecommendations } from "@/lib/data/recommendations";
 import { generateMatches, type MatchingOptions } from "@/lib/matching/ranking";
-import type { MatchingResult } from "@/lib/matching/types";
+import type { CandidateCity, MatchingResult } from "@/lib/matching/types";
 
 /**
  * Server-side orchestration for generating a user's recommendations.
@@ -65,7 +70,34 @@ export async function generateRecommendationsForCurrentUser(
     throw new NoCityDataError();
   }
 
-  const result = generateMatches(cities, profile, preferences.weights, options);
+  // The occupation is read from the user's own confirmed career target, not
+  // from anything the caller passed, so one user's ranking can never be scored
+  // against another's occupation. No target means no occupational data is
+  // loaded at all, and career fit falls back to the metro-wide labour market.
+  const careerTarget = await getCurrentUserCareerTarget();
+
+  const [occupationStats, bedroomRents] = await Promise.all([
+    careerTarget
+      ? loadOccupationStatsForScoring(careerTarget.socCode)
+      : Promise.resolve(null),
+    loadBedroomRentsForScoring(),
+  ]);
+
+  const enriched: CandidateCity[] = cities.map((city) => ({
+    ...city,
+    career: occupationStats?.get(city.id) ?? null,
+    bedroomRents: bedroomRents.get(city.id) ?? null,
+  }));
+
+  const result = generateMatches(enriched, profile, preferences.weights, {
+    ...options,
+    // Distinguishes "BLS published too little about your occupation here" from
+    // "you have not chosen an occupation" — Career Fit scores those
+    // differently and must not guess which one it is looking at.
+    occupation: careerTarget
+      ? { socCode: careerTarget.socCode, title: careerTarget.title }
+      : null,
+  });
 
   // No profile id is passed: the database derives the owner from auth.uid()
   // inside replace_my_recommendations.

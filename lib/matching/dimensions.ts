@@ -29,7 +29,18 @@ export type NormalizationMethod =
   /** Linear within winsorised bounds, then clamped. */
   | "winsorized_min_max"
   /** Distance from a target value, scaled by a tolerance. */
-  | "target_distance";
+  | "target_distance"
+  /**
+   * Several normalised components combined inside the dimension, with the
+   * user's own answers deciding which ones apply. See lib/matching/career.ts
+   * and lib/matching/housing.ts.
+   */
+  | "personalized_composite"
+  /**
+   * Closeness to the band the user asked for, rather than to a fixed target.
+   * See lib/matching/climate.ts.
+   */
+  | "preference_band";
 
 export interface DimensionDefinition {
   key: PreferenceWeightKey;
@@ -58,41 +69,41 @@ export interface DimensionDefinition {
   unavailableReason?: string;
 }
 
-/**
- * Climate target: 57 °F annual mean.
- *
- * This is a stated modelling assumption, not a measured fact — it is roughly
- * the middle of the range across US metros, so it reads as "temperate".
- * Onboarding does not currently ask which climate a user prefers, so a single
- * shared target is the honest choice; a per-user target belongs with a
- * future onboarding question.
- */
-const CLIMATE_TARGET_FAHRENHEIT = 57;
-const CLIMATE_TOLERANCE_FAHRENHEIT = 20;
-
 export const DIMENSIONS: Record<PreferenceWeightKey, DimensionDefinition> = {
   career: {
     key: "career",
     label: "Career opportunity",
-    description: "Share of the local labour force that is unemployed.",
+    description:
+      "Pay, concentration and depth of the user's own occupation in this " +
+      "metro, with the metro-wide labour market as context. Falls back to the " +
+      "unemployment rate alone when BLS publishes too little for the " +
+      "occupation here.",
     metric: {
+      // The metro-wide fallback measurement, and the `generalLaborMarket`
+      // component of the occupational score. The occupational figures come
+      // from `metro_occupation_stats`, keyed by the user's own SOC code, and
+      // so cannot be described by a single shared metric key.
       key: "unemployment_rate",
       label: "Unemployment rate",
       unit: "percent",
       direction: "lower_is_better",
-      normalization: "percentile",
+      normalization: "personalized_composite",
     },
   },
   housing: {
     key: "housing",
     label: "Housing",
-    description: "Typical monthly rent, including utilities.",
+    description:
+      "Monthly rent for the home size the user asked for, relative to the " +
+      "other metros and to their stated budget.",
     metric: {
+      // The fallback benchmark. Bedroom-specific rents live in
+      // `housing_market_stats` and are selected per user.
       key: "median_gross_rent",
       label: "Median gross rent",
       unit: "usd_per_month",
       direction: "lower_is_better",
-      normalization: "percentile",
+      normalization: "personalized_composite",
     },
   },
   cost: {
@@ -148,17 +159,18 @@ export const DIMENSIONS: Record<PreferenceWeightKey, DimensionDefinition> = {
   climate: {
     key: "climate",
     label: "Climate",
-    description: `How close the annual mean temperature is to ${CLIMATE_TARGET_FAHRENHEIT}°F.`,
+    description:
+      "How close the annual mean temperature is to the climate the user " +
+      "asked for. Carries no weight when they stated no preference.",
     metric: {
       key: "annual_mean_temperature",
       label: "Annual mean temperature (1991-2020 normals)",
       unit: "degrees_fahrenheit",
       direction: "target_is_better",
-      normalization: "target_distance",
-      target: {
-        value: CLIMATE_TARGET_FAHRENHEIT,
-        tolerance: CLIMATE_TOLERANCE_FAHRENHEIT,
-      },
+      // No shared `target`: the band comes from the user's own answer, so a
+      // single value here would be exactly the 57 °F assumption Phase 6A
+      // removed. See lib/matching/climate.ts.
+      normalization: "preference_band",
     },
   },
 

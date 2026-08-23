@@ -1,5 +1,16 @@
 import { PREFERENCE_WEIGHT_KEYS } from "@/lib/constants";
+import {
+  scoreCareerFit,
+  usesGeneralLaborMarket,
+  type CareerScore,
+} from "@/lib/matching/career";
+import { scoreClimate } from "@/lib/matching/climate";
 import { DIMENSIONS } from "@/lib/matching/dimensions";
+import {
+  resolveHousingBenchmark,
+  scoreHousing,
+  type HousingBenchmark,
+} from "@/lib/matching/housing";
 import {
   percentileScore,
   targetDistanceScore,
@@ -12,7 +23,9 @@ import {
 import type {
   CandidateCity,
   CityScore,
+  DimensionDetail,
   DimensionScore,
+  Personalization,
 } from "@/lib/matching/types";
 import type { PreferenceWeightKey } from "@/types/profile";
 
@@ -27,7 +40,33 @@ import type { PreferenceWeightKey } from "@/types/profile";
  * Normalisation is relative to the candidate set, so scoring is done for the
  * whole set at once rather than city by city — a percentile is meaningless
  * without the other candidates to rank against.
+ *
+ * Three dimensions are personalised, and each one asks the user's own answer
+ * rather than a developer's assumption:
+ *
+ *   career    the user's confirmed occupation (lib/matching/career.ts)
+ *   housing   the home size they want, and their budget (housing.ts)
+ *   climate   the climate they asked for (climate.ts)
+ *
+ * The personalisation happens strictly *inside* a dimension. It changes what
+ * "a good career score" means; it never changes how much career matters, which
+ * remains the user's own slider.
  */
+
+/** The user-side inputs a scoring run needs, when the caller has none. */
+export const NO_PERSONALIZATION: Personalization = {
+  desiredBedrooms: null,
+  climatePreference: null,
+  housingBudget: null,
+  occupation: null,
+};
+
+/** Dimensions the personalised paths own; the generic path skips them. */
+const PERSONALIZED_DIMENSIONS = new Set<PreferenceWeightKey>([
+  "career",
+  "housing",
+  "climate",
+]);
 
 /** Raw values for one dimension across the candidate set, used for ranking. */
 type Populations = Partial<Record<PreferenceWeightKey, number[]>>;
@@ -96,6 +135,15 @@ function normalizeObservation(
         metric.target.tolerance,
       );
     }
+
+    case "personalized_composite":
+    case "preference_band":
+      // These are computed per user, not from a single shared observation.
+      // Reaching here means a dimension was routed down the generic path by
+      // mistake, which must fail loudly rather than silently score something.
+      throw new Error(
+        `Dimension "${dimension}" is personalised and must not be normalised generically`,
+      );
   }
 }
 
@@ -109,7 +157,125 @@ function emptyDimensionScore(dimension: PreferenceWeightKey): DimensionScore {
     effectiveWeight: 0,
     contribution: 0,
     source: null,
+    detail: null,
   };
+}
+
+/** One personalised dimension's result for one city, before weighting. */
+interface PersonalizedScore {
+  normalizedScore: number;
+  rawValue: number;
+  unit: string;
+  detail: DimensionDetail;
+}
+
+/**
+ * The raw figure quoted for a career score, chosen to match the evidence used.
+ *
+ * A general-basis score quotes the unemployment rate, because that is all it
+ * used. An occupation-specific score quotes the strongest occupational figure
+ * it has, so the number a user sees is one that actually moved their score.
+ */
+function careerRawValue(career: CareerScore): { value: number; unit: string } {
+  const { detail } = career;
+
+  if (usesGeneralLaborMarket(detail.basis)) {
+    return { value: detail.unemploymentRate ?? 0, unit: "percent" };
+  }
+  if (detail.medianAnnualWage !== null) {
+    return { value: detail.medianAnnualWage, unit: "usd_per_year" };
+  }
+  if (detail.employmentPer1000 !== null) {
+    return { value: detail.employmentPer1000, unit: "jobs_per_1000" };
+  }
+  if (detail.locationQuotient !== null) {
+    return { value: detail.locationQuotient, unit: "location_quotient" };
+  }
+  return { value: detail.employment ?? 0, unit: "jobs" };
+}
+
+/**
+ * Computes the three personalised dimensions for the whole candidate set.
+ *
+ * A city missing from a returned map has no usable evidence for that
+ * dimension, which the caller treats as missing data — the same policy as an
+ * absent observation, and never as a zero.
+ */
+function scorePersonalizedDimensions(
+  cities: readonly CandidateCity[],
+  personalization: Personalization,
+): Map<PreferenceWeightKey, Map<string, PersonalizedScore>> {
+  const career = new Map<string, PersonalizedScore>();
+  const housing = new Map<string, PersonalizedScore>();
+  const climate = new Map<string, PersonalizedScore>();
+
+  for (const [cityId, result] of scoreCareerFit(
+    cities,
+    personalization.occupation,
+  )) {
+    if (!result) continue;
+    const raw = careerRawValue(result);
+    career.set(cityId, {
+      normalizedScore: result.score,
+      rawValue: raw.value,
+      unit: raw.unit,
+      detail: result.detail,
+    });
+  }
+
+  // Benchmarks first: the percentile only means something against the same
+  // basis every other candidate is being judged on.
+  const benchmarks = new Map<string, HousingBenchmark>();
+  for (const city of cities) {
+    const benchmark = resolveHousingBenchmark(
+      city,
+      personalization.desiredBedrooms,
+    );
+    if (benchmark) benchmarks.set(city.id, benchmark);
+  }
+
+  const rentPopulation = [...benchmarks.values()].map(
+    (benchmark) => benchmark.rent,
+  );
+
+  if (rentPopulation.length > 0) {
+    for (const [cityId, benchmark] of benchmarks) {
+      const result = scoreHousing(
+        benchmark,
+        rentPopulation,
+        personalization.housingBudget,
+      );
+      housing.set(cityId, {
+        normalizedScore: result.score,
+        rawValue: benchmark.rent,
+        unit: "usd_per_month",
+        detail: result.detail,
+      });
+    }
+  }
+
+  for (const city of cities) {
+    const temperature = city.observations.climate?.rawValue;
+    if (temperature === undefined || !Number.isFinite(temperature)) continue;
+
+    const result = scoreClimate(temperature, personalization.climatePreference);
+    // Null means the user waived climate. Nothing is recorded, so the dimension
+    // reads as unscored rather than as a fabricated 50.
+    if (!result) continue;
+
+    climate.set(city.id, {
+      normalizedScore: result.score,
+      rawValue: temperature,
+      unit: "degrees_fahrenheit",
+      detail: result.detail,
+    });
+  }
+
+  return new Map([
+    ["career", career],
+    ["housing", housing],
+    ["climate", climate],
+  ]);
 }
 
 /**
@@ -117,17 +283,27 @@ function emptyDimensionScore(dimension: PreferenceWeightKey): DimensionScore {
  *
  * @param cities candidate set; normalisation is relative to exactly this set
  * @param normalized user weights already rescaled to sum to 1
+ * @param personalization the user's own housing-size, climate and budget
+ *   answers. Omitted, every personalised dimension falls back to its
+ *   metro-wide behaviour, which is what a legacy profile gets.
  */
 export function scoreCities(
   cities: readonly CandidateCity[],
   normalized: NormalizedWeights,
+  personalization: Personalization = NO_PERSONALIZATION,
 ): CityScore[] {
   const populations = collectPopulations(cities);
+  const personalized = scorePersonalizedDimensions(cities, personalization);
 
   return cities.map((city) => {
     const available = new Set<PreferenceWeightKey>();
 
     for (const key of PREFERENCE_WEIGHT_KEYS) {
+      if (PERSONALIZED_DIMENSIONS.has(key)) {
+        if (personalized.get(key)?.has(city.id)) available.add(key);
+        continue;
+      }
+
       const observation = city.observations[key];
       if (
         observation &&
@@ -147,30 +323,47 @@ export function scoreCities(
     let totalScore = 0;
 
     for (const key of PREFERENCE_WEIGHT_KEYS) {
+      if (!available.has(key)) continue;
+
+      const personalizedScore = personalized.get(key)?.get(city.id);
       const observation = city.observations[key];
       const population = populations[key];
 
-      if (!available.has(key) || !observation || !population) {
+      let normalizedScore: number;
+      let rawValue: number;
+      let unit: string;
+      let detail: DimensionDetail | null = null;
+
+      if (personalizedScore) {
+        ({ normalizedScore, rawValue, unit, detail } = personalizedScore);
+      } else if (observation && population) {
+        normalizedScore = normalizeObservation(
+          key,
+          observation.rawValue,
+          population,
+        );
+        rawValue = observation.rawValue;
+        unit = observation.unit;
+      } else {
         continue;
       }
 
-      const normalizedScore = normalizeObservation(
-        key,
-        observation.rawValue,
-        population,
-      );
       const effectiveWeight = effective.weights[key];
       const contribution = normalizedScore * effectiveWeight;
 
       dimensions[key] = {
         dimension: key,
         available: true,
-        rawValue: observation.rawValue,
-        unit: observation.unit,
+        rawValue,
+        unit,
         normalizedScore,
         effectiveWeight,
         contribution,
-        source: observation.source,
+        // The observation's source is still the right citation for a
+        // personalised dimension's fallback measurement; the occupational and
+        // bedroom figures carry their own provenance in `detail`.
+        source: observation?.source ?? null,
+        detail,
       };
 
       totalScore += contribution;

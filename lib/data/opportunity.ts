@@ -2,6 +2,8 @@ import "server-only";
 
 import { DataAccessError } from "@/lib/data/errors";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import type { MetroOccupationStats } from "@/lib/matching/career";
+import type { MetroBedroomRents } from "@/lib/matching/housing";
 import type { MetricSourceRef } from "@/lib/matching/types";
 import type {
   CareerIntelligence,
@@ -190,6 +192,112 @@ export async function loadCareerStatsForCities(
         employment: row.employment as number | null,
         lq: row.location_quotient as number | null,
       },
+    ]),
+  );
+}
+
+/**
+ * OEWS estimates for one occupation across every metro, shaped for scoring.
+ *
+ * One query for the whole candidate set: career fit normalises against the
+ * other metros, so per-city round trips would be both slower and pointless.
+ * Suppressed measures come back as NULL and stay NULL — the scorer needs to
+ * tell "not published" from "zero", and only the database knows which it was.
+ */
+export async function loadOccupationStatsForScoring(
+  socCode: string,
+): Promise<Map<string, MetroOccupationStats>> {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase
+    .from("metro_occupation_stats")
+    .select(
+      `city_id, soc_code, employment, employment_per_1000, location_quotient,
+       median_annual_wage, wage_top_coded, period,
+       occupations ( title ),
+       metric_sources ( key, organization, dataset, url, period, geography_level )`,
+    )
+    .eq("soc_code", socCode);
+
+  if (error) {
+    throw new DataAccessError("Could not load occupation statistics.", {
+      cause: error,
+    });
+  }
+
+  const rows = (data ?? []) as unknown as {
+    city_id: string;
+    soc_code: string;
+    employment: number | null;
+    employment_per_1000: number | null;
+    location_quotient: number | null;
+    median_annual_wage: number | null;
+    wage_top_coded: boolean;
+    period: string;
+    occupations: { title: string } | null;
+    metric_sources: SourceRow | null;
+  }[];
+
+  return new Map(
+    rows.map((row) => [
+      row.city_id,
+      {
+        socCode: row.soc_code,
+        title: row.occupations?.title ?? row.soc_code,
+        employment: row.employment,
+        employmentPer1000: row.employment_per_1000,
+        locationQuotient: row.location_quotient,
+        medianAnnualWage: row.median_annual_wage,
+        wageTopCoded: row.wage_top_coded,
+        period: row.period,
+        source: toSourceRef(row.metric_sources),
+      } satisfies MetroOccupationStats,
+    ]),
+  );
+}
+
+/**
+ * Bedroom-specific ACS rents for every metro, for bedroom-aware housing fit.
+ *
+ * The overall median gross rent is deliberately not returned here: it already
+ * reaches the scorer as a `city_metric_observations` row, and loading it twice
+ * would create two sources of truth for the same number.
+ */
+export async function loadBedroomRentsForScoring(): Promise<
+  Map<string, MetroBedroomRents>
+> {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase.from("housing_market_stats").select(
+    `city_id, studio_rent, one_bedroom_rent, two_bedroom_rent,
+       three_bedroom_rent, four_bedroom_rent`,
+  );
+
+  if (error) {
+    throw new DataAccessError("Could not load bedroom rents.", {
+      cause: error,
+    });
+  }
+
+  const rows = (data ?? []) as unknown as {
+    city_id: string;
+    studio_rent: number | null;
+    one_bedroom_rent: number | null;
+    two_bedroom_rent: number | null;
+    three_bedroom_rent: number | null;
+    four_bedroom_rent: number | null;
+  }[];
+
+  return new Map(
+    rows.map((row) => [
+      row.city_id,
+      {
+        studio: row.studio_rent,
+        one: row.one_bedroom_rent,
+        two: row.two_bedroom_rent,
+        three: row.three_bedroom_rent,
+        four: row.four_bedroom_rent,
+      } satisfies MetroBedroomRents,
     ]),
   );
 }

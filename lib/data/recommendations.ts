@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { PREFERENCE_WEIGHT_KEYS } from "@/lib/constants";
 import { DataAccessError } from "@/lib/data/errors";
+import { measurementLabel } from "@/lib/matching/explanations";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { RankedRecommendation } from "@/lib/matching/types";
 import type { PreferenceWeightKey, UsStateCode } from "@/types/profile";
@@ -30,6 +31,34 @@ const dimensionSnapshotSchema = z.object({
   rawValue: z.number(),
   unit: z.string(),
   sourceKey: z.string(),
+  /**
+   * What `rawValue` is, once a dimension can be scored on more than one
+   * measurement. Optional so snapshots written before Phase 6A still parse;
+   * the reader falls back to the registry's metric label.
+   */
+  measureLabel: z.string().optional(),
+  /**
+   * For career only: `occupation_specific`, `occupation_data_fallback`, or
+   * `general_labor_market`. Recorded so the UI can never imply an occupational
+   * score when there was not one, and so the two metro-wide cases stay
+   * distinguishable — BLS publishing too little about a requested occupation is
+   * not the same as the user naming no occupation.
+   *
+   * Kept as a plain string rather than an enum: snapshots written before
+   * `occupation_data_fallback` existed carry `general_labor_market`, whose
+   * original meaning ("scored on the metro-wide labour market") is still true,
+   * and must keep parsing.
+   */
+  basis: z.string().optional(),
+  /**
+   * For career only: the score before the evidence-confidence adjustment, and
+   * the factor applied to it. Stored so a saved recommendation can still
+   * separate "this labour market looks strong" from "the app can actually
+   * speak to this user's occupation here". Optional — snapshots written before
+   * the adjustment existed carry neither.
+   */
+  rawScore: z.number().optional(),
+  evidenceConfidence: z.number().optional(),
 });
 
 const reasonSchema = z.object({
@@ -91,6 +120,14 @@ function buildReasonJson(recommendation: RankedRecommendation): ReasonJson {
       rawValue: dimension.rawValue ?? 0,
       unit: dimension.unit ?? "",
       sourceKey: dimension.source?.key ?? "",
+      measureLabel: measurementLabel(dimension),
+      ...(dimension.detail?.kind === "career"
+        ? {
+            basis: dimension.detail.basis,
+            rawScore: dimension.detail.rawScore,
+            evidenceConfidence: dimension.detail.evidenceConfidence,
+          }
+        : {}),
     };
   }
 

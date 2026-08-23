@@ -62,6 +62,8 @@ const PROFILE_FIELDS = [
   "currentCity",
   "currentState",
   "housingBudget",
+  "desiredBedrooms",
+  "climatePreference",
   "workPreference",
   "freeTextGoals",
 ] as const;

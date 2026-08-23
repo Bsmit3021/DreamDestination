@@ -15,6 +15,8 @@ import { NativeSelect } from "@/components/ui/native-select";
 import { Textarea } from "@/components/ui/textarea";
 import {
   AGE_RANGES,
+  CLIMATE_PREFERENCES,
+  DESIRED_BEDROOMS,
   FREE_TEXT_GOALS_MAX_LENGTH,
   RELATIONSHIP_STATUSES,
   US_STATE_CODES,
@@ -23,6 +25,8 @@ import {
 import { IDLE_FORM_STATE, valueFor } from "@/lib/forms";
 import {
   AGE_RANGE_LABELS,
+  CLIMATE_PREFERENCE_LABELS,
+  DESIRED_BEDROOMS_LABELS,
   RELATIONSHIP_STATUS_LABELS,
   WORK_PREFERENCE_LABELS,
 } from "@/lib/labels";
@@ -173,6 +177,74 @@ export function ProfileForm({ profile }: { profile: Profile | null }) {
             {...fieldErrorProps("housingBudget", state)}
           />
           <FieldError field="housingBudget" state={state} />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="desiredBedrooms">Home size you want</Label>
+          <NativeSelect
+            id="desiredBedrooms"
+            name="desiredBedrooms"
+            defaultValue={valueFor(
+              state,
+              "desiredBedrooms",
+              profile?.desiredBedrooms,
+            )}
+            {...fieldErrorProps(
+              "desiredBedrooms",
+              state,
+              "desiredBedrooms-hint",
+            )}
+          >
+            <option value="">No preference stated</option>
+            {DESIRED_BEDROOMS.map((value) => (
+              <option key={value} value={value}>
+                {DESIRED_BEDROOMS_LABELS[value]}
+              </option>
+            ))}
+          </NativeSelect>
+          <p
+            id="desiredBedrooms-hint"
+            className="text-xs text-muted-foreground"
+          >
+            Matches are judged on the rent for this size. Leave it unset and the
+            overall median rent is used instead.
+          </p>
+          <FieldError field="desiredBedrooms" state={state} />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="climatePreference">Climate you want</Label>
+          <NativeSelect
+            id="climatePreference"
+            name="climatePreference"
+            defaultValue={valueFor(
+              state,
+              "climatePreference",
+              profile?.climatePreference,
+            )}
+            {...fieldErrorProps(
+              "climatePreference",
+              state,
+              "climatePreference-hint",
+            )}
+          >
+            <option value="">Not stated</option>
+            {CLIMATE_PREFERENCES.map((value) => (
+              <option key={value} value={value}>
+                {CLIMATE_PREFERENCE_LABELS[value]}
+              </option>
+            ))}
+          </NativeSelect>
+          <p
+            id="climatePreference-hint"
+            className="text-xs text-muted-foreground"
+          >
+            &ldquo;No preference&rdquo; leaves climate out of your score rather
+            than guessing a temperature for you. Matching compares annual
+            average temperature, so &ldquo;four distinct seasons&rdquo; is
+            approximated from that rather than measured season by season.
+          </p>
+          <FieldError field="climatePreference" state={state} />
         </div>
 
         <div className="flex flex-col gap-2">

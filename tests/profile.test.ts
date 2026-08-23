@@ -14,6 +14,8 @@ const VALID_PROFILE: ProfileInput = {
   currentCity: "Brooklyn",
   currentState: "NY",
   housingBudget: 3_200,
+  desiredBedrooms: "two",
+  climatePreference: "warm",
   workPreference: "remote",
   freeTextGoals: "More space, a shorter commute and a real backyard.",
 };

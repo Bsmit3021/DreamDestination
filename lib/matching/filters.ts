@@ -1,4 +1,5 @@
-import { DIMENSIONS } from "@/lib/matching/dimensions";
+import { BEDROOM_SHORT_LABELS } from "@/lib/labels";
+import { resolveHousingBenchmark } from "@/lib/matching/housing";
 import type { CandidateCity } from "@/lib/matching/types";
 import type { Profile } from "@/types/profile";
 
@@ -42,9 +43,9 @@ export const UNUSED_PROFILE_FIELDS = {
   children:
     "Would justify weighting education more heavily, but that is the user's call via the sliders, not ours.",
   householdSize:
-    "Would need bedroom-count rents to be actionable; ACS median gross rent is not split by unit size.",
+    "Housing size is taken from the user's explicit desiredBedrooms answer instead. Household size may suggest a default in the form, but inferring the scored value from it would put words in their mouth.",
   occupation:
-    "Would need occupation-level employment data by metro; only the overall unemployment rate is wired up.",
+    "Not used as a filter. The free-text occupation feeds the resolver; the resolved SOC code personalises the career score rather than removing metros.",
   workPreference:
     "Remote work plausibly reduces how much the local job market matters, but silently rewriting a user's career weight would misrepresent what they asked for.",
   currentCity: "Used for context only; the user's own metro is still eligible.",
@@ -62,6 +63,16 @@ export interface FilterOutcome {
 /**
  * Excludes metros whose typical rent is far beyond the user's stated budget.
  *
+ * The benchmark is bedroom-aware: when the user has said which home size they
+ * want and ACS publishes that size for the metro, the test is run against that
+ * rent. A three-bedroom family and a studio renter face different markets, and
+ * judging both on the overall median would keep metros that are impossible for
+ * one of them and drop metros that are fine for the other.
+ *
+ * When the bedroom-specific figure is absent — ACS suppresses plenty of them —
+ * the overall median gross rent is used instead. A gap in the data is not
+ * evidence that a metro is unaffordable, so it must not remove one.
+ *
  * Skipped entirely when the budget is zero or negative: the schema permits
  * zero, but it means "unspecified" far more often than "I can pay nothing", and
  * filtering on it would eliminate every city.
@@ -76,22 +87,26 @@ export function applyHardFilters(
     return { passed: true };
   }
 
-  const rentMetricKey = DIMENSIONS.housing.metric?.key;
-  const observation = city.observations.housing;
+  const benchmark = resolveHousingBenchmark(city, profile.desiredBedrooms);
 
-  if (!observation || observation.metricKey !== rentMetricKey) {
-    // No rent measurement means no basis to rule the city out.
+  if (!benchmark) {
+    // No rent measurement of any kind means no basis to rule the city out.
     return { passed: true };
   }
 
   const ceiling = budget * BUDGET_TOLERANCE_MULTIPLIER;
 
-  if (observation.rawValue > ceiling) {
+  if (benchmark.rent > ceiling) {
+    const label =
+      benchmark.basis === "bedroom_specific" && benchmark.desiredBedrooms
+        ? `${BEDROOM_SHORT_LABELS[benchmark.desiredBedrooms]} median rent`
+        : "Median rent";
+
     return {
       passed: false,
       reason: "budget",
       detail:
-        `Median rent is $${Math.round(observation.rawValue)}/mo, more than ` +
+        `${label} is $${Math.round(benchmark.rent)}/mo, more than ` +
         `${BUDGET_TOLERANCE_MULTIPLIER}× the $${Math.round(budget)}/mo budget.`,
     };
   }

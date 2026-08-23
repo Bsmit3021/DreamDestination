@@ -26,6 +26,8 @@ export function toProfile(row: ProfileRow): Profile {
     // constraint and by profileInputSchema on the way in.
     currentState: row.current_state as UsStateCode,
     housingBudget: row.housing_budget,
+    desiredBedrooms: row.desired_bedrooms,
+    climatePreference: row.climate_preference,
     workPreference: row.work_preference,
     freeTextGoals: row.free_text_goals,
     createdAt: row.created_at,
@@ -55,6 +57,8 @@ export function toProfileInsert(
     current_city: input.currentCity,
     current_state: input.currentState,
     housing_budget: input.housingBudget,
+    desired_bedrooms: input.desiredBedrooms,
+    climate_preference: input.climatePreference,
     work_preference: input.workPreference,
     free_text_goals: input.freeTextGoals,
   };

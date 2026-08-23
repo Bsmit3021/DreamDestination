@@ -20,6 +20,8 @@ const VALID_PROFILE_FIELDS: Record<string, string> = {
   currentCity: "Brooklyn",
   currentState: "NY",
   housingBudget: "3200",
+  desiredBedrooms: "two",
+  climatePreference: "warm",
   workPreference: "remote",
   freeTextGoals: "More space.",
 };
@@ -138,9 +140,34 @@ describe("parseProfileFormData", () => {
       currentCity: "Brooklyn",
       currentState: "NY",
       housingBudget: 3200,
+      desiredBedrooms: "two",
+      climatePreference: "warm",
       workPreference: "remote",
       freeTextGoals: "More space.",
     });
+  });
+
+  it("reads an unanswered home-size or climate select as null, not an error", () => {
+    // The two Phase 6A questions are optional: an empty select must mean
+    // "unstated" rather than blocking the whole submission.
+    const result = parseProfileFormData(
+      profileFormData({ desiredBedrooms: "", climatePreference: "" }),
+    );
+
+    expect(result.success).toBe(true);
+    expect(result.data?.desiredBedrooms).toBeNull();
+    expect(result.data?.climatePreference).toBeNull();
+  });
+
+  it("rejects a home size outside the supported set", () => {
+    const result = parseProfileFormData(
+      profileFormData({ desiredBedrooms: "five" }),
+    );
+
+    expect(result.success).toBe(false);
+    expect(result.error?.issues.map((issue) => issue.path.join("."))).toContain(
+      "desiredBedrooms",
+    );
   });
 
   it("treats an omitted optional goals field as null", () => {

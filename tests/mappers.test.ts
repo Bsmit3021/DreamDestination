@@ -25,6 +25,8 @@ const PROFILE_ROW: ProfileRow = {
   current_city: "Brooklyn",
   current_state: "NY",
   housing_budget: 3200,
+  desired_bedrooms: "two",
+  climate_preference: "warm",
   work_preference: "remote",
   free_text_goals: "More space.",
   created_at: "2026-08-14T00:00:00.000Z",
@@ -62,6 +64,8 @@ describe("profile mapper", () => {
       currentCity: "Brooklyn",
       currentState: "NY",
       housingBudget: 3200,
+      desiredBedrooms: "two",
+      climatePreference: "warm",
       workPreference: "remote",
       freeTextGoals: "More space.",
       createdAt: PROFILE_ROW.created_at,
@@ -86,6 +90,8 @@ describe("profile mapper", () => {
       currentCity: "Denver",
       currentState: "CO",
       housingBudget: 1800,
+      desiredBedrooms: "one",
+      climatePreference: "no_preference",
       workPreference: "onsite",
       freeTextGoals: null,
     };
@@ -96,6 +102,22 @@ describe("profile mapper", () => {
     expect(row.household_size).toBe(1);
     expect(row.current_state).toBe("CO");
     expect(row.free_text_goals).toBeNull();
+    expect(row.desired_bedrooms).toBe("one");
+    expect(row.climate_preference).toBe("no_preference");
+  });
+
+  it("writes the new preferences as null when the user left them unanswered", () => {
+    const profile = toProfile({
+      ...PROFILE_ROW,
+      desired_bedrooms: null,
+      climate_preference: null,
+    });
+
+    expect(profile.desiredBedrooms).toBeNull();
+    expect(profile.climatePreference).toBeNull();
+    expect(
+      toProfileInsert(profile, profile.userId).desired_bedrooms,
+    ).toBeNull();
   });
 
   it("round-trips domain input through the database shape unchanged", () => {

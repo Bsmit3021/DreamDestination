@@ -4,20 +4,33 @@ import { scoreCities } from "@/lib/matching/scoring";
 import { generateMatches } from "@/lib/matching/ranking";
 import { normalizeWeights } from "@/lib/matching/weights";
 
-import { GOLDEN_CITIES, testProfile, weightsWith } from "./fixtures";
+import {
+  GOLDEN_CITIES,
+  personalizationFor,
+  testProfile,
+  weightsWith,
+} from "./fixtures";
 
 /**
  * The personalisation proof.
  *
  * Every expected number below is derived by hand from the fixture. With four
  * candidates and distinct values, mid-rank percentiles are 12.5 / 37.5 / 62.5 /
- * 87.5, so each city's normalised score per dimension is:
+ * 87.5. The fixture profile has a 10,000/mo budget, so the housing budget
+ * multiplier is 1.0 throughout and housing is the plain rent percentile. It
+ * prefers a `mild` climate: the 55-65 °F band, 20 °F tolerance.
  *
- *              housing(rent↓)  career(unemp↓)  climate(|t−57|/20)
- *   Alpha          87.5            12.5              40
- *   Beta           12.5            87.5              75
- *   Gamma          62.5            62.5             100
- *   Delta          37.5            37.5              35
+ * The fixture profile names no occupation and the cities carry no OEWS rows,
+ * so career scores on the metro-wide labour market — `general_labor_market`,
+ * evidence confidence 1.0. That is the measurement this user asked for, not a
+ * stand-in for a missing one, so nothing is discounted and the career column
+ * below is the plain unemployment percentile.
+ *
+ *              housing(rent↓)  career(unemp↓)  climate(mild band)
+ *   Alpha          87.5            12.5              50   (45°F, 10 below)
+ *   Beta           12.5            87.5              85   (52°F, 3 below)
+ *   Gamma          62.5            62.5             100   (57°F, inside)
+ *   Delta          37.5            37.5              75   (70°F, 5 above)
  */
 
 const HOUSING_FIRST = weightsWith({ housing: 1.0, career: 0.1, climate: 0.1 });
@@ -32,7 +45,11 @@ function rankedSlugs(weights: Parameters<typeof generateMatches>[2]) {
 }
 
 describe("normalized dimension scores (hand-checked)", () => {
-  const scored = scoreCities(GOLDEN_CITIES, normalizeWeights(BALANCED));
+  const scored = scoreCities(
+    GOLDEN_CITIES,
+    normalizeWeights(BALANCED),
+    personalizationFor(testProfile()),
+  );
   const bySlug = new Map(scored.map((s) => [s.city.slug, s]));
 
   it("scores cheap rent highest on housing", () => {
@@ -47,11 +64,27 @@ describe("normalized dimension scores (hand-checked)", () => {
     expect(bySlug.get("alpha")!.dimensions.career.normalizedScore).toBe(12.5);
   });
 
-  it("scores the on-target temperature highest on climate", () => {
+  it("does not discount a career score the user never asked to personalise", () => {
+    const beta = bySlug.get("beta")!;
+    const detail = beta.dimensions.career.detail;
+
+    expect(detail?.kind).toBe("career");
+    if (detail?.kind !== "career") return;
+
+    // No occupation was named, so the metro-wide labour market is the intended
+    // measurement rather than a substitute for a missing one. Nothing is
+    // missing, so nothing is discounted.
+    expect(detail.basis).toBe("general_labor_market");
+    expect(detail.evidenceConfidence).toBe(1);
+    expect(detail.rawScore).toBe(87.5);
+    expect(beta.dimensions.career.normalizedScore).toBe(87.5);
+  });
+
+  it("scores the temperature inside the requested band highest on climate", () => {
     expect(bySlug.get("gamma")!.dimensions.climate.normalizedScore).toBe(100);
-    expect(bySlug.get("beta")!.dimensions.climate.normalizedScore).toBe(75);
-    expect(bySlug.get("alpha")!.dimensions.climate.normalizedScore).toBe(40);
-    expect(bySlug.get("delta")!.dimensions.climate.normalizedScore).toBe(35);
+    expect(bySlug.get("beta")!.dimensions.climate.normalizedScore).toBe(85);
+    expect(bySlug.get("delta")!.dimensions.climate.normalizedScore).toBe(75);
+    expect(bySlug.get("alpha")!.dimensions.climate.normalizedScore).toBe(50);
   });
 
   it("keeps the raw value distinct from the normalised score", () => {
@@ -102,8 +135,8 @@ describe("personalisation: preferences change the ranking", () => {
     const alpha = result.recommendations.find((r) => r.city.slug === "alpha")!;
 
     // weights 1.0 / 0.1 / 0.1 normalise to 0.8333 / 0.08333 / 0.08333
-    // 87.5(0.83333) + 12.5(0.08333) + 40(0.08333) = 72.917 + 1.042 + 3.333
-    expect(alpha.totalScore).toBeCloseTo(77.292, 2);
+    // 87.5(0.83333) + 12.5(0.08333) + 50(0.08333) = 72.917 + 1.042 + 4.167
+    expect(alpha.totalScore).toBeCloseTo(78.125, 2);
     expect(alpha.dimensions.housing.effectiveWeight).toBeCloseTo(0.83333, 4);
     expect(alpha.dimensions.housing.contribution).toBeCloseTo(72.917, 2);
   });

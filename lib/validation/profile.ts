@@ -2,6 +2,8 @@ import { z } from "zod";
 
 import {
   AGE_RANGES,
+  CLIMATE_PREFERENCES,
+  DESIRED_BEDROOMS,
   FREE_TEXT_GOALS_MAX_LENGTH,
   RELATIONSHIP_STATUSES,
   US_STATE_CODES,
@@ -55,6 +57,13 @@ export const profileInputSchema = z
       .number()
       .min(0, { message: "Housing budget cannot be negative" }),
 
+    // Nullable, not optional-with-a-default: an unanswered question must stay
+    // distinguishable from an answered one. A default would put words in the
+    // user's mouth and silently change which rent their matches are judged on.
+    desiredBedrooms: z.enum(DESIRED_BEDROOMS).nullable(),
+
+    climatePreference: z.enum(CLIMATE_PREFERENCES).nullable(),
+
     workPreference: z.enum(WORK_PREFERENCES),
 
     freeTextGoals: z.string().max(FREE_TEXT_GOALS_MAX_LENGTH).nullable(),
@@ -84,6 +93,9 @@ export function parseProfileFormData(formData: FormData) {
     currentCity: formString(formData, "currentCity"),
     currentState: formString(formData, "currentState"),
     housingBudget: formNumber(formData, "housingBudget"),
+    // An empty select is "not stated", which the schema accepts as null.
+    desiredBedrooms: formNullableString(formData, "desiredBedrooms"),
+    climatePreference: formNullableString(formData, "climatePreference"),
     workPreference: formString(formData, "workPreference"),
     freeTextGoals: formNullableString(formData, "freeTextGoals"),
   });
