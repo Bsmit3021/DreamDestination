@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 import { DestinationComparison } from "@/app/recommendations/comparison";
 import { GenerateButton } from "@/app/recommendations/generate-button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -54,6 +55,18 @@ export default async function RecommendationsPage() {
       </header>
 
       <GenerateButton hasExisting={recommendations.length > 0} />
+
+      {recommendations.length > 0 && (
+        <div className="flex flex-col items-start gap-2">
+          <Button variant="outline" asChild>
+            <Link href={ROUTES.advisor}>Ask DreamDestination</Link>
+          </Button>
+          <p className="text-xs text-muted-foreground">
+            Have the advisor explain these results in plain language. It
+            interprets your matches — it never changes them.
+          </p>
+        </div>
+      )}
 
       {recommendations.length === 0 ? (
         <Card>

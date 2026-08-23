@@ -9,6 +9,88 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      advisor_conversations: {
+        Row: {
+          created_at: string
+          id: string
+          profile_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          profile_id: string
+          title?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          profile_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "advisor_conversations_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      advisor_messages: {
+        Row: {
+          content: string
+          conversation_id: string
+          created_at: string
+          evidence_refs: Json
+          id: string
+          input_tokens: number | null
+          latency_ms: number | null
+          model: string | null
+          output_tokens: number | null
+          prompt_version: string | null
+          role: string
+        }
+        Insert: {
+          content: string
+          conversation_id: string
+          created_at?: string
+          evidence_refs?: Json
+          id?: string
+          input_tokens?: number | null
+          latency_ms?: number | null
+          model?: string | null
+          output_tokens?: number | null
+          prompt_version?: string | null
+          role: string
+        }
+        Update: {
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          evidence_refs?: Json
+          id?: string
+          input_tokens?: number | null
+          latency_ms?: number | null
+          model?: string | null
+          output_tokens?: number | null
+          prompt_version?: string | null
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "advisor_messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "advisor_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       cities: {
         Row: {
           cbsa_geoid: string | null

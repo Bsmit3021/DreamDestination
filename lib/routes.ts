@@ -15,10 +15,15 @@ export const ROUTES = {
   onboardingPreferences: "/onboarding/preferences",
   onboardingOccupation: "/onboarding/occupation",
   recommendations: "/recommendations",
+  advisor: "/advisor",
 } as const;
 
 /** Prefixes that require an authenticated user. */
-const PROTECTED_PREFIXES = [ROUTES.onboarding, ROUTES.recommendations] as const;
+const PROTECTED_PREFIXES = [
+  ROUTES.onboarding,
+  ROUTES.recommendations,
+  ROUTES.advisor,
+] as const;
 
 /** Pages that a signed-in user has no reason to see. */
 const AUTH_PREFIXES = [ROUTES.signIn, ROUTES.signUp] as const;
