@@ -193,6 +193,8 @@ describe("determinism", () => {
   it("stamps the algorithm version on the result", () => {
     const result = generateMatches(GOLDEN_CITIES, testProfile(), BALANCED);
 
-    expect(result.algorithmVersion).toMatch(/^v\d+$/);
+    // v2.1 in Phase 6B: a minor component is allowed, and the database CHECK
+    // on `recommendations.algorithm_version` accepts the same shape.
+    expect(result.algorithmVersion).toMatch(/^v\d+(\.\d+)?$/);
   });
 });

@@ -1,0 +1,16 @@
+{
+  "archive": "cius-estimations-2025.zip",
+  "sha256": "71c8eae23fa13842d7cab2aecb1683c07ca8079cdd87d381d95909c4e1545c8d",
+  "bytes": 818498,
+  "member": "CIUS_Table_6_Crime_in_the_United_States_by_Metropolitan_Statistical_Area_2025.xlsx",
+  "organization": "U.S. Federal Bureau of Investigation",
+  "dataset": "Uniform Crime Reporting Program, Crime in the United States 2025, Table 6 (by Metropolitan Statistical Area)",
+  "publication": "Reported Crimes in the Nation, 2025 (finalised annual release)",
+  "period": "2025",
+  "geographyLevel": "cbsa",
+  "units": "offenses per 100,000 inhabitants",
+  "retrievedOn": "2026-08-23",
+  "retrievalMethod": "Downloaded from the FBI Crime Data Explorer keyless signing endpoint (cde.ucr.cjis.gov/LATEST/s3/signedurl), catalogue key cius/2025/cius-estimations-2025.zip.",
+  "agenciesReporting": 17075,
+  "populationCoveragePercent": 96.2
+}

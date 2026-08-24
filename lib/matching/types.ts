@@ -4,6 +4,8 @@ import type {
   OccupationTarget,
 } from "@/lib/matching/career";
 import type { ClimateDetail } from "@/lib/matching/climate";
+import type { FamilyDetail, MetroSchoolStats } from "@/lib/matching/family";
+import type { MetroSafetyStats, SafetyDetail } from "@/lib/matching/safety";
 import type { HousingDetail, MetroBedroomRents } from "@/lib/matching/housing";
 import type {
   ClimatePreference,
@@ -72,6 +74,20 @@ export interface CandidateCity {
    * `observations.housing` — so the housing dataset is not duplicated.
    */
   bedroomRents?: MetroBedroomRents | null;
+  /**
+   * FBI CIUS Table 6 crime rates for this metro, when the FBI published an
+   * estimate for it.
+   *
+   * Null means no published MSA estimate — never zero crime, and never a
+   * principal city's numbers standing in for the metro.
+   */
+  safety?: MetroSafetyStats | null;
+  /**
+   * NCES public-school counts with the ACS school-age denominator.
+   *
+   * Counts availability, never quality.
+   */
+  schools?: MetroSchoolStats | null;
 }
 
 /**
@@ -102,7 +118,8 @@ export interface Personalization {
  * measurement. Discriminated on `kind` so an explanation cannot read a career
  * field off a housing score.
  */
-export type DimensionDetail = CareerDetail | HousingDetail | ClimateDetail;
+export type DimensionDetail =
+  CareerDetail | HousingDetail | ClimateDetail | SafetyDetail | FamilyDetail;
 
 /** Per-dimension detail behind a city's total score. */
 export interface DimensionScore {

@@ -59,6 +59,11 @@ const dimensionSnapshotSchema = z.object({
    */
   rawScore: z.number().optional(),
   evidenceConfidence: z.number().optional(),
+  /**
+   * For career and family only: the share of intended evidence that was
+   * available. Optional so snapshots predating either adjustment still parse.
+   */
+  coverage: z.number().optional(),
 });
 
 const reasonSchema = z.object({
@@ -126,6 +131,17 @@ function buildReasonJson(recommendation: RankedRecommendation): ReasonJson {
             basis: dimension.detail.basis,
             rawScore: dimension.detail.rawScore,
             evidenceConfidence: dimension.detail.evidenceConfidence,
+            coverage: dimension.detail.coverage,
+          }
+        : {}),
+      // Family stores the same three facts, so a saved recommendation can
+      // still separate "what the available evidence said" from "how much of
+      // the intended evidence there was".
+      ...(dimension.detail?.kind === "family"
+        ? {
+            rawScore: dimension.detail.rawScore,
+            evidenceConfidence: dimension.detail.evidenceConfidence,
+            coverage: dimension.detail.coverage,
           }
         : {}),
     };

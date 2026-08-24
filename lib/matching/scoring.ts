@@ -5,6 +5,8 @@ import {
   type CareerScore,
 } from "@/lib/matching/career";
 import { scoreClimate } from "@/lib/matching/climate";
+import { scoreFamilyFit, type FamilyInputs } from "@/lib/matching/family";
+import { scoreSafetyFit } from "@/lib/matching/safety";
 import { DIMENSIONS } from "@/lib/matching/dimensions";
 import {
   resolveHousingBenchmark,
@@ -61,11 +63,20 @@ export const NO_PERSONALIZATION: Personalization = {
   occupation: null,
 };
 
-/** Dimensions the personalised paths own; the generic path skips them. */
-const PERSONALIZED_DIMENSIONS = new Set<PreferenceWeightKey>([
+/**
+ * Dimensions a composite scorer owns; the generic observation path skips them.
+ *
+ * Career, housing and climate depend on the user's own answers. Safety and
+ * family do not — they are identical for every user — but both still combine
+ * several measurements inside one dimension, which the single-observation path
+ * cannot express.
+ */
+const COMPOSITE_DIMENSIONS = new Set<PreferenceWeightKey>([
   "career",
   "housing",
   "climate",
+  "safety",
+  "family",
 ]);
 
 /** Raw values for one dimension across the candidate set, used for ranking. */
@@ -90,6 +101,39 @@ function collectPopulations(cities: readonly CandidateCity[]): Populations {
   }
 
   return populations;
+}
+
+/** Raw values for one dimension across the set, for a one-off normalisation. */
+function populationFor(
+  cities: readonly CandidateCity[],
+  dimension: PreferenceWeightKey,
+): number[] {
+  const values: number[] = [];
+  for (const city of cities) {
+    const observation = city.observations[dimension];
+    if (observation && Number.isFinite(observation.rawValue)) {
+      values.push(observation.rawValue);
+    }
+  }
+  return values;
+}
+
+/**
+ * One city's 0-100 score for a dimension scored from a single observation.
+ *
+ * Used by Family Fit to borrow the commute and healthcare normalisations
+ * rather than restate them, so a change to either definition moves both the
+ * standalone dimension and the family component together.
+ */
+function observationScore(
+  city: CandidateCity,
+  dimension: PreferenceWeightKey,
+  population: readonly number[],
+): number | null {
+  const observation = city.observations[dimension];
+  if (!observation || !Number.isFinite(observation.rawValue)) return null;
+  if (population.length === 0) return null;
+  return normalizeObservation(dimension, observation.rawValue, population);
 }
 
 /** Maps one raw value onto 0-100 using that dimension's declared method. */
@@ -136,6 +180,7 @@ function normalizeObservation(
       );
     }
 
+    case "composite":
     case "personalized_composite":
     case "preference_band":
       // These are computed per user, not from a single shared observation.
@@ -208,6 +253,8 @@ function scorePersonalizedDimensions(
   const career = new Map<string, PersonalizedScore>();
   const housing = new Map<string, PersonalizedScore>();
   const climate = new Map<string, PersonalizedScore>();
+  const safety = new Map<string, PersonalizedScore>();
+  const family = new Map<string, PersonalizedScore>();
 
   for (const [cityId, result] of scoreCareerFit(
     cities,
@@ -271,10 +318,62 @@ function scorePersonalizedDimensions(
     });
   }
 
+  // ---------------------------------------------------------------------
+  // Safety, then family.
+  //
+  // Order matters: Family Fit reuses the finished Safety Fit rather than
+  // recomputing crime, so the two dimensions can never disagree about how safe
+  // a metro is.
+  // ---------------------------------------------------------------------
+
+  const safetyScores = scoreSafetyFit(cities);
+
+  for (const [cityId, result] of safetyScores) {
+    if (!result) continue;
+    safety.set(cityId, {
+      normalizedScore: result.score,
+      // The violent rate is quoted because it carries most of the weight; the
+      // property rate travels alongside it in the detail.
+      rawValue: result.detail.violentCrimeRate ?? 0,
+      unit: "per_100k",
+      detail: result.detail,
+    });
+  }
+
+  // Commute and healthcare come from the generic observation path, so family
+  // reuses those normalisations instead of defining a second one.
+  const commutePopulation = populationFor(cities, "transport");
+  const healthcarePopulation = populationFor(cities, "healthcare");
+
+  const familyInputs = new Map<string, FamilyInputs>();
+  for (const city of cities) {
+    familyInputs.set(city.id, {
+      safetyScore: safetyScores.get(city.id)?.score ?? null,
+      commuteScore: observationScore(city, "transport", commutePopulation),
+      healthcareScore: observationScore(
+        city,
+        "healthcare",
+        healthcarePopulation,
+      ),
+    });
+  }
+
+  for (const [cityId, result] of scoreFamilyFit(cities, familyInputs)) {
+    if (!result) continue;
+    family.set(cityId, {
+      normalizedScore: result.score,
+      rawValue: result.detail.schoolsPer10kSchoolAge,
+      unit: "index",
+      detail: result.detail,
+    });
+  }
+
   return new Map([
     ["career", career],
     ["housing", housing],
     ["climate", climate],
+    ["safety", safety],
+    ["family", family],
   ]);
 }
 
@@ -299,7 +398,7 @@ export function scoreCities(
     const available = new Set<PreferenceWeightKey>();
 
     for (const key of PREFERENCE_WEIGHT_KEYS) {
-      if (PERSONALIZED_DIMENSIONS.has(key)) {
+      if (COMPOSITE_DIMENSIONS.has(key)) {
         if (personalized.get(key)?.has(city.id)) available.add(key);
         continue;
       }

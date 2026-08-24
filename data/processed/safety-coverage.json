@@ -1,0 +1,86 @@
+{
+  "source": "fbi-cius-2025",
+  "dataYear": 2025,
+  "candidateMetros": 100,
+  "fbiMsaBlocks": 349,
+  "metropolitanDivisionsSkipped": 28,
+  "matched": 87,
+  "unmatched": 13,
+  "withViolentRate": 87,
+  "withPropertyRate": 87,
+  "withBothRates": 87,
+  "estimatedMetros": 55,
+  "unmatchedMetros": [
+    {
+      "slug": "new-york-ny",
+      "metro": "New York-Newark-Jersey City, NY-NJ",
+      "cbsaGeoid": "35620"
+    },
+    {
+      "slug": "miami-fl",
+      "metro": "Miami-Fort Lauderdale-West Palm Beach, FL",
+      "cbsaGeoid": "33100"
+    },
+    {
+      "slug": "tampa-fl",
+      "metro": "Tampa-St. Petersburg-Clearwater, FL",
+      "cbsaGeoid": "45300"
+    },
+    {
+      "slug": "orlando-fl",
+      "metro": "Orlando-Kissimmee-Sanford, FL",
+      "cbsaGeoid": "36740"
+    },
+    {
+      "slug": "grand-rapids-mi",
+      "metro": "Grand Rapids-Wyoming-Kentwood, MI",
+      "cbsaGeoid": "24340"
+    },
+    {
+      "slug": "new-orleans-la",
+      "metro": "New Orleans-Metairie, LA",
+      "cbsaGeoid": "35380"
+    },
+    {
+      "slug": "baton-rouge-la",
+      "metro": "Baton Rouge, LA",
+      "cbsaGeoid": "12940"
+    },
+    {
+      "slug": "north-port-fl",
+      "metro": "North Port-Bradenton-Sarasota, FL",
+      "cbsaGeoid": "35840"
+    },
+    {
+      "slug": "worcester-ma",
+      "metro": "Worcester, MA",
+      "cbsaGeoid": "49340"
+    },
+    {
+      "slug": "cape-coral-fl",
+      "metro": "Cape Coral-Fort Myers, FL",
+      "cbsaGeoid": "15980"
+    },
+    {
+      "slug": "greensboro-nc",
+      "metro": "Greensboro-High Point, NC",
+      "cbsaGeoid": "24660"
+    },
+    {
+      "slug": "deltona-fl",
+      "metro": "Deltona-Daytona Beach-Ormond Beach, FL",
+      "cbsaGeoid": "19660"
+    },
+    {
+      "slug": "palm-bay-fl",
+      "metro": "Palm Bay-Melbourne-Titusville, FL",
+      "cbsaGeoid": "37340"
+    }
+  ],
+  "notes": [
+    "Matching is exact on the normalised MSA name (case and whitespace only). No fuzzy or edit-distance matching is performed; an unmatched metro stays unmatched.",
+    "Metropolitan Divisions are skipped: they are subdivisions of an MSA and counting them would double count.",
+    "Table 6 carries the footnote \"Limited data for 2025 were available for Florida and North Dakota\", which accounts for most unmatched metros.",
+    "Every unmatched metro was checked against Table 6 by token search and is genuinely absent, not renamed."
+  ]
+}

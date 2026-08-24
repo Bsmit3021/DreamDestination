@@ -39,6 +39,14 @@ export const ACS_YEAR = 2023;
 export const ACS_PERIOD = "2019-2023";
 export const ACS_BASE_URL = `https://www2.census.gov/programs-surveys/acs/summary_file/${ACS_YEAR}/table-based-SF/data/5YRData`;
 
+export const FBI_CIUS_YEAR = 2025;
+export const FBI_CDE_DOWNLOADS_URL =
+  "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/downloads";
+
+export const NCES_SCHOOL_YEAR = "2024-2025";
+export const NCES_EDGE_URL =
+  "https://nces.ed.gov/programs/edge/data/EDGE_GEOCODE_PUBLICSCH_2425.zip";
+
 export const GAZETTEER_URL =
   "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_cbsa_national.zip";
 
@@ -83,6 +91,29 @@ export const SOURCES = {
     geographyLevel: "station" as const,
     notes:
       "Station-level, not metro-level: each metro is matched to the nearest station publishing an annual mean temperature. Recorded as `station` geography so the mismatch with the ACS metrics stays visible.",
+  },
+  fbi: {
+    key: "fbi-cius-2025",
+    organization: "U.S. Federal Bureau of Investigation",
+    dataset:
+      "Uniform Crime Reporting Program, Crime in the United States 2025, Table 6 (by Metropolitan Statistical Area)",
+    url: FBI_CDE_DOWNLOADS_URL,
+    period: "2025",
+    geographyLevel: "cbsa" as const,
+    notes:
+      'Finalised annual release, published within "Reported Crimes in the Nation, 2025"; 17,075 agencies covering 96.2% of the population served by agencies eligible to participate. Rates are the FBI\'s own published per-100,000 MSA figures, never a sum over police agencies and never a principal city standing in for its metro. Where the FBI printed an "Estimated total" row the rate accounts for agencies that did not report a full year. Metro-level only: these figures describe an entire metropolitan area and say nothing about a neighbourhood or an individual. Table 6 notes limited 2025 data for Florida and North Dakota.',
+  },
+  nces: {
+    key: "nces-edge-2024-25",
+    organization:
+      "U.S. Department of Education, National Center for Education Statistics",
+    dataset:
+      "EDGE Public School Locations, 2024-25 (Common Core of Data geocodes)",
+    url: NCES_EDGE_URL,
+    period: NCES_SCHOOL_YEAR,
+    geographyLevel: "cbsa" as const,
+    notes:
+      "Point locations for public elementary and secondary schools, joined to metros on the file's own CBSA identifier (OMB July 2023 definitions). Measures where public schools are, and nothing else: NCES EDGE publishes locations, not quality, achievement, ratings or teaching. The geocode file carries no open/closed status field, so no status filtering is applied.",
   },
   gazetteer: {
     key: "census-gazetteer-2024",

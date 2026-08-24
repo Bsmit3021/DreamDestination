@@ -1,0 +1,872 @@
+[
+  {
+    "cbsaGeoid": "31080",
+    "fbiMetroName": "Los Angeles-Long Beach-Anaheim, CA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 480.3,
+    "propertyCrimeRate": 2044.7,
+    "sourcePopulation": 12845993,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "16980",
+    "fbiMetroName": "Chicago-Naperville-Elgin, IL-IN M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 229.1,
+    "propertyCrimeRate": 1554.5,
+    "sourcePopulation": 9423722,
+    "reportingCoverage": 0.949,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "19100",
+    "fbiMetroName": "Dallas-Fort Worth-Arlington, TX M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 267.8,
+    "propertyCrimeRate": 1621.3,
+    "sourcePopulation": 8493091,
+    "reportingCoverage": 0.999,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "26420",
+    "fbiMetroName": "Houston-Pasadena-The Woodlands, TX M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 467,
+    "propertyCrimeRate": 2247.9,
+    "sourcePopulation": 7930847,
+    "reportingCoverage": 0.999,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "47900",
+    "fbiMetroName": "Washington-Arlington-Alexandria, DC-VA-MD-WV M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 248.6,
+    "propertyCrimeRate": 1554.5,
+    "sourcePopulation": 6465733,
+    "reportingCoverage": 0.999,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "37980",
+    "fbiMetroName": "Philadelphia-Camden-Wilmington, PA-NJ-DE-MD M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 335.9,
+    "propertyCrimeRate": 2089.5,
+    "sourcePopulation": 6333461,
+    "reportingCoverage": 0.994,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "12060",
+    "fbiMetroName": "Atlanta-Sandy Springs-Roswell, GA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 308.6,
+    "propertyCrimeRate": 1525,
+    "sourcePopulation": 6489372,
+    "reportingCoverage": 0.943,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "38060",
+    "fbiMetroName": "Phoenix-Mesa-Chandler, AZ M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 401.6,
+    "propertyCrimeRate": 1531.1,
+    "sourcePopulation": 5226329,
+    "reportingCoverage": 0.999,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "14460",
+    "fbiMetroName": "Boston-Cambridge-Newton, MA-NH M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 254.1,
+    "propertyCrimeRate": 1009.7,
+    "sourcePopulation": 5037427,
+    "reportingCoverage": 0.999,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "41860",
+    "fbiMetroName": "San Francisco-Oakland-Fremont, CA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 455.1,
+    "propertyCrimeRate": 2429.2,
+    "sourcePopulation": 4618575,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "40140",
+    "fbiMetroName": "Riverside-San Bernardino-Ontario, CA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 355.5,
+    "propertyCrimeRate": 1517.1,
+    "sourcePopulation": 4771917,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "19820",
+    "fbiMetroName": "Detroit-Warren-Dearborn, MI M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 466.7,
+    "propertyCrimeRate": 1414.2,
+    "sourcePopulation": 4391432,
+    "reportingCoverage": 0.995,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "42660",
+    "fbiMetroName": "Seattle-Tacoma-Bellevue, WA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 318.3,
+    "propertyCrimeRate": 2260.4,
+    "sourcePopulation": 4166995,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "33460",
+    "fbiMetroName": "Minneapolis-St. Paul-Bloomington, MN-WI M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 260.3,
+    "propertyCrimeRate": 1679.8,
+    "sourcePopulation": 3784360,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "41740",
+    "fbiMetroName": "San Diego-Chula Vista-Carlsbad, CA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 317.6,
+    "propertyCrimeRate": 1189,
+    "sourcePopulation": 3293353,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "19740",
+    "fbiMetroName": "Denver-Aurora-Centennial, CO M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 502.1,
+    "propertyCrimeRate": 2598.2,
+    "sourcePopulation": 3079325,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "12580",
+    "fbiMetroName": "Baltimore-Columbia-Towson, MD M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 501.3,
+    "propertyCrimeRate": 2180.5,
+    "sourcePopulation": 2853112,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "41180",
+    "fbiMetroName": "St. Louis, MO-IL M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 349.4,
+    "propertyCrimeRate": 1493.4,
+    "sourcePopulation": 2813968,
+    "reportingCoverage": 0.966,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "16740",
+    "fbiMetroName": "Charlotte-Concord-Gastonia, NC-SC M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 350.8,
+    "propertyCrimeRate": 2007.2,
+    "sourcePopulation": 2942709,
+    "reportingCoverage": 0.978,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "41700",
+    "fbiMetroName": "San Antonio-New Braunfels, TX M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 386.3,
+    "propertyCrimeRate": 2713.5,
+    "sourcePopulation": 2802833,
+    "reportingCoverage": 0.979,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "38900",
+    "fbiMetroName": "Portland-Vancouver-Hillsboro, OR-WA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 357.7,
+    "propertyCrimeRate": 2467.3,
+    "sourcePopulation": 2539145,
+    "reportingCoverage": 0.998,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "38300",
+    "fbiMetroName": "Pittsburgh, PA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 197.8,
+    "propertyCrimeRate": 1010.9,
+    "sourcePopulation": 2416058,
+    "reportingCoverage": 0.989,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "40900",
+    "fbiMetroName": "Sacramento-Roseville-Folsom, CA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 401.4,
+    "propertyCrimeRate": 1561.6,
+    "sourcePopulation": 2475288,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "12420",
+    "fbiMetroName": "Austin-Round Rock-San Marcos, TX M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 281.2,
+    "propertyCrimeRate": 1874.8,
+    "sourcePopulation": 2607858,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "29820",
+    "fbiMetroName": "Las Vegas-Henderson-North Las Vegas, NV M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 376.8,
+    "propertyCrimeRate": 2183.3,
+    "sourcePopulation": 2412858,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "17140",
+    "fbiMetroName": "Cincinnati, OH-KY-IN M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 215.5,
+    "propertyCrimeRate": 1409.9,
+    "sourcePopulation": 2314926,
+    "reportingCoverage": 0.961,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "28140",
+    "fbiMetroName": "Kansas City, MO-KS M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 549.8,
+    "propertyCrimeRate": 2096.6,
+    "sourcePopulation": 2268160,
+    "reportingCoverage": 0.996,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "17410",
+    "fbiMetroName": "Cleveland, OH M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 343.5,
+    "propertyCrimeRate": 1311.6,
+    "sourcePopulation": 2167947,
+    "reportingCoverage": 0.897,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "18140",
+    "fbiMetroName": "Columbus, OH M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 246.9,
+    "propertyCrimeRate": 1688,
+    "sourcePopulation": 2246076,
+    "reportingCoverage": 0.986,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "26900",
+    "fbiMetroName": "Indianapolis-Carmel-Greenwood, IN M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 309.3,
+    "propertyCrimeRate": 1259.8,
+    "sourcePopulation": 2200860,
+    "reportingCoverage": 0.939,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "34980",
+    "fbiMetroName": "Nashville-Davidson--Murfreesboro--Franklin, TN M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 469.1,
+    "propertyCrimeRate": 1795.7,
+    "sourcePopulation": 2187118,
+    "reportingCoverage": 0.999,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "41940",
+    "fbiMetroName": "San Jose-Sunnyvale-Santa Clara, CA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 356.3,
+    "propertyCrimeRate": 2157.8,
+    "sourcePopulation": 1994328,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "47260",
+    "fbiMetroName": "Virginia Beach-Chesapeake-Norfolk, VA-NC M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 316,
+    "propertyCrimeRate": 1834.1,
+    "sourcePopulation": 1802353,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "39300",
+    "fbiMetroName": "Providence-Warwick, RI-MA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 209.7,
+    "propertyCrimeRate": 946,
+    "sourcePopulation": 1704573,
+    "reportingCoverage": 0.999,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "27260",
+    "fbiMetroName": "Jacksonville, FL M. S. A.1",
+    "dataYear": 2025,
+    "violentCrimeRate": 366.4,
+    "propertyCrimeRate": 1477.7,
+    "sourcePopulation": 1771186,
+    "reportingCoverage": 0.987,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "33340",
+    "fbiMetroName": "Milwaukee-Waukesha, WI M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 476.8,
+    "propertyCrimeRate": 1542,
+    "sourcePopulation": 1573318,
+    "reportingCoverage": 0.985,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "39580",
+    "fbiMetroName": "Raleigh-Cary, NC M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 210.6,
+    "propertyCrimeRate": 1424.2,
+    "sourcePopulation": 1599871,
+    "reportingCoverage": 0.994,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "36420",
+    "fbiMetroName": "Oklahoma City, OK M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 443.2,
+    "propertyCrimeRate": 1971.8,
+    "sourcePopulation": 1513516,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "31140",
+    "fbiMetroName": "Louisville/Jefferson County, KY-IN M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 394,
+    "propertyCrimeRate": 2251.3,
+    "sourcePopulation": 1402204,
+    "reportingCoverage": 0.983,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "32820",
+    "fbiMetroName": "Memphis, TN-MS-AR M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 1006.5,
+    "propertyCrimeRate": 2934.1,
+    "sourcePopulation": 1340426,
+    "reportingCoverage": 0.972,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "40060",
+    "fbiMetroName": "Richmond, VA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 236.1,
+    "propertyCrimeRate": 1666.1,
+    "sourcePopulation": 1387747,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "41620",
+    "fbiMetroName": "Salt Lake City-Murray, UT M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 372,
+    "propertyCrimeRate": 2482.4,
+    "sourcePopulation": 1302785,
+    "reportingCoverage": 0.999,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "13820",
+    "fbiMetroName": "Birmingham, AL M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 407.3,
+    "propertyCrimeRate": 1796.7,
+    "sourcePopulation": 1195984,
+    "reportingCoverage": 0.992,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "23420",
+    "fbiMetroName": "Fresno, CA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 575.6,
+    "propertyCrimeRate": 1824.5,
+    "sourcePopulation": 1193776,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "15380",
+    "fbiMetroName": "Buffalo-Cheektowaga, NY M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 264,
+    "propertyCrimeRate": 1937.5,
+    "sourcePopulation": 1170272,
+    "reportingCoverage": 0.983,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "25540",
+    "fbiMetroName": "Hartford-West Hartford-East Hartford, CT M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 131.3,
+    "propertyCrimeRate": 1382.1,
+    "sourcePopulation": 984603,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "40380",
+    "fbiMetroName": "Rochester, NY M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 185.8,
+    "propertyCrimeRate": 1288.1,
+    "sourcePopulation": 1065964,
+    "reportingCoverage": 0.996,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "46060",
+    "fbiMetroName": "Tucson, AZ M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 264.9,
+    "propertyCrimeRate": 1822.7,
+    "sourcePopulation": 1080238,
+    "reportingCoverage": 0.996,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "46140",
+    "fbiMetroName": "Tulsa, OK M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 440,
+    "propertyCrimeRate": 1965.5,
+    "sourcePopulation": 1069174,
+    "reportingCoverage": 0.999,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "46520",
+    "fbiMetroName": "Urban Honolulu, HI M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 165.5,
+    "propertyCrimeRate": 1384.4,
+    "sourcePopulation": 987000,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "36540",
+    "fbiMetroName": "Omaha, NE-IA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 232,
+    "propertyCrimeRate": 1773.2,
+    "sourcePopulation": 1009322,
+    "reportingCoverage": 0.988,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "14860",
+    "fbiMetroName": "Bridgeport-Stamford-Danbury, CT M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 93.2,
+    "propertyCrimeRate": 954.8,
+    "sourcePopulation": 961252,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "24860",
+    "fbiMetroName": "Greenville-Anderson-Greer, SC M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 317.7,
+    "propertyCrimeRate": 1538.3,
+    "sourcePopulation": 1013759,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "28940",
+    "fbiMetroName": "Knoxville, TN M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 296.6,
+    "propertyCrimeRate": 1007.7,
+    "sourcePopulation": 972134,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "10740",
+    "fbiMetroName": "Albuquerque, NM M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 800.3,
+    "propertyCrimeRate": 2901.4,
+    "sourcePopulation": 925101,
+    "reportingCoverage": 0.989,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "12540",
+    "fbiMetroName": "Bakersfield-Delano, CA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 652.8,
+    "propertyCrimeRate": 1914,
+    "sourcePopulation": 925308,
+    "reportingCoverage": 0.979,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "10580",
+    "fbiMetroName": "Albany-Schenectady-Troy, NY M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 224.7,
+    "propertyCrimeRate": 1410.8,
+    "sourcePopulation": 925796,
+    "reportingCoverage": 0.997,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "32580",
+    "fbiMetroName": "McAllen-Edinburg-Mission, TX M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 282.9,
+    "propertyCrimeRate": 1312.8,
+    "sourcePopulation": 921742,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "21340",
+    "fbiMetroName": "El Paso, TX M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 280.7,
+    "propertyCrimeRate": 1215.9,
+    "sourcePopulation": 878105,
+    "reportingCoverage": 0.988,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "10900",
+    "fbiMetroName": "Allentown-Bethlehem-Easton, PA-NJ M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 125,
+    "propertyCrimeRate": 889.9,
+    "sourcePopulation": 890172,
+    "reportingCoverage": 0.988,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "17900",
+    "fbiMetroName": "Columbia, SC M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 443.5,
+    "propertyCrimeRate": 1919.3,
+    "sourcePopulation": 880431,
+    "reportingCoverage": 0.982,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "37100",
+    "fbiMetroName": "Oxnard-Thousand Oaks-Ventura, CA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 291.9,
+    "propertyCrimeRate": 1171,
+    "sourcePopulation": 832114,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "16700",
+    "fbiMetroName": "Charleston-North Charleston, SC M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 315.3,
+    "propertyCrimeRate": 1598,
+    "sourcePopulation": 887444,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "19430",
+    "fbiMetroName": "Dayton-Kettering-Beavercreek, OH M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 358.3,
+    "propertyCrimeRate": 1782.6,
+    "sourcePopulation": 823285,
+    "reportingCoverage": 0.974,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "14260",
+    "fbiMetroName": "Boise City, ID M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 246.3,
+    "propertyCrimeRate": 555.7,
+    "sourcePopulation": 860873,
+    "reportingCoverage": 0.996,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "44700",
+    "fbiMetroName": "Stockton-Lodi, CA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 616.3,
+    "propertyCrimeRate": 1940.6,
+    "sourcePopulation": 823992,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "29460",
+    "fbiMetroName": "Lakeland-Winter Haven, FL M. S. A.1",
+    "dataYear": 2025,
+    "violentCrimeRate": 217.7,
+    "propertyCrimeRate": 774.5,
+    "sourcePopulation": 872329,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "17820",
+    "fbiMetroName": "Colorado Springs, CO M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 537.8,
+    "propertyCrimeRate": 2267.7,
+    "sourcePopulation": 783865,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "30780",
+    "fbiMetroName": "Little Rock-North Little Rock-Conway, AR M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 775.9,
+    "propertyCrimeRate": 2362.9,
+    "sourcePopulation": 776117,
+    "reportingCoverage": 0.994,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "19780",
+    "fbiMetroName": "Des Moines-West Des Moines, IA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 270.5,
+    "propertyCrimeRate": 1464.3,
+    "sourcePopulation": 761271,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "28880",
+    "fbiMetroName": "Kiryas Joel-Poughkeepsie-Newburgh, NY M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 121.7,
+    "propertyCrimeRate": 681.6,
+    "sourcePopulation": 722387,
+    "reportingCoverage": 0.996,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "10420",
+    "fbiMetroName": "Akron, OH M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 321.8,
+    "propertyCrimeRate": 1647,
+    "sourcePopulation": 702047,
+    "reportingCoverage": 0.991,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "39340",
+    "fbiMetroName": "Provo-Orem-Lehi, UT M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 121.7,
+    "propertyCrimeRate": 731.5,
+    "sourcePopulation": 778384,
+    "reportingCoverage": 0.992,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "31540",
+    "fbiMetroName": "Madison, WI M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 140.3,
+    "propertyCrimeRate": 1171.5,
+    "sourcePopulation": 713689,
+    "reportingCoverage": 0.976,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "49180",
+    "fbiMetroName": "Winston-Salem, NC M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 392.7,
+    "propertyCrimeRate": 1872.9,
+    "sourcePopulation": 712252,
+    "reportingCoverage": 0.999,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "45060",
+    "fbiMetroName": "Syracuse, NY M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 201.8,
+    "propertyCrimeRate": 1302.7,
+    "sourcePopulation": 660394,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "48620",
+    "fbiMetroName": "Wichita, KS M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 838.4,
+    "propertyCrimeRate": 3220.6,
+    "sourcePopulation": 664033,
+    "reportingCoverage": 0.936,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "36260",
+    "fbiMetroName": "Ogden, UT M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 163.6,
+    "propertyCrimeRate": 952.6,
+    "sourcePopulation": 670660,
+    "reportingCoverage": 0.913,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "12260",
+    "fbiMetroName": "Augusta-Richmond County, GA-SC M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 250.6,
+    "propertyCrimeRate": 1665.5,
+    "sourcePopulation": 643297,
+    "reportingCoverage": 0.967,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "27140",
+    "fbiMetroName": "Jackson, MS M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 236.9,
+    "propertyCrimeRate": 996.2,
+    "sourcePopulation": 606202,
+    "reportingCoverage": 0.877,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "45780",
+    "fbiMetroName": "Toledo, OH M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 433,
+    "propertyCrimeRate": 1681.7,
+    "sourcePopulation": 600053,
+    "reportingCoverage": 0.95,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "25420",
+    "fbiMetroName": "Harrisburg-Carlisle, PA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 167.6,
+    "propertyCrimeRate": 885.8,
+    "sourcePopulation": 619211,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "20500",
+    "fbiMetroName": "Durham-Chapel Hill, NC M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 329.4,
+    "propertyCrimeRate": 2457.1,
+    "sourcePopulation": 630260,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  },
+  {
+    "cbsaGeoid": "44060",
+    "fbiMetroName": "Spokane-Spokane Valley, WA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 328.7,
+    "propertyCrimeRate": 2744.5,
+    "sourcePopulation": 608087,
+    "reportingCoverage": 0.995,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "16860",
+    "fbiMetroName": "Chattanooga, TN-GA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 340.7,
+    "propertyCrimeRate": 1507.8,
+    "sourcePopulation": 594659,
+    "reportingCoverage": 0.886,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "42540",
+    "fbiMetroName": "Scranton--Wilkes-Barre, PA M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 178.9,
+    "propertyCrimeRate": 916.9,
+    "sourcePopulation": 574021,
+    "reportingCoverage": 0.965,
+    "isEstimated": true
+  },
+  {
+    "cbsaGeoid": "35300",
+    "fbiMetroName": "New Haven, CT M. S. A.",
+    "dataYear": 2025,
+    "violentCrimeRate": 157,
+    "propertyCrimeRate": 1931.5,
+    "sourcePopulation": 574539,
+    "reportingCoverage": 1,
+    "isEstimated": false
+  }
+]

@@ -1,4 +1,5 @@
 import { usesGeneralLaborMarket } from "@/lib/matching/career";
+import type { FamilyComponentKey } from "@/lib/matching/family";
 import { BEDROOM_SHORT_LABELS, CLIMATE_PREFERENCE_LABELS } from "@/lib/labels";
 import { DIMENSIONS } from "@/lib/matching/dimensions";
 import type {
@@ -15,6 +16,21 @@ import type {
  * is not in the dataset. A reason can only ever name a dimension that was
  * actually measured for that city, and always quotes the measurement behind it.
  */
+
+/** How each Family Fit component is named to a reader. */
+const FAMILY_COMPONENT_LABELS: Record<FamilyComponentKey, string> = {
+  schoolAccess: "public-school availability",
+  safety: "metro safety",
+  commute: "commute times",
+  healthcare: "health-insurance coverage",
+};
+
+/** The components whose absence a family explanation names. */
+const MISSING_FAMILY_COMPONENTS: FamilyComponentKey[] = [
+  "safety",
+  "commute",
+  "healthcare",
+];
 
 /** A dimension must score at least this to be offered as a strength. */
 export const STRENGTH_SCORE_THRESHOLD = 60;
@@ -89,6 +105,10 @@ export function measurementLabel(dimension: DimensionScore): string {
         : "Median gross rent";
     case "climate":
       return fallback;
+    case "safety":
+      return `Violent crime rate, ${detail.dataYear} (metro-wide)`;
+    case "family":
+      return "Public schools per 10,000 residents aged 5-17";
   }
 }
 
@@ -220,6 +240,74 @@ function describeClimate(dimension: DimensionScore): string {
   return `Annual mean temperature: ${temperature}, which ${fit}`;
 }
 
+/**
+ * Safety evidence.
+ *
+ * Two things must survive into the sentence: the geography, and the fact that
+ * this is a comparison rather than a verdict. An MSA spans millions of people,
+ * so "this city is safe" would be unsupportable no matter how good the rate
+ * is — the number describes a whole metropolitan area, not a neighbourhood, a
+ * street or anyone's personal risk.
+ */
+function describeSafety(dimension: DimensionScore): string {
+  const detail = dimension.detail;
+  if (detail?.kind !== "safety") return describeGeneric(dimension);
+
+  const parts: string[] = [];
+  if (detail.violentCrimeRate !== null) {
+    parts.push(
+      `${formatRawValue(detail.violentCrimeRate, "per_100k")} violent`,
+    );
+  }
+  if (detail.propertyCrimeRate !== null) {
+    parts.push(
+      `${formatRawValue(detail.propertyCrimeRate, "per_100k")} property`,
+    );
+  }
+
+  // The FBI's own distinction: an estimated figure accounts for agencies that
+  // did not report a full year, and saying so is the source's caveat, not ours.
+  const basis = detail.isEstimated ? "estimated" : "reported";
+  const gap =
+    detail.coverage < 1
+      ? " (the FBI published only one of the two rates for this metro)"
+      : "";
+
+  return `FBI ${detail.dataYear} ${basis} rates across the whole metro area: ${parts.join(", ")} crimes per 100,000 residents${gap}`;
+}
+
+/**
+ * Family evidence.
+ *
+ * Names the components that were actually used, so a partially covered score
+ * never reads as a complete one, and says "available" rather than anything
+ * that could be mistaken for a quality judgement about the schools.
+ */
+function describeFamily(dimension: DimensionScore): string {
+  const detail = dimension.detail;
+  if (detail?.kind !== "family") return describeGeneric(dimension);
+
+  const used = detail.components
+    .filter((component) => component.key !== "schoolAccess")
+    .map((component) => FAMILY_COMPONENT_LABELS[component.key]);
+
+  const combined = used.length > 0 ? `, combined with ${used.join(", ")}` : "";
+
+  // Partial coverage has to read as an evidence gap, never as a judgement.
+  // "Missing safety data" must not become "less family-friendly", and the
+  // percentage is a share of intended evidence, not a statistical confidence.
+  const missing = MISSING_FAMILY_COMPONENTS.filter(
+    (key) => !detail.components.some((component) => component.key === key),
+  ).map((key) => FAMILY_COMPONENT_LABELS[key]);
+
+  const partial =
+    detail.coverage < 1
+      ? ` Family evidence is incomplete here — no data for ${missing.join(" or ")} — so DreamDestination used the available indicators and reduced their ranking influence to reflect ${Math.round(detail.coverage * 100)}% evidence coverage.`
+      : "";
+
+  return `${detail.publicSchoolCount.toLocaleString("en-US")} public schools, or ${detail.schoolsPer10kSchoolAge.toFixed(1)} per 10,000 residents aged 5-17 (${detail.schoolYear})${combined}.${partial}`;
+}
+
 function describe(dimension: DimensionScore, isTopPriority: boolean): string {
   const score = Math.round(dimension.normalizedScore ?? 0);
   const priority = isTopPriority ? ", your highest-weighted priority" : "";
@@ -231,7 +319,11 @@ function describe(dimension: DimensionScore, isTopPriority: boolean): string {
         ? describeHousing(dimension)
         : dimension.detail?.kind === "climate"
           ? describeClimate(dimension)
-          : describeGeneric(dimension);
+          : dimension.detail?.kind === "safety"
+            ? describeSafety(dimension)
+            : dimension.detail?.kind === "family"
+              ? describeFamily(dimension)
+              : describeGeneric(dimension);
 
   return `${evidence} — scores ${score}/100 against the other candidates${priority}.`;
 }

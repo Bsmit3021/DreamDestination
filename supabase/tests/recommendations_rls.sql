@@ -282,6 +282,79 @@ begin
   end;
 end $$;
 
+-- ---------------------------------------------------------------------------
+-- Phase 6B widened `algorithm_version` to accept an optional minor component
+-- so this release could ship as v2.1. The widening must be purely additive:
+-- every historical version still has to be writable and readable, or stored
+-- snapshots would be invalidated by a format change.
+-- ---------------------------------------------------------------------------
+
+do $$
+declare v_stored text;
+begin
+  perform public.replace_my_recommendations('v2.1', jsonb_build_array(
+    jsonb_build_object('city_id', '22222222-2222-4222-8222-222222222222',
+                       'dream_score', 0.82, 'rank', 1)
+  ));
+  select algorithm_version into v_stored
+    from public.recommendations
+   where city_id = '22222222-2222-4222-8222-222222222222'
+   limit 1;
+
+  if v_stored is distinct from 'v2.1' then
+    raise exception 'FAIL: v2.1 was not stored (got %)', v_stored;
+  end if;
+  raise notice 'PASS  RPC accepts the v2.1 algorithm version';
+end $$;
+
+do $$
+declare v_count integer;
+begin
+  -- A snapshot written by an earlier release, replayed verbatim.
+  perform public.replace_my_recommendations('v1', jsonb_build_array(
+    jsonb_build_object('city_id', '22222222-2222-4222-8222-222222222222',
+                       'dream_score', 0.75, 'rank', 1,
+                       'reason_json', jsonb_build_object(
+                         'dataCoverage', 0.8,
+                         'dimensionsCovered', 4,
+                         'dimensionsWeighted', 5,
+                         'reasons', '[]'::jsonb,
+                         'tradeoffs', '[]'::jsonb,
+                         'dimensions', jsonb_build_object(
+                           'housing', jsonb_build_object(
+                             'normalizedScore', 87.5, 'effectiveWeight', 0.5,
+                             'contribution', 43.75, 'rawValue', 900,
+                             'unit', 'usd_per_month', 'sourceKey', 'acs-2023-5yr'
+                           )
+                         )
+                       )
+    )
+  ));
+
+  select count(*) into v_count
+    from public.recommendations
+   where algorithm_version = 'v1';
+
+  if v_count < 1 then
+    raise exception 'FAIL: a v1 snapshot could no longer be stored';
+  end if;
+  raise notice 'PASS  pre-Phase-6B snapshots remain writable and readable';
+end $$;
+
+do $$
+begin
+  begin
+    perform public.replace_my_recommendations('v2.1.3', jsonb_build_array(
+      jsonb_build_object('city_id', '22222222-2222-4222-8222-222222222222',
+                         'dream_score', 0.5, 'rank', 1)
+    ));
+    raise exception 'FAIL: RPC accepted a malformed three-part version';
+  exception
+    when check_violation then
+      raise notice 'PASS  widened version format still rejects malformed input';
+  end;
+end $$;
+
 -- Extra fields in the payload are ignored, not smuggled into the row.
 do $$
 declare owner_ok boolean;

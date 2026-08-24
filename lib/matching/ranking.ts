@@ -34,12 +34,20 @@ import type {
 /**
  * Bumped when the scoring model changes in a way that alters results.
  *
- * v2: career fit scored for the user's own occupation, housing scored on the
- * rent for the home size they asked for, climate scored against the climate
- * they asked for. Stored on every row, so a v1 result is never silently
- * compared with a v2 one.
+ * v2:   career fit scored for the user's own occupation, housing scored on the
+ *       rent for the home size they asked for, climate scored against the
+ *       climate they asked for.
+ * v2.1: safety and family become measurable. Both were always selectable
+ *       priorities whose weight was redistributed away for lack of a metric;
+ *       that weight now lands where the user put it, which changes rankings
+ *       for anyone who weighted either.
+ *
+ * A minor bump rather than v3 because no existing dimension's definition
+ * changed — two previously unscored ones were filled in. Stored on every row,
+ * so results from different versions are never silently compared. Old
+ * snapshots keep their own version string and stay readable.
  */
-export const MATCHING_ALGORITHM_VERSION = "v2";
+export const MATCHING_ALGORITHM_VERSION = "v2.1";
 
 export const DEFAULT_RECOMMENDATION_LIMIT = 5;
 

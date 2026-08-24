@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { BUDGET_TOLERANCE_MULTIPLIER } from "@/lib/matching/filters";
+import { UNSCORED_DIMENSIONS } from "@/lib/matching/dimensions";
 import { generateMatches } from "@/lib/matching/ranking";
 import { scoreCities } from "@/lib/matching/scoring";
 import { normalizeWeights } from "@/lib/matching/weights";
@@ -230,15 +231,16 @@ describe("missing data", () => {
   });
 
   it("returns nothing when the user only weights unmeasurable dimensions", () => {
-    // Safety has no metric; a fit score here would be pure extrapolation.
+    // Social has no metric; a fit score here would be pure extrapolation.
+    // Safety and family used to sit here too and became measurable in Phase 6B.
     const result = generateMatches(
       GOLDEN_CITIES,
       testProfile(),
-      weightsWith({ safety: 1 }),
+      weightsWith({ social: 1 }),
     );
 
     expect(result.recommendations).toHaveLength(0);
-    expect(result.unscoredWeightedDimensions).toContain("safety");
+    expect(result.unscoredWeightedDimensions).toContain("social");
     expect(result.excluded).toHaveLength(GOLDEN_CITIES.length);
   });
 
@@ -249,10 +251,11 @@ describe("missing data", () => {
       weightsWith({ housing: 1, safety: 1, social: 1, family: 1 }),
     );
 
-    expect(result.unscoredWeightedDimensions.sort()).toEqual([
-      "family",
-      "safety",
-      "social",
-    ]);
+    // Registry-level: dimensions nothing can ever score, not dimensions this
+    // particular city set happens to lack data for. Phase 6B left social as
+    // the only one — a user's safety and family weight is no longer
+    // redistributed away before it is ever applied.
+    expect(result.unscoredWeightedDimensions).toEqual(["social"]);
+    expect(UNSCORED_DIMENSIONS).toEqual(["social"]);
   });
 });

@@ -3,6 +3,8 @@ import type {
   MetroOccupationStats,
   OccupationTarget,
 } from "@/lib/matching/career";
+import type { MetroSchoolStats } from "@/lib/matching/family";
+import type { MetroSafetyStats } from "@/lib/matching/safety";
 import type { MetroBedroomRents } from "@/lib/matching/housing";
 import type {
   CandidateCity,
@@ -207,6 +209,8 @@ export function withMetroData(
   data: {
     career?: Partial<MetroOccupationStats> | null;
     bedroomRents?: Partial<MetroBedroomRents> | null;
+    safety?: Partial<MetroSafetyStats> | null;
+    schools?: Partial<MetroSchoolStats> | null;
   },
 ): CandidateCity {
   return {
@@ -240,6 +244,35 @@ export function withMetroData(
               three: null,
               four: null,
               ...data.bedroomRents,
+            },
+    safety:
+      data.safety === undefined
+        ? city.safety
+        : data.safety === null
+          ? null
+          : {
+              fbiMetroName: `${city.city} M. S. A.`,
+              dataYear: 2025,
+              violentCrimeRate: null,
+              propertyCrimeRate: null,
+              sourcePopulation: 500_000,
+              reportingCoverage: 1,
+              isEstimated: false,
+              source: TEST_SOURCE,
+              ...data.safety,
+            },
+    schools:
+      data.schools === undefined
+        ? city.schools
+        : data.schools === null
+          ? null
+          : {
+              schoolYear: "2024-2025",
+              publicSchoolCount: 0,
+              schoolAgePopulation: null,
+              populationPeriod: "2019-2023",
+              source: TEST_SOURCE,
+              ...data.schools,
             },
   };
 }

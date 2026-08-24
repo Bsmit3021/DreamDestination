@@ -1,0 +1,802 @@
+[
+  {
+    "cbsaGeoid": "35620",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 4737,
+    "schoolAgePopulation": 3074596,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.406902240164236
+  },
+  {
+    "cbsaGeoid": "31080",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 2873,
+    "schoolAgePopulation": 2043357,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 14.060196040143744
+  },
+  {
+    "cbsaGeoid": "16980",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 2659,
+    "schoolAgePopulation": 1564436,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.996540606327137
+  },
+  {
+    "cbsaGeoid": "19100",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 2376,
+    "schoolAgePopulation": 1474847,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.11014566256703
+  },
+  {
+    "cbsaGeoid": "26420",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1877,
+    "schoolAgePopulation": 1411137,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.30133077086066
+  },
+  {
+    "cbsaGeoid": "47900",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1427,
+    "schoolAgePopulation": 1052844,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.55376485025322
+  },
+  {
+    "cbsaGeoid": "37980",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1377,
+    "schoolAgePopulation": 996609,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.816852948347847
+  },
+  {
+    "cbsaGeoid": "12060",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1177,
+    "schoolAgePopulation": 1109122,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 10.61199759810012
+  },
+  {
+    "cbsaGeoid": "33100",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1118,
+    "schoolAgePopulation": 903498,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 12.374128110964275
+  },
+  {
+    "cbsaGeoid": "38060",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1505,
+    "schoolAgePopulation": 841543,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.883815800262138
+  },
+  {
+    "cbsaGeoid": "14460",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1230,
+    "schoolAgePopulation": 709209,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.343265525395193
+  },
+  {
+    "cbsaGeoid": "41860",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1056,
+    "schoolAgePopulation": 666550,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.842772485184907
+  },
+  {
+    "cbsaGeoid": "40140",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1124,
+    "schoolAgePopulation": 874983,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 12.845963864440794
+  },
+  {
+    "cbsaGeoid": "19820",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1263,
+    "schoolAgePopulation": 708809,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.81862250620407
+  },
+  {
+    "cbsaGeoid": "42660",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1043,
+    "schoolAgePopulation": 620044,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.821386869318953
+  },
+  {
+    "cbsaGeoid": "33460",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 1599,
+    "schoolAgePopulation": 640545,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 24.96311734538557
+  },
+  {
+    "cbsaGeoid": "41740",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 764,
+    "schoolAgePopulation": 506726,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.077181751084414
+  },
+  {
+    "cbsaGeoid": "45300",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 607,
+    "schoolAgePopulation": 470813,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 12.892592175662099
+  },
+  {
+    "cbsaGeoid": "19740",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 829,
+    "schoolAgePopulation": 473616,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.503631634066416
+  },
+  {
+    "cbsaGeoid": "12580",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 653,
+    "schoolAgePopulation": 463752,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 14.080801807862823
+  },
+  {
+    "cbsaGeoid": "41180",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 883,
+    "schoolAgePopulation": 459336,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 19.223400734973964
+  },
+  {
+    "cbsaGeoid": "36740",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 514,
+    "schoolAgePopulation": 433904,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 11.84593827206018
+  },
+  {
+    "cbsaGeoid": "16740",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 623,
+    "schoolAgePopulation": 471568,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.211244189597258
+  },
+  {
+    "cbsaGeoid": "41700",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 833,
+    "schoolAgePopulation": 476979,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.464081227894727
+  },
+  {
+    "cbsaGeoid": "38900",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 643,
+    "schoolAgePopulation": 390367,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.47167921468772
+  },
+  {
+    "cbsaGeoid": "38300",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 588,
+    "schoolAgePopulation": 343203,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.13271737135165
+  },
+  {
+    "cbsaGeoid": "40900",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 642,
+    "schoolAgePopulation": 403437,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.913265268183137
+  },
+  {
+    "cbsaGeoid": "12420",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 649,
+    "schoolAgePopulation": 383273,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.933099905289442
+  },
+  {
+    "cbsaGeoid": "29820",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 456,
+    "schoolAgePopulation": 384769,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 11.851266604118315
+  },
+  {
+    "cbsaGeoid": "17140",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 560,
+    "schoolAgePopulation": 390384,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 14.344850198778637
+  },
+  {
+    "cbsaGeoid": "28140",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 759,
+    "schoolAgePopulation": 391994,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 19.362541263386685
+  },
+  {
+    "cbsaGeoid": "17410",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 595,
+    "schoolAgePopulation": 337952,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.606050563393616
+  },
+  {
+    "cbsaGeoid": "18140",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 642,
+    "schoolAgePopulation": 369125,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.39248222146969
+  },
+  {
+    "cbsaGeoid": "26900",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 531,
+    "schoolAgePopulation": 384731,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.80185116354024
+  },
+  {
+    "cbsaGeoid": "34980",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 502,
+    "schoolAgePopulation": 344667,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 14.564782819358976
+  },
+  {
+    "cbsaGeoid": "41940",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 437,
+    "schoolAgePopulation": 309893,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 14.101641534336046
+  },
+  {
+    "cbsaGeoid": "47260",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 408,
+    "schoolAgePopulation": 287213,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 14.205485127762323
+  },
+  {
+    "cbsaGeoid": "39300",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 457,
+    "schoolAgePopulation": 244962,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 18.65595480115283
+  },
+  {
+    "cbsaGeoid": "27260",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 368,
+    "schoolAgePopulation": 270620,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.59840366565664
+  },
+  {
+    "cbsaGeoid": "33340",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 453,
+    "schoolAgePopulation": 264215,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.145128020740685
+  },
+  {
+    "cbsaGeoid": "39580",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 305,
+    "schoolAgePopulation": 257057,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 11.865072727060536
+  },
+  {
+    "cbsaGeoid": "36420",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 437,
+    "schoolAgePopulation": 261313,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.723239945965183
+  },
+  {
+    "cbsaGeoid": "31140",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 353,
+    "schoolAgePopulation": 225904,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.626106664777957
+  },
+  {
+    "cbsaGeoid": "32820",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 399,
+    "schoolAgePopulation": 247695,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.108520559559135
+  },
+  {
+    "cbsaGeoid": "40060",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 323,
+    "schoolAgePopulation": 208855,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.46527495152139
+  },
+  {
+    "cbsaGeoid": "41620",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 350,
+    "schoolAgePopulation": 246784,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 14.18244294605809
+  },
+  {
+    "cbsaGeoid": "13820",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 324,
+    "schoolAgePopulation": 201337,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.09242215787461
+  },
+  {
+    "cbsaGeoid": "23420",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 447,
+    "schoolAgePopulation": 244458,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 18.285349630611393
+  },
+  {
+    "cbsaGeoid": "15380",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 274,
+    "schoolAgePopulation": 173659,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.778047783299456
+  },
+  {
+    "cbsaGeoid": "24340",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 421,
+    "schoolAgePopulation": 199400,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 21.113340020060182
+  },
+  {
+    "cbsaGeoid": "25540",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 341,
+    "schoolAgePopulation": 171087,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 19.931379941199506
+  },
+  {
+    "cbsaGeoid": "40380",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 283,
+    "schoolAgePopulation": 160325,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.651645095898957
+  },
+  {
+    "cbsaGeoid": "46060",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 398,
+    "schoolAgePopulation": 156299,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 25.464014485057483
+  },
+  {
+    "cbsaGeoid": "46140",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 337,
+    "schoolAgePopulation": 186716,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 18.048801388204545
+  },
+  {
+    "cbsaGeoid": "46520",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 187,
+    "schoolAgePopulation": 150101,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 12.45827809275088
+  },
+  {
+    "cbsaGeoid": "35380",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 208,
+    "schoolAgePopulation": 157051,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.24410541798524
+  },
+  {
+    "cbsaGeoid": "36540",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 375,
+    "schoolAgePopulation": 182048,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 20.598962910880644
+  },
+  {
+    "cbsaGeoid": "14860",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 238,
+    "schoolAgePopulation": 158393,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.025916549342458
+  },
+  {
+    "cbsaGeoid": "24860",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 208,
+    "schoolAgePopulation": 156833,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.262514904388745
+  },
+  {
+    "cbsaGeoid": "28940",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 237,
+    "schoolAgePopulation": 141062,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.80112291049326
+  },
+  {
+    "cbsaGeoid": "10740",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 294,
+    "schoolAgePopulation": 147514,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 19.930311699228547
+  },
+  {
+    "cbsaGeoid": "12540",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 279,
+    "schoolAgePopulation": 196859,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 14.172580374786014
+  },
+  {
+    "cbsaGeoid": "10580",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 218,
+    "schoolAgePopulation": 129446,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.8409993356303
+  },
+  {
+    "cbsaGeoid": "32580",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 355,
+    "schoolAgePopulation": 206413,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.198529162407407
+  },
+  {
+    "cbsaGeoid": "12940",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 246,
+    "schoolAgePopulation": 150138,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.384925868201254
+  },
+  {
+    "cbsaGeoid": "21340",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 264,
+    "schoolAgePopulation": 170510,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.482962876077648
+  },
+  {
+    "cbsaGeoid": "10900",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 202,
+    "schoolAgePopulation": 135180,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 14.943038911081521
+  },
+  {
+    "cbsaGeoid": "35840",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 151,
+    "schoolAgePopulation": 103547,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 14.582749862381334
+  },
+  {
+    "cbsaGeoid": "49340",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 256,
+    "schoolAgePopulation": 134710,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 19.003785910474353
+  },
+  {
+    "cbsaGeoid": "17900",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 215,
+    "schoolAgePopulation": 139529,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.40898307878649
+  },
+  {
+    "cbsaGeoid": "37100",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 236,
+    "schoolAgePopulation": 140909,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.748397902192195
+  },
+  {
+    "cbsaGeoid": "16700",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 179,
+    "schoolAgePopulation": 130206,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.747446354238667
+  },
+  {
+    "cbsaGeoid": "19430",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 235,
+    "schoolAgePopulation": 132174,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.779593566056864
+  },
+  {
+    "cbsaGeoid": "15980",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 121,
+    "schoolAgePopulation": 101066,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 11.972374487958364
+  },
+  {
+    "cbsaGeoid": "14260",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 266,
+    "schoolAgePopulation": 143584,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 18.525741029641186
+  },
+  {
+    "cbsaGeoid": "44700",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 249,
+    "schoolAgePopulation": 156915,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.868463817990632
+  },
+  {
+    "cbsaGeoid": "24660",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 209,
+    "schoolAgePopulation": 128322,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.287152631660977
+  },
+  {
+    "cbsaGeoid": "29460",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 171,
+    "schoolAgePopulation": 125123,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.666552112721082
+  },
+  {
+    "cbsaGeoid": "17820",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 247,
+    "schoolAgePopulation": 129642,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 19.05246756452384
+  },
+  {
+    "cbsaGeoid": "30780",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 234,
+    "schoolAgePopulation": 130534,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.926364012441205
+  },
+  {
+    "cbsaGeoid": "19780",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 233,
+    "schoolAgePopulation": 131709,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.69051469527519
+  },
+  {
+    "cbsaGeoid": "28880",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 157,
+    "schoolAgePopulation": 118326,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.268427902574244
+  },
+  {
+    "cbsaGeoid": "10420",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 195,
+    "schoolAgePopulation": 105736,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 18.44215782704093
+  },
+  {
+    "cbsaGeoid": "39340",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 209,
+    "schoolAgePopulation": 163810,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 12.758683841035346
+  },
+  {
+    "cbsaGeoid": "19660",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 102,
+    "schoolAgePopulation": 89523,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 11.393720049596194
+  },
+  {
+    "cbsaGeoid": "31540",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 235,
+    "schoolAgePopulation": 103005,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 22.814426484151255
+  },
+  {
+    "cbsaGeoid": "49180",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 182,
+    "schoolAgePopulation": 113493,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 16.036231309419964
+  },
+  {
+    "cbsaGeoid": "45060",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 185,
+    "schoolAgePopulation": 101268,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 18.26835723031955
+  },
+  {
+    "cbsaGeoid": "48620",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 241,
+    "schoolAgePopulation": 121919,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 19.76722250018455
+  },
+  {
+    "cbsaGeoid": "36260",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 218,
+    "schoolAgePopulation": 143541,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.187298402547007
+  },
+  {
+    "cbsaGeoid": "37340",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 110,
+    "schoolAgePopulation": 85374,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 12.884484737742168
+  },
+  {
+    "cbsaGeoid": "12260",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 155,
+    "schoolAgePopulation": 105229,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 14.729779813549497
+  },
+  {
+    "cbsaGeoid": "27140",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 193,
+    "schoolAgePopulation": 108163,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.84343999334338
+  },
+  {
+    "cbsaGeoid": "45780",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 196,
+    "schoolAgePopulation": 99860,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 19.6274784698578
+  },
+  {
+    "cbsaGeoid": "25420",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 147,
+    "schoolAgePopulation": 94783,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.509110283489656
+  },
+  {
+    "cbsaGeoid": "20500",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 151,
+    "schoolAgePopulation": 86789,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 17.39851824539976
+  },
+  {
+    "cbsaGeoid": "44060",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 228,
+    "schoolAgePopulation": 95495,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 23.875595580920464
+  },
+  {
+    "cbsaGeoid": "16860",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 136,
+    "schoolAgePopulation": 88750,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 15.323943661971832
+  },
+  {
+    "cbsaGeoid": "42540",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 118,
+    "schoolAgePopulation": 85996,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 13.721568445043955
+  },
+  {
+    "cbsaGeoid": "35300",
+    "schoolYear": "2024-2025",
+    "publicSchoolCount": 152,
+    "schoolAgePopulation": 83793,
+    "populationPeriod": "2019-2023",
+    "schoolsPer10kSchoolAge": 18.139940090461018
+  }
+]

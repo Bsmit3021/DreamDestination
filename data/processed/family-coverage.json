@@ -1,0 +1,24 @@
+{
+  "sources": {
+    "schools": "nces-edge-2024-25",
+    "population": "acs-2023-5yr"
+  },
+  "schoolYear": "2024-2025",
+  "populationPeriod": "2019-2023",
+  "candidateMetros": 100,
+  "ncesTotalRows": 102175,
+  "ncesUniqueSchools": 102175,
+  "ncesDuplicateRowsSkipped": 0,
+  "ncesMatchedMetros": 100,
+  "schoolsInsideCandidateMetros": 57452,
+  "withSchoolAgePopulation": 100,
+  "withSchoolAccessRate": 100,
+  "metrosWithoutSchools": [],
+  "metrosWithoutPopulation": [],
+  "notes": [
+    "Schools are joined to metros on the NCES file's own CBSA identifier (OMB July 2023), never by city name.",
+    "Counts are of distinct NCESSCH identifiers, so a duplicated row cannot inflate a metro.",
+    "This is a count of public schools, not a measure of school quality, achievement or ranking.",
+    "The EDGE geocode file carries no open/closed status column, so no status filtering is applied."
+  ]
+}

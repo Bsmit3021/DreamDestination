@@ -1,0 +1,41 @@
+{
+  "schools": {
+    "archive": "EDGE_GEOCODE_PUBLICSCH_2425.zip",
+    "sha256": "9dc51ecd5cdf6e38bdb679f7ac95e2bf73ee3fb48718b8612cf830800cffb288",
+    "bytes": 30448565,
+    "member": "EDGE_GEOCODE_PUBLICSCH_2425.TXT",
+    "organization": "U.S. Department of Education, National Center for Education Statistics",
+    "dataset": "EDGE Public School Locations, 2024-25 (Common Core of Data geocodes)",
+    "schoolYear": "2024-2025",
+    "geographyLevel": "cbsa",
+    "url": "https://nces.ed.gov/programs/edge/data/EDGE_GEOCODE_PUBLICSCH_2425.zip",
+    "retrievedOn": "2026-08-23",
+    "measures": "Presence and location of public schools. Not quality, achievement, ranking or teaching."
+  },
+  "schoolAgePopulation": {
+    "organization": "U.S. Census Bureau",
+    "dataset": "American Community Survey 5-Year Estimates, Table-Based Summary File — B01001 (Sex by Age)",
+    "table": "B01001",
+    "variables": [
+      "B01001_E004",
+      "B01001_E005",
+      "B01001_E006",
+      "B01001_E028",
+      "B01001_E029",
+      "B01001_E030"
+    ],
+    "variableLabels": [
+      "Male 5 to 9 years",
+      "Male 10 to 14 years",
+      "Male 15 to 17 years",
+      "Female 5 to 9 years",
+      "Female 10 to 14 years",
+      "Female 15 to 17 years"
+    ],
+    "period": "2019-2023",
+    "geographyLevel": "cbsa",
+    "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2023/table-based-SF/data/5YRData",
+    "retrievedOn": "2026-08-23",
+    "verifiedAgainst": "https://api.census.gov/data/2023/acs/acs5/groups/B01001.json"
+  }
+}

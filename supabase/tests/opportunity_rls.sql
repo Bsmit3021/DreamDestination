@@ -220,5 +220,68 @@ begin
   end;
 end $$;
 
+-- ---------------------------------------------------------------------------
+-- Phase 6B reference data follows exactly the same read model: public to read,
+-- writable by nobody through the API. A user able to write crime rates or
+-- school counts could manufacture their own recommendations.
+-- ---------------------------------------------------------------------------
+
+do $$
+declare v_count integer;
+begin
+  select count(*) into v_count from public.metro_safety_stats;
+  raise notice 'PASS  anon can read metro safety stats (% rows)', v_count;
+end $$;
+
+do $$
+declare v_count integer;
+begin
+  select count(*) into v_count from public.metro_school_stats;
+  raise notice 'PASS  anon can read metro school stats (% rows)', v_count;
+end $$;
+
+do $$
+begin
+  begin
+    update public.metro_safety_stats set violent_crime_rate = 0;
+    raise exception 'FAIL: anon modified safety data';
+  exception when insufficient_privilege then
+    raise notice 'PASS  anon cannot mutate safety data';
+  end;
+end $$;
+
+do $$
+begin
+  begin
+    insert into public.metro_safety_stats
+      (city_id, fbi_metro_name, data_year, source_id)
+    values ('22222222-2222-4222-8222-222222222222', 'Fake M. S. A.', 2025,
+            '33333333-3333-4333-8333-333333333333');
+    raise exception 'FAIL: anon inserted safety data';
+  exception when insufficient_privilege then
+    raise notice 'PASS  anon cannot insert safety data';
+  end;
+end $$;
+
+do $$
+begin
+  begin
+    update public.metro_school_stats set public_school_count = 99999;
+    raise exception 'FAIL: anon modified school data';
+  exception when insufficient_privilege then
+    raise notice 'PASS  anon cannot mutate school data';
+  end;
+end $$;
+
+do $$
+begin
+  begin
+    delete from public.metro_school_stats;
+    raise exception 'FAIL: anon deleted school data';
+  exception when insufficient_privilege then
+    raise notice 'PASS  anon cannot delete school data';
+  end;
+end $$;
+
 reset role;
 rollback;

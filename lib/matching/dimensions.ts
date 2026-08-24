@@ -8,8 +8,8 @@ import type { PreferenceWeightKey } from "@/types/profile";
  * The dimension keys are exactly the ten weights onboarding already collects
  * (`PREFERENCE_WEIGHT_KEYS`). Nothing here invents a dimension.
  *
- * Three of the ten currently have no measured metric. That is recorded here
- * rather than papered over, because the missing-data policy needs to know the
+ * One of the ten still has no measured metric. That is recorded here rather
+ * than papered over, because the missing-data policy needs to know the
  * difference between "we measured zero" and "we have nothing".
  */
 
@@ -36,6 +36,12 @@ export type NormalizationMethod =
    * and lib/matching/housing.ts.
    */
   | "personalized_composite"
+  /**
+   * Several normalised components combined inside the dimension with fixed
+   * sub-weights, identical for every user. See lib/matching/safety.ts and
+   * lib/matching/family.ts.
+   */
+  | "composite"
   /**
    * Closeness to the band the user asked for, rather than to a fixed target.
    * See lib/matching/climate.ts.
@@ -173,17 +179,43 @@ export const DIMENSIONS: Record<PreferenceWeightKey, DimensionDefinition> = {
       normalization: "preference_band",
     },
   },
-
-  // --- dimensions with no credible measurement yet --------------------------
-
   safety: {
     key: "safety",
     label: "Safety",
-    description: "Not scored yet — no metric is wired up.",
-    metric: null,
-    unavailableReason:
-      "The FBI Crime Data Explorer API requires an api.data.gov key, which is not configured. Crime data is deliberately absent rather than approximated from a weaker source.",
+    description:
+      "Violent and property crime rates the FBI publishes for this entire " +
+      "metropolitan area, compared with the other candidates. Describes a " +
+      "metro, not a neighbourhood and not personal risk.",
+    metric: {
+      // The headline component. The property rate lives alongside it in
+      // `metro_safety_stats`, so one shared metric key cannot describe both.
+      key: "violent_crime_rate",
+      label: "Violent crime rate (FBI, metropolitan statistical area)",
+      unit: "per_100k",
+      direction: "lower_is_better",
+      normalization: "composite",
+    },
   },
+  family: {
+    key: "family",
+    label: "Family friendliness",
+    description:
+      "A DreamDestination composite of public-school availability, metro " +
+      "safety, commute times and health-insurance coverage. Not an official " +
+      "measure, and school counts describe availability rather than quality.",
+    metric: {
+      // The family-specific component. Its denominator and the three reused
+      // dimensions live elsewhere, so this key names the lead measurement only.
+      key: "public_schools_per_10k_school_age",
+      label: "Public schools per 10,000 residents aged 5-17",
+      unit: "index",
+      direction: "higher_is_better",
+      normalization: "composite",
+    },
+  },
+
+  // --- dimensions with no credible measurement yet --------------------------
+
   social: {
     key: "social",
     label: "Social life",
@@ -191,14 +223,6 @@ export const DIMENSIONS: Record<PreferenceWeightKey, DimensionDefinition> = {
     metric: null,
     unavailableReason:
       "No authoritative federal dataset measures social opportunity at metro level. Proxies such as bar or restaurant counts would overstate what the data supports.",
-  },
-  family: {
-    key: "family",
-    label: "Family friendliness",
-    description: "Not scored yet — no metric is wired up.",
-    metric: null,
-    unavailableReason:
-      "Family friendliness has no single authoritative measure. Household-composition shares describe who already lives somewhere, not how well it suits a family.",
   },
 };
 

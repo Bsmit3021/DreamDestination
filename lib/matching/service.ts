@@ -8,6 +8,10 @@ import {
   loadBedroomRentsForScoring,
   loadOccupationStatsForScoring,
 } from "@/lib/data/opportunity";
+import {
+  loadSafetyStatsForScoring,
+  loadSchoolStatsForScoring,
+} from "@/lib/data/place-intelligence";
 import { getCurrentUserPreferences } from "@/lib/data/preferences";
 import { getCurrentUserProfile } from "@/lib/data/profiles";
 import { persistRecommendations } from "@/lib/data/recommendations";
@@ -76,17 +80,24 @@ export async function generateRecommendationsForCurrentUser(
   // loaded at all, and career fit falls back to the metro-wide labour market.
   const careerTarget = await getCurrentUserCareerTarget();
 
-  const [occupationStats, bedroomRents] = await Promise.all([
-    careerTarget
-      ? loadOccupationStatsForScoring(careerTarget.socCode)
-      : Promise.resolve(null),
-    loadBedroomRentsForScoring(),
-  ]);
+  const [occupationStats, bedroomRents, safetyStats, schoolStats] =
+    await Promise.all([
+      careerTarget
+        ? loadOccupationStatsForScoring(careerTarget.socCode)
+        : Promise.resolve(null),
+      loadBedroomRentsForScoring(),
+      loadSafetyStatsForScoring(),
+      loadSchoolStatsForScoring(),
+    ]);
 
   const enriched: CandidateCity[] = cities.map((city) => ({
     ...city,
     career: occupationStats?.get(city.id) ?? null,
     bedroomRents: bedroomRents.get(city.id) ?? null,
+    // Absent for a metro the FBI published no estimate for. Left null so the
+    // scorer records missing data rather than inventing a rate.
+    safety: safetyStats.get(city.id) ?? null,
+    schools: schoolStats.get(city.id) ?? null,
   }));
 
   const result = generateMatches(enriched, profile, preferences.weights, {

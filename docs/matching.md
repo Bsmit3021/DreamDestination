@@ -28,17 +28,19 @@ Excluded, explicitly:
 
 Every scored metric, its source, and how it becomes a score:
 
-| Dimension  | Raw metric                                                     | Source                    | Period    | Geography           | Unit    | Direction             | Normalisation |
-| ---------- | -------------------------------------------------------------- | ------------------------- | --------- | ------------------- | ------- | --------------------- | ------------- |
-| career     | Unemployment rate (B23025: unemployed ÷ civilian labour force) | Census ACS 5-Year         | 2019–2023 | CBSA                | percent | lower is better       | percentile    |
-| housing    | Median gross rent (B25064)                                     | Census ACS 5-Year         | 2019–2023 | CBSA                | $/month | lower is better       | percentile    |
-| cost       | Median gross rent as a share of household income (B25071)      | Census ACS 5-Year         | 2019–2023 | CBSA                | percent | lower is better       | percentile    |
-| education  | Bachelor's degree or higher, adults 25+ (B15003)               | Census ACS 5-Year         | 2019–2023 | CBSA                | percent | higher is better      | percentile    |
-| transport  | Mean travel time to work (B08013 ÷ B08303)                     | Census ACS 5-Year         | 2019–2023 | CBSA                | minutes | lower is better       | percentile    |
-| healthcare | Population without health insurance (B27001)                   | Census ACS 5-Year         | 2019–2023 | CBSA                | percent | lower is better       | percentile    |
-| climate    | Annual mean temperature                                        | NOAA U.S. Climate Normals | 1991–2020 | **weather station** | °F      | user's preferred band | band distance |
+| Dimension  | Raw metric                                                                  | Source                        | Period              | Geography           | Unit     | Direction             | Normalisation |
+| ---------- | --------------------------------------------------------------------------- | ----------------------------- | ------------------- | ------------------- | -------- | --------------------- | ------------- |
+| career     | Unemployment rate (B23025: unemployed ÷ civilian labour force)              | Census ACS 5-Year             | 2019–2023           | CBSA                | percent  | lower is better       | percentile    |
+| housing    | Median gross rent (B25064)                                                  | Census ACS 5-Year             | 2019–2023           | CBSA                | $/month  | lower is better       | percentile    |
+| cost       | Median gross rent as a share of household income (B25071)                   | Census ACS 5-Year             | 2019–2023           | CBSA                | percent  | lower is better       | percentile    |
+| education  | Bachelor's degree or higher, adults 25+ (B15003)                            | Census ACS 5-Year             | 2019–2023           | CBSA                | percent  | higher is better      | percentile    |
+| transport  | Mean travel time to work (B08013 ÷ B08303)                                  | Census ACS 5-Year             | 2019–2023           | CBSA                | minutes  | lower is better       | percentile    |
+| healthcare | Population without health insurance (B27001)                                | Census ACS 5-Year             | 2019–2023           | CBSA                | percent  | lower is better       | percentile    |
+| climate    | Annual mean temperature                                                     | NOAA U.S. Climate Normals     | 1991–2020           | **weather station** | °F       | user's preferred band | band distance |
+| safety     | Violent and property crime rates (CIUS Table 6)                             | FBI UCR, CIUS 2025            | 2025                | CBSA (MSA)          | per 100k | lower is better       | composite     |
+| family     | Public schools per 10,000 residents aged 5–17, plus three reused dimensions | NCES EDGE + Census ACS 5-Year | 2024–25 / 2019–2023 | CBSA                | index    | higher is better      | composite     |
 
-**Geography caveat.** Six of the seven metrics are genuinely CBSA-level. Climate
+**Geography caveat.** Eight of the nine metrics are genuinely CBSA-level. Climate
 is not: NOAA publishes per-station normals, so each metro is matched to the
 nearest airport station that publishes an annual mean. That mismatch is recorded
 in the data — the NOAA source row carries `geography_level = 'station'` rather
@@ -50,16 +52,17 @@ happens in the engine, never in the metric name.
 
 ### Dimensions collected but not scored
 
-Onboarding collects ten priorities. Three have no metric:
+Onboarding collects ten priorities. One still has no metric:
 
-| Dimension | Why                                                                                                                                                        |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| safety    | The FBI Crime Data Explorer API requires an api.data.gov key, which is not configured. Crime data is absent rather than approximated from a weaker source. |
-| social    | No authoritative federal dataset measures social opportunity at metro level. Bar or restaurant counts would overstate what the data supports.              |
-| family    | No single authoritative measure. Household-composition shares describe who already lives somewhere, not how well a place suits a family.                   |
+| Dimension | Why                                                                                                                                           |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| social    | No authoritative federal dataset measures social opportunity at metro level. Bar or restaurant counts would overstate what the data supports. |
 
-These are not scored as zero. They are treated as missing data, which reduces a
-city's coverage and redistributes weight — see below.
+Safety and family joined this table's other side in Phase 6B; see
+[Safety Fit](#safety-fit) and [Family Fit](#family-fit).
+
+An unscored dimension is not scored as zero. It is treated as missing data,
+which reduces a city's coverage and redistributes weight — see below.
 
 ## The algorithm
 
@@ -483,3 +486,230 @@ percentile alone, and that percentile would then be multiplied by 0.65: an
 this user named no occupation at all, the same metro would score
 `general_labor_market` at the full 86.9 — nothing was substituted, so nothing is
 discounted.
+
+## Safety and Family (Phase 6B, v2.1)
+
+Safety and family friendliness were selectable priorities from the start, with
+nothing behind them: a user who cared about either had that weight
+redistributed to dimensions they cared about less. Both are now measured, which
+is why the algorithm version moved to **v2.1** — no existing dimension changed
+definition, but rankings move for anyone who weighted either.
+
+### Safety Fit
+
+**Source.** FBI Uniform Crime Reporting Program, _Crime in the United States
+2025_ (CIUS 2025), published within the finalised annual release _Reported
+Crimes in the Nation, 2025_. Specifically **Table 6, "Crime in the United
+States, by Metropolitan Statistical Area"**. The release covers 17,075 agencies
+representing 96.2% of the population served by agencies eligible to participate;
+the submission deadline was 1 April 2026, so this is the finalised annual
+product, not a preliminary or quarterly release.
+
+**Geography.** Metropolitan Statistical Area — the same CBSA unit as every other
+metric here.
+
+**Why Table 6 specifically.** It publishes the FBI's own aggregate rate per
+100,000 inhabitants for each MSA. That is the only defensible metro figure
+available, and the pipeline deliberately refuses the two obvious alternatives:
+
+- **Not summed from agencies.** Adding police departments, sheriffs, university
+  and state agencies from the agency-level tables double counts overlapping
+  jurisdictions and mixes incompatible population denominators.
+- **Not a principal city.** Table 6 prints `City of X` rows precisely so they can
+  be read separately; the pipeline ignores every one of them. Bridgeport-Stamford
+  -Danbury is the clearest example: its three named cities sum to 722 violent
+  offences while the metro total is 896.
+
+Metropolitan Divisions (`M. D.`) are subdivisions of an MSA and are skipped for
+the same double-counting reason — 28 of them in the 2025 table.
+
+**Formula.**
+
+```
+violentSafety  = inverse percentile(violent crime rate)     lower rate ranks better
+propertySafety = inverse percentile(property crime rate)
+
+Safety Fit = 0.70 × violentSafety + 0.30 × propertySafety
+```
+
+Percentile rank against the eligible candidate set, exactly as every other
+percentile dimension. Violent crime leads because it is the harm people are
+actually weighing, and because property crime is far more common and would
+otherwise dominate a combined figure by sheer volume. **70/30 is a
+product-design choice, not an empirically derived one**, and it is a sub-weight:
+it decides what "safety" means, never how much safety counts. That remains the
+user's own slider.
+
+**Missing data.** An unpublished rate is absence, never zero — scoring it as
+zero would rank a metro the FBI said nothing about as the safest in the country.
+A metro with one rate has the component weights renormalised over the survivor
+and `coverage` records that only 70% (or 30%) of the intended weight had data
+behind it. A metro with neither rate scores `null` and falls into the ordinary
+missing-dimension redistribution.
+
+**Metro mapping.** Table 6 carries MSA names, not CBSA codes, so names are
+normalised conservatively — case, whitespace, and the trailing `M. S. A.`
+suffix and footnote marker only. No token dropping, no abbreviation expansion,
+no edit-distance matching. An unmatched metro stays unmatched and is listed by
+name in `data/processed/safety-coverage.json`; a duplicate normalised name
+aborts the pipeline rather than picking a winner.
+
+**Coverage: 87 of 100 candidate metros.** The 13 unmatched are genuinely absent
+from Table 6, verified by token search rather than assumed — nine are in Florida,
+which the table's own footnote flags ("Limited data for 2025 were available for
+Florida and North Dakota"), and the rest (New York, Grand Rapids, New Orleans,
+Baton Rouge, Worcester, Greensboro) published no MSA estimate. Of the 87 matched,
+55 include FBI estimation for agencies that did not report a full year and 32 are
+fully reported; the distinction is stored per metro and stated in the
+explanation.
+
+**Limitations.**
+
+- A metro spans millions of people and enormous internal variation. These rates
+  describe an entire metropolitan area and say **nothing** about a neighbourhood,
+  a street, or an individual's risk.
+- Reported crime is crime reported to and recorded by police, not crime that
+  occurred.
+- Estimated figures involve FBI modelling for non-reporting agencies; a metro
+  with lower reporting coverage carries more of it.
+- New York, the largest metro in the candidate set, has no safety score at all.
+
+### Family Fit
+
+**Family Fit is a DreamDestination composite. It is not an official
+government-defined family-friendliness statistic**, and no such statistic exists.
+It aggregates four conditions that plausibly matter to a household with
+children, each from a published federal source:
+
+```
+Family Fit = 0.50 × public-school availability
+           + 0.30 × Safety Fit
+           + 0.10 × commute suitability
+           + 0.10 × healthcare coverage
+```
+
+**The 50/30/10/10 split is a product-design decision, not an empirically learned
+or validated model, and must never be presented as scientifically optimal.**
+Like safety's 70/30 it is a sub-weight: it decides what "family friendliness"
+means, not how much it counts.
+
+**School availability is not school quality.** The school component comes from
+**NCES EDGE Public School Locations, 2024–25** (Common Core of Data geocodes).
+NCES publishes _where public schools are_. It publishes nothing about quality,
+achievement, test scores, rankings, teaching, or graduation. No label anywhere in
+this product may imply otherwise.
+
+```
+schoolAccessRate = publicSchoolCount / schoolAgePopulation × 10,000
+```
+
+- **Numerator**: distinct `NCESSCH` identifiers whose `CBSA` field matches the
+  metro. The join is on **CBSA identifiers, never city names** — the EDGE file
+  carries a CBSA code per school under OMB July 2023 definitions, the same
+  geography this project already uses. All 100 metros join with zero name
+  disagreements, which is the strongest available confirmation that the two
+  vintages agree. De-duplicating on `NCESSCH` before counting means a repeated
+  row cannot inflate a metro; the 2024–25 file contains no duplicates.
+- **Denominator**: **ACS 2019–2023 5-year table B01001**, cells
+  `B01001_E004/005/006` (male 5–9, 10–14, 15–17) and `B01001_E028/029/030`
+  (female 5–9, 10–14, 15–17). Verified against the official Census metadata at
+  `api.census.gov/data/2023/acs/acs5/groups/B01001.json` rather than assumed.
+  15–17 rather than 15–19 because B01001 splits there and 18–19 year olds have
+  mostly left school.
+
+A zero or unpublished denominator produces a missing rate, never `Infinity` and
+never zero.
+
+The EDGE geocode file carries **no open/closed status column**, so no status
+filtering is applied — inventing one would be a rule the source does not support.
+
+**Evidence confidence.** Renormalising over the surviving components gives the
+best estimate the available evidence supports — but it lands on the same 0–100
+axis as a fully covered metro, which makes the two look comparable when they are
+not. Grand Rapids scored 92.6 against Madison's 93.8, yet the FBI published no
+2025 estimate for it, so its composite was really 71.4% school access / 14.3%
+commute / 14.3% healthcare rather than the intended 50/30/10/10.
+
+So the composite is scaled by the share of intended weight that had data:
+
+```
+evidenceConfidence = coverage
+effectiveScore     = rawScore × evidenceConfidence
+```
+
+| Missing component | `coverage` |
+| ----------------- | ---------- |
+| none              | 1.00       |
+| safety            | 0.70       |
+| commute           | 0.90       |
+| healthcare        | 0.90       |
+| safety + commute  | 0.60       |
+
+`detail.rawScore` keeps the unscaled estimate; `score` is what DreamScore
+consumes and what ranks the city. **A fully covered metro is numerically
+unchanged**, since `coverage = 1`.
+
+**`evidenceConfidence` is not a statistical confidence, not a probability, not a
+claim about how family-friendly a metro is, and not a claim that a metro missing
+FBI data is unsafe.** It answers one question: what share of the evidence this
+composite is supposed to use was available here. Grand Rapids at
+92.6 × 0.70 = 64.8 means the intended evidence was incomplete — **not** that the
+metro was measured to be 30% worse.
+
+The adjustment is applied to the finished composite, never to a component, so
+renormalisation still produces the best available estimate and only its ranking
+influence is reduced. It does not touch the user's top-level Family weight,
+which remains entirely theirs. Standalone **Safety Fit carries no such
+adjustment** — all 87 matched metros publish both rates, so its renormalisation
+path never fires on the real dataset.
+
+**Minimum evidence rule.** School access is the only family-specific signal here,
+so Family Fit **requires** it, plus at least one of safety, commute or
+healthcare. Without school evidence the score is `null`. A "family fit" computed
+purely from safety, commute and healthcare would be a relabelling of three
+dimensions the user already weights individually, presented as a measurement.
+Missing secondary components are renormalised across what survives, and
+`coverage` records how much of the intended weight had data.
+
+**Deliberate overlap.** Safety, commute and healthcare are also standalone
+dimensions. A user who weights both Safety and Family counts safety twice — once
+directly, once inside the composite. That is intended: they told us both things
+matter. Silently dropping a component because it appears elsewhere would mean a
+user's stated priorities no longer add up to what they asked for. Family Fit
+reuses the finished Safety Fit rather than recomputing crime, so the two can
+never disagree.
+
+**No inferred intent.** Family Fit is never switched off because a profile says
+`children = 0`. That field does not say whether someone is planning a family,
+moving near relatives, or simply wants family-oriented surroundings. The user's
+explicit Family priority weight is the only thing that decides how much Family
+Fit matters. Household size and bedrooms remain Housing Fit's business.
+
+**Coverage: 100 of 100 metros** have a school-access rate; 87 have all four
+components and 13 score on three because the FBI published no crime estimate for
+them.
+
+**Limitations.**
+
+- A count of schools is availability, not quality. A metro with many small
+  schools scores higher than one with fewer large ones — Minneapolis (25.0 per
+  10k, ~400 school-age residents per school) versus Atlanta (10.6, ~940) is a
+  real difference in how states organise districts, not a judgement about
+  either.
+- Private and charter-outside-CCD schools are not counted.
+- Schools are located in a metro, not necessarily near any particular home in
+  it.
+- Three of the four components are metro-wide conditions rather than
+  family-specific ones.
+
+### Algorithm version
+
+`MATCHING_ALGORITHM_VERSION` moved `v2` → **`v2.1`**. A minor bump because no
+existing dimension's definition changed — two previously unscored ones were
+filled in.
+
+`recommendations.algorithm_version` previously enforced `^v[0-9]+$`, which would
+have rejected `v2.1`. The constraint was widened to
+`^v[0-9]+(\.[0-9]+)?$`. The change is purely additive: every stored value (`v1`,
+`v2`) still matches, so **no historical snapshot is invalidated or rewritten**,
+and malformed input is still rejected.

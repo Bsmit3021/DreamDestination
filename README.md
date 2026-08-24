@@ -309,6 +309,11 @@ itself does not require them.
 
 ## Next milestone
 
-Add an LLM explanation layer on top of the deterministic scores, and wire up the
-three unscored dimensions (safety, social, family) once credible sources are
+Wire up the one remaining unscored dimension (social) once a credible source is
 available. The ranking itself should stay deterministic and auditable.
+
+Safety and family friendliness are scored as of Phase 6B, from FBI CIUS 2025
+metro crime rates and NCES public-school counts against the ACS school-age
+population. See [docs/matching.md](docs/matching.md) for what each does and does
+not measure — in particular, metro crime rates say nothing about neighbourhood
+or personal safety, and school counts measure availability, not quality.

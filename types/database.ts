@@ -7,31 +7,6 @@ export type Json =
   | Json[]
 
 export type Database = {
-  graphql_public: {
-    Tables: {
-      [_ in never]: never
-    }
-    Views: {
-      [_ in never]: never
-    }
-    Functions: {
-      graphql: {
-        Args: {
-          extensions?: Json
-          operationName?: string
-          query?: string
-          variables?: Json
-        }
-        Returns: Json
-      }
-    }
-    Enums: {
-      [_ in never]: never
-    }
-    CompositeTypes: {
-      [_ in never]: never
-    }
-  }
   public: {
     Tables: {
       advisor_conversations: {
@@ -449,6 +424,117 @@ export type Database = {
           },
         ]
       }
+      metro_safety_stats: {
+        Row: {
+          city_id: string
+          created_at: string
+          data_year: number
+          fbi_metro_name: string
+          id: string
+          is_estimated: boolean
+          property_crime_rate: number | null
+          reporting_coverage: number | null
+          source_id: string
+          source_population: number | null
+          updated_at: string
+          violent_crime_rate: number | null
+        }
+        Insert: {
+          city_id: string
+          created_at?: string
+          data_year: number
+          fbi_metro_name: string
+          id?: string
+          is_estimated?: boolean
+          property_crime_rate?: number | null
+          reporting_coverage?: number | null
+          source_id: string
+          source_population?: number | null
+          updated_at?: string
+          violent_crime_rate?: number | null
+        }
+        Update: {
+          city_id?: string
+          created_at?: string
+          data_year?: number
+          fbi_metro_name?: string
+          id?: string
+          is_estimated?: boolean
+          property_crime_rate?: number | null
+          reporting_coverage?: number | null
+          source_id?: string
+          source_population?: number | null
+          updated_at?: string
+          violent_crime_rate?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "metro_safety_stats_city_id_fkey"
+            columns: ["city_id"]
+            isOneToOne: false
+            referencedRelation: "cities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "metro_safety_stats_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "metric_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      metro_school_stats: {
+        Row: {
+          city_id: string
+          created_at: string
+          id: string
+          population_period: string
+          public_school_count: number
+          school_age_population: number | null
+          school_year: string
+          source_id: string
+          updated_at: string
+        }
+        Insert: {
+          city_id: string
+          created_at?: string
+          id?: string
+          population_period: string
+          public_school_count: number
+          school_age_population?: number | null
+          school_year: string
+          source_id: string
+          updated_at?: string
+        }
+        Update: {
+          city_id?: string
+          created_at?: string
+          id?: string
+          population_period?: string
+          public_school_count?: number
+          school_age_population?: number | null
+          school_year?: string
+          source_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "metro_school_stats_city_id_fkey"
+            columns: ["city_id"]
+            isOneToOne: false
+            referencedRelation: "cities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "metro_school_stats_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "metric_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       occupation_titles: {
         Row: {
           created_at: string
@@ -637,14 +723,12 @@ export type Database = {
           age_range: Database["public"]["Enums"]["age_range"]
           children: number
           climate_preference:
-            | Database["public"]["Enums"]["climate_preference"]
-            | null
+            Database["public"]["Enums"]["climate_preference"] | null
           created_at: string
           current_city: string
           current_state: string
           desired_bedrooms:
-            | Database["public"]["Enums"]["desired_bedrooms"]
-            | null
+            Database["public"]["Enums"]["desired_bedrooms"] | null
           free_text_goals: string | null
           household_income: number
           household_size: number
@@ -660,14 +744,12 @@ export type Database = {
           age_range: Database["public"]["Enums"]["age_range"]
           children?: number
           climate_preference?:
-            | Database["public"]["Enums"]["climate_preference"]
-            | null
+            Database["public"]["Enums"]["climate_preference"] | null
           created_at?: string
           current_city: string
           current_state: string
           desired_bedrooms?:
-            | Database["public"]["Enums"]["desired_bedrooms"]
-            | null
+            Database["public"]["Enums"]["desired_bedrooms"] | null
           free_text_goals?: string | null
           household_income: number
           household_size: number
@@ -683,14 +765,12 @@ export type Database = {
           age_range?: Database["public"]["Enums"]["age_range"]
           children?: number
           climate_preference?:
-            | Database["public"]["Enums"]["climate_preference"]
-            | null
+            Database["public"]["Enums"]["climate_preference"] | null
           created_at?: string
           current_city?: string
           current_state?: string
           desired_bedrooms?:
-            | Database["public"]["Enums"]["desired_bedrooms"]
-            | null
+            Database["public"]["Enums"]["desired_bedrooms"] | null
           free_text_goals?: string | null
           household_income?: number
           household_size?: number
@@ -761,22 +841,15 @@ export type Database = {
         Args: { p_algorithm_version: string; p_rows: Json }
         Returns: number
       }
+      set_updated_at: { Args: never; Returns: unknown }
     }
     Enums: {
       age_range: "18-24" | "25-34" | "35-44" | "45-54" | "55-64" | "65+"
       climate_preference:
-        | "warm"
-        | "mild"
-        | "four_seasons"
-        | "cool"
-        | "no_preference"
+        "warm" | "mild" | "four_seasons" | "cool" | "no_preference"
       desired_bedrooms: "studio" | "one" | "two" | "three" | "four_plus"
       relationship_status:
-        | "single"
-        | "partnered"
-        | "married"
-        | "divorced"
-        | "widowed"
+        "single" | "partnered" | "married" | "divorced" | "widowed"
       work_preference: "remote" | "hybrid" | "onsite" | "flexible"
     }
     CompositeTypes: {
@@ -793,12 +866,12 @@ export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -820,13 +893,12 @@ export type Tables<
 
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+    keyof DefaultSchema["Tables"] | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -845,13 +917,12 @@ export type TablesInsert<
 
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
-    | keyof DefaultSchema["Tables"]
-    | { schema: keyof DatabaseWithoutInternals },
-  TableName extends DefaultSchemaTableNameOrOptions extends {
+    keyof DefaultSchema["Tables"] | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -870,13 +941,12 @@ export type TablesUpdate<
 
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
-    | keyof DefaultSchema["Enums"]
-    | { schema: keyof DatabaseWithoutInternals },
-  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    keyof DefaultSchema["Enums"] | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
+    : never) = never,
 > = DefaultSchemaEnumNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -889,11 +959,11 @@ export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof DatabaseWithoutInternals },
-  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never,
+    : never) = never,
 > = PublicCompositeTypeNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
@@ -903,9 +973,6 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
-  graphql_public: {
-    Enums: {},
-  },
   public: {
     Enums: {
       age_range: ["18-24", "25-34", "35-44", "45-54", "55-64", "65+"],
@@ -928,4 +995,3 @@ export const Constants = {
     },
   },
 } as const
-
