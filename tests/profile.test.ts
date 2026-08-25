@@ -16,6 +16,7 @@ const VALID_PROFILE: ProfileInput = {
   housingBudget: 3_200,
   desiredBedrooms: "two",
   climatePreference: "warm",
+  lifestylePreferences: ["food_drink", "arts_culture"],
   workPreference: "remote",
   freeTextGoals: "More space, a shorter commute and a real backyard.",
 };

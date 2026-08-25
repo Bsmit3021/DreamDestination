@@ -26,6 +26,7 @@ const PROFILE_ROW: ProfileRow = {
   current_state: "NY",
   housing_budget: 3200,
   desired_bedrooms: "two",
+  lifestyle_preferences: null,
   climate_preference: "warm",
   work_preference: "remote",
   free_text_goals: "More space.",
@@ -66,6 +67,7 @@ describe("profile mapper", () => {
       housingBudget: 3200,
       desiredBedrooms: "two",
       climatePreference: "warm",
+      lifestylePreferences: null,
       workPreference: "remote",
       freeTextGoals: "More space.",
       createdAt: PROFILE_ROW.created_at,
@@ -92,6 +94,7 @@ describe("profile mapper", () => {
       housingBudget: 1800,
       desiredBedrooms: "one",
       climatePreference: "no_preference",
+      lifestylePreferences: null,
       workPreference: "onsite",
       freeTextGoals: null,
     };

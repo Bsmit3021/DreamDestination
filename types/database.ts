@@ -348,6 +348,66 @@ export type Database = {
         }
         Relationships: []
       }
+      metro_lifestyle_stats: {
+        Row: {
+          category: Database["public"]["Enums"]["lifestyle_category"]
+          city_id: string
+          created_at: string
+          extracted_on: string
+          id: string
+          place_count: number
+          places_per_100k: number
+          population: number
+          source_id: string
+          source_release: string
+          taxonomy_mapping_version: string
+          updated_at: string
+        }
+        Insert: {
+          category: Database["public"]["Enums"]["lifestyle_category"]
+          city_id: string
+          created_at?: string
+          extracted_on: string
+          id?: string
+          place_count: number
+          places_per_100k: number
+          population: number
+          source_id: string
+          source_release: string
+          taxonomy_mapping_version: string
+          updated_at?: string
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["lifestyle_category"]
+          city_id?: string
+          created_at?: string
+          extracted_on?: string
+          id?: string
+          place_count?: number
+          places_per_100k?: number
+          population?: number
+          source_id?: string
+          source_release?: string
+          taxonomy_mapping_version?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "metro_lifestyle_stats_city_id_fkey"
+            columns: ["city_id"]
+            isOneToOne: false
+            referencedRelation: "cities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "metro_lifestyle_stats_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "metric_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       metro_occupation_stats: {
         Row: {
           city_id: string
@@ -734,6 +794,8 @@ export type Database = {
           household_size: number
           housing_budget: number
           id: string
+          lifestyle_preferences:
+            Database["public"]["Enums"]["lifestyle_category"][] | null
           occupation: string
           relationship_status: Database["public"]["Enums"]["relationship_status"]
           updated_at: string
@@ -755,6 +817,8 @@ export type Database = {
           household_size: number
           housing_budget: number
           id?: string
+          lifestyle_preferences?:
+            Database["public"]["Enums"]["lifestyle_category"][] | null
           occupation: string
           relationship_status: Database["public"]["Enums"]["relationship_status"]
           updated_at?: string
@@ -776,6 +840,8 @@ export type Database = {
           household_size?: number
           housing_budget?: number
           id?: string
+          lifestyle_preferences?:
+            Database["public"]["Enums"]["lifestyle_category"][] | null
           occupation?: string
           relationship_status?: Database["public"]["Enums"]["relationship_status"]
           updated_at?: string
@@ -837,6 +903,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      lifestyle_preferences_are_distinct: {
+        Args: { arr: Database["public"]["Enums"]["lifestyle_category"][] }
+        Returns: boolean
+      }
       replace_my_recommendations: {
         Args: { p_algorithm_version: string; p_rows: Json }
         Returns: number
@@ -848,6 +918,15 @@ export type Database = {
       climate_preference:
         "warm" | "mild" | "four_seasons" | "cool" | "no_preference"
       desired_bedrooms: "studio" | "one" | "two" | "three" | "four_plus"
+      lifestyle_category:
+        | "food_drink"
+        | "nightlife"
+        | "arts_culture"
+        | "live_entertainment"
+        | "fitness_recreation"
+        | "parks_outdoors"
+        | "shopping"
+        | "community_spaces"
       relationship_status:
         "single" | "partnered" | "married" | "divorced" | "widowed"
       work_preference: "remote" | "hybrid" | "onsite" | "flexible"
@@ -984,6 +1063,16 @@ export const Constants = {
         "no_preference",
       ],
       desired_bedrooms: ["studio", "one", "two", "three", "four_plus"],
+      lifestyle_category: [
+        "food_drink",
+        "nightlife",
+        "arts_culture",
+        "live_entertainment",
+        "fitness_recreation",
+        "parks_outdoors",
+        "shopping",
+        "community_spaces",
+      ],
       relationship_status: [
         "single",
         "partnered",

@@ -4,6 +4,10 @@ import type {
   OccupationTarget,
 } from "@/lib/matching/career";
 import type { MetroSchoolStats } from "@/lib/matching/family";
+import type {
+  MetroLifestyleCategoryStat,
+  MetroLifestyleStats,
+} from "@/lib/matching/lifestyle";
 import type { MetroSafetyStats } from "@/lib/matching/safety";
 import type { MetroBedroomRents } from "@/lib/matching/housing";
 import type {
@@ -15,6 +19,7 @@ import type {
   PreferenceWeightKey,
   PreferenceWeights,
   Profile,
+  LifestyleCategory,
 } from "@/types/profile";
 
 /**
@@ -170,6 +175,7 @@ export function testProfile(overrides: Partial<Profile> = {}): Profile {
     housingBudget: 10_000,
     desiredBedrooms: null,
     climatePreference: "mild",
+    lifestylePreferences: null,
     workPreference: "remote",
     freeTextGoals: null,
     createdAt: "2026-08-15T00:00:00.000Z",
@@ -200,6 +206,7 @@ export function personalizationFor(
     climatePreference: profile.climatePreference,
     housingBudget: profile.housingBudget,
     occupation,
+    lifestylePreferences: profile.lifestylePreferences,
   };
 }
 
@@ -211,6 +218,8 @@ export function withMetroData(
     bedroomRents?: Partial<MetroBedroomRents> | null;
     safety?: Partial<MetroSafetyStats> | null;
     schools?: Partial<MetroSchoolStats> | null;
+    /** category -> place count. Population comes from the city fixture. */
+    lifestyle?: Partial<Record<LifestyleCategory, number>> | null;
   },
 ): CandidateCity {
   return {
@@ -274,6 +283,28 @@ export function withMetroData(
               source: TEST_SOURCE,
               ...data.schools,
             },
+    lifestyle:
+      data.lifestyle === undefined
+        ? city.lifestyle
+        : data.lifestyle === null
+          ? null
+          : ({
+              sourceRelease: "2026-08-19.0",
+              taxonomyMappingVersion: "2026-08-24.1",
+              extractedOn: "2026-08-24",
+              categories: (
+                Object.entries(data.lifestyle) as [LifestyleCategory, number][]
+              )
+                .map(([category, placeCount]): MetroLifestyleCategoryStat => ({
+                  category,
+                  placeCount,
+                  population: city.population ?? 500_000,
+                  placesPer100k:
+                    (placeCount / (city.population ?? 500_000)) * 100_000,
+                }))
+                .sort((a, b) => a.category.localeCompare(b.category)),
+              source: TEST_SOURCE,
+            } satisfies MetroLifestyleStats),
   };
 }
 

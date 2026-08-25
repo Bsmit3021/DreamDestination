@@ -283,5 +283,52 @@ begin
   end;
 end $$;
 
+-- ---------------------------------------------------------------------------
+-- Phase 6C lifestyle statistics follow the same read model. A user able to
+-- write place counts could manufacture their own Social ranking.
+-- ---------------------------------------------------------------------------
+
+do $$
+declare v_count integer;
+begin
+  select count(*) into v_count from public.metro_lifestyle_stats;
+  raise notice 'PASS  anon can read metro lifestyle stats (% rows)', v_count;
+end $$;
+
+do $$
+begin
+  begin
+    update public.metro_lifestyle_stats set place_count = 999999;
+    raise exception 'FAIL: anon modified lifestyle data';
+  exception when insufficient_privilege then
+    raise notice 'PASS  anon cannot mutate lifestyle data';
+  end;
+end $$;
+
+do $$
+begin
+  begin
+    insert into public.metro_lifestyle_stats
+      (city_id, category, place_count, population, places_per_100k,
+       source_release, taxonomy_mapping_version, extracted_on, source_id)
+    values ('22222222-2222-4222-8222-222222222222', 'nightlife', 1, 1, 1,
+            'fake', 'fake', current_date,
+            '33333333-3333-4333-8333-333333333333');
+    raise exception 'FAIL: anon inserted lifestyle data';
+  exception when insufficient_privilege then
+    raise notice 'PASS  anon cannot insert lifestyle data';
+  end;
+end $$;
+
+do $$
+begin
+  begin
+    delete from public.metro_lifestyle_stats;
+    raise exception 'FAIL: anon deleted lifestyle data';
+  exception when insufficient_privilege then
+    raise notice 'PASS  anon cannot delete lifestyle data';
+  end;
+end $$;
+
 reset role;
 rollback;

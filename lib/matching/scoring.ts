@@ -6,6 +6,7 @@ import {
 } from "@/lib/matching/career";
 import { scoreClimate } from "@/lib/matching/climate";
 import { scoreFamilyFit, type FamilyInputs } from "@/lib/matching/family";
+import { scoreLifestyleFit } from "@/lib/matching/lifestyle";
 import { scoreSafetyFit } from "@/lib/matching/safety";
 import { DIMENSIONS } from "@/lib/matching/dimensions";
 import {
@@ -61,6 +62,7 @@ export const NO_PERSONALIZATION: Personalization = {
   climatePreference: null,
   housingBudget: null,
   occupation: null,
+  lifestylePreferences: null,
 };
 
 /**
@@ -77,6 +79,7 @@ const COMPOSITE_DIMENSIONS = new Set<PreferenceWeightKey>([
   "climate",
   "safety",
   "family",
+  "social",
 ]);
 
 /** Raw values for one dimension across the candidate set, used for ranking. */
@@ -255,6 +258,7 @@ function scorePersonalizedDimensions(
   const climate = new Map<string, PersonalizedScore>();
   const safety = new Map<string, PersonalizedScore>();
   const family = new Map<string, PersonalizedScore>();
+  const social = new Map<string, PersonalizedScore>();
 
   for (const [cityId, result] of scoreCareerFit(
     cities,
@@ -368,12 +372,40 @@ function scorePersonalizedDimensions(
     });
   }
 
+  // ---------------------------------------------------------------------
+  // Social, from the user's own lifestyle preferences.
+  // ---------------------------------------------------------------------
+
+  for (const [cityId, result] of scoreLifestyleFit(
+    cities,
+    personalization.lifestylePreferences,
+  )) {
+    if (!result) continue;
+
+    // The mean rate across the categories that were actually scored: the one
+    // figure that describes the whole dimension without privileging a
+    // category the user may not have asked about.
+    const meanRate =
+      result.detail.categories.reduce(
+        (total, entry) => total + entry.placesPer100k,
+        0,
+      ) / result.detail.categories.length;
+
+    social.set(cityId, {
+      normalizedScore: result.score,
+      rawValue: meanRate,
+      unit: "index",
+      detail: result.detail,
+    });
+  }
+
   return new Map([
     ["career", career],
     ["housing", housing],
     ["climate", climate],
     ["safety", safety],
     ["family", family],
+    ["social", social],
   ]);
 }
 

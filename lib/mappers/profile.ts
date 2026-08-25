@@ -28,6 +28,7 @@ export function toProfile(row: ProfileRow): Profile {
     housingBudget: row.housing_budget,
     desiredBedrooms: row.desired_bedrooms,
     climatePreference: row.climate_preference,
+    lifestylePreferences: row.lifestyle_preferences,
     workPreference: row.work_preference,
     freeTextGoals: row.free_text_goals,
     createdAt: row.created_at,
@@ -59,6 +60,7 @@ export function toProfileInsert(
     housing_budget: input.housingBudget,
     desired_bedrooms: input.desiredBedrooms,
     climate_preference: input.climatePreference,
+    lifestyle_preferences: input.lifestylePreferences,
     work_preference: input.workPreference,
     free_text_goals: input.freeTextGoals,
   };

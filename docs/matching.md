@@ -28,17 +28,18 @@ Excluded, explicitly:
 
 Every scored metric, its source, and how it becomes a score:
 
-| Dimension  | Raw metric                                                                  | Source                        | Period              | Geography           | Unit     | Direction             | Normalisation |
-| ---------- | --------------------------------------------------------------------------- | ----------------------------- | ------------------- | ------------------- | -------- | --------------------- | ------------- |
-| career     | Unemployment rate (B23025: unemployed ÷ civilian labour force)              | Census ACS 5-Year             | 2019–2023           | CBSA                | percent  | lower is better       | percentile    |
-| housing    | Median gross rent (B25064)                                                  | Census ACS 5-Year             | 2019–2023           | CBSA                | $/month  | lower is better       | percentile    |
-| cost       | Median gross rent as a share of household income (B25071)                   | Census ACS 5-Year             | 2019–2023           | CBSA                | percent  | lower is better       | percentile    |
-| education  | Bachelor's degree or higher, adults 25+ (B15003)                            | Census ACS 5-Year             | 2019–2023           | CBSA                | percent  | higher is better      | percentile    |
-| transport  | Mean travel time to work (B08013 ÷ B08303)                                  | Census ACS 5-Year             | 2019–2023           | CBSA                | minutes  | lower is better       | percentile    |
-| healthcare | Population without health insurance (B27001)                                | Census ACS 5-Year             | 2019–2023           | CBSA                | percent  | lower is better       | percentile    |
-| climate    | Annual mean temperature                                                     | NOAA U.S. Climate Normals     | 1991–2020           | **weather station** | °F       | user's preferred band | band distance |
-| safety     | Violent and property crime rates (CIUS Table 6)                             | FBI UCR, CIUS 2025            | 2025                | CBSA (MSA)          | per 100k | lower is better       | composite     |
-| family     | Public schools per 10,000 residents aged 5–17, plus three reused dimensions | NCES EDGE + Census ACS 5-Year | 2024–25 / 2019–2023 | CBSA                | index    | higher is better      | composite     |
+| Dimension  | Raw metric                                                                   | Source                                        | Period              | Geography           | Unit     | Direction             | Normalisation          |
+| ---------- | ---------------------------------------------------------------------------- | --------------------------------------------- | ------------------- | ------------------- | -------- | --------------------- | ---------------------- |
+| career     | Unemployment rate (B23025: unemployed ÷ civilian labour force)               | Census ACS 5-Year                             | 2019–2023           | CBSA                | percent  | lower is better       | percentile             |
+| housing    | Median gross rent (B25064)                                                   | Census ACS 5-Year                             | 2019–2023           | CBSA                | $/month  | lower is better       | percentile             |
+| cost       | Median gross rent as a share of household income (B25071)                    | Census ACS 5-Year                             | 2019–2023           | CBSA                | percent  | lower is better       | percentile             |
+| education  | Bachelor's degree or higher, adults 25+ (B15003)                             | Census ACS 5-Year                             | 2019–2023           | CBSA                | percent  | higher is better      | percentile             |
+| transport  | Mean travel time to work (B08013 ÷ B08303)                                   | Census ACS 5-Year                             | 2019–2023           | CBSA                | minutes  | lower is better       | percentile             |
+| healthcare | Population without health insurance (B27001)                                 | Census ACS 5-Year                             | 2019–2023           | CBSA                | percent  | lower is better       | percentile             |
+| climate    | Annual mean temperature                                                      | NOAA U.S. Climate Normals                     | 1991–2020           | **weather station** | °F       | user's preferred band | band distance          |
+| safety     | Violent and property crime rates (CIUS Table 6)                              | FBI UCR, CIUS 2025                            | 2025                | CBSA (MSA)          | per 100k | lower is better       | composite              |
+| family     | Public schools per 10,000 residents aged 5–17, plus three reused dimensions  | NCES EDGE + Census ACS 5-Year                 | 2024–25 / 2019–2023 | CBSA                | index    | higher is better      | composite              |
+| social     | Places per 100,000 residents across lifestyle categories, plus total breadth | Overture Maps Places + Census TIGER/Line CBSA | 2026-08-19.0 / 2025 | CBSA                | index    | higher is better      | personalized composite |
 
 **Geography caveat.** Eight of the nine metrics are genuinely CBSA-level. Climate
 is not: NOAA publishes per-station normals, so each metro is matched to the
@@ -52,17 +53,13 @@ happens in the engine, never in the metric name.
 
 ### Dimensions collected but not scored
 
-Onboarding collects ten priorities. One still has no metric:
+None. Onboarding collects ten priorities and, as of Phase 6C, every one has a
+measurement behind it — safety and family arrived in Phase 6B, social in 6C.
 
-| Dimension | Why                                                                                                                                           |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| social    | No authoritative federal dataset measures social opportunity at metro level. Bar or restaurant counts would overstate what the data supports. |
-
-Safety and family joined this table's other side in Phase 6B; see
-[Safety Fit](#safety-fit) and [Family Fit](#family-fit).
-
-An unscored dimension is not scored as zero. It is treated as missing data,
-which reduces a city's coverage and redistributes weight — see below.
+The machinery for an unscored dimension is deliberately kept. It still applies
+per metro: a city missing a measurement is treated as missing data, which
+reduces its coverage and redistributes that weight, and is never scored as
+zero.
 
 ## The algorithm
 
@@ -713,3 +710,232 @@ have rejected `v2.1`. The constraint was widened to
 `^v[0-9]+(\.[0-9]+)?$`. The change is purely additive: every stored value (`v1`,
 `v2`) still matches, so **no historical snapshot is invalidated or rewritten**,
 and malformed input is still rejected.
+
+## Lifestyle Fit (Phase 6C, v2.2)
+
+Social was the last priority onboarding collected with nothing behind it. It is
+now measured from how many places of each kind a metro contains, and the user
+can say which kinds they care about.
+
+**Source.** [Overture Maps Places](https://docs.overturemaps.org/guides/places/),
+release **`2026-08-19.0`** (schema `v1.18.0`), read directly from the
+foundation's public S3 bucket. The release was verified against the official
+release calendar as the current _published_ release rather than taken from the
+schedule — proposed dates appear there before their data exists — and is pinned
+so a re-run reproduces the same dataset.
+
+**Why not a places API.** Google Places Nearby Search, Yelp and Foursquare all
+search a circle rather than a polygon, cap the radius, cap results per request
+and rank what they return. None can give an exhaustive metro-wide count, so
+none can support a comparison between metros. This is an offline ingestion
+pipeline; **the recommendation runtime never calls a places API.**
+
+**Geography.** Census **TIGER/Line 2025** CBSA boundaries — the full boundary
+rather than the cartographic generalisation, which at 35 MB was entirely
+practical. Each Overture place is a point, assigned to a metro by `ST_Within`
+against the official polygon and joined on `CBSAFP`, the same five-digit code
+DreamDestination already stores. **All 100 candidate metros matched by code.**
+
+No radius from a metro centre, no city limits, no principal-city boundary, no
+county-name guessing, no geocoding, no fuzzy matching. A point outside every
+polygon belongs to no metro.
+
+### Classification
+
+Places are classified on **`basic_category`** under Overture's current taxonomy.
+The deprecated `categories` property is not read anywhere — Overture is removing
+it. `taxonomy.hierarchy` is recorded per mapped category as a guard: if Overture
+moves a category to a different root, the extractor reports it rather than
+silently reclassifying.
+
+The mapping lives in
+[`scripts/lifestyle/taxonomy-mapping.json`](../scripts/lifestyle/taxonomy-mapping.json)
+— **89 Overture categories across 8 product buckets**, each entry naming a value
+verified to exist in the pinned release.
+
+| Category             | What it covers                                             |
+| -------------------- | ---------------------------------------------------------- |
+| `food_drink`         | Eating and non-alcoholic drinking places                   |
+| `nightlife`          | Drinking venues and late-evening entertainment             |
+| `arts_culture`       | Museums, galleries, historic sites, cultural centres       |
+| `live_entertainment` | Performance, screening and event venues                    |
+| `parks_outdoors`     | Open space and natural features                            |
+| `fitness_recreation` | Built places to exercise and play sport                    |
+| `shopping`           | Retail people choose to visit                              |
+| `community_spaces`   | **Narrowed** — community centres, public plazas, libraries |
+
+**Exclusivity is structural, not a precedence rule.** Overture assigns each
+place exactly one `basic_category`, and each `basic_category` appears in exactly
+one bucket, so a place can never be counted in two buckets or twice in one. No
+substring matching, and a venue's _name_ is never used to infer its category.
+
+Two mapping decisions worth naming, both grounded in Overture's own hierarchy
+rather than intuition:
+
+- **Nightlife spans two Overture roots.** Overture files `bar`, `brewery`,
+  `winery`, `distillery` and `lounge` under `food_and_drink →
+alcoholic_beverage_venue`, while `dance_club` and `nightlife_venue` sit under
+  `arts_and_entertainment`. The product bucket deliberately gathers both, and
+  `food_drink` is correspondingly the non-alcoholic remainder.
+- **`community_spaces` is narrowed and says so.** Overture has no broad
+  "community space" concept; its community root is dominated by civic
+  organisations and government offices, which are organisations rather than
+  places people go. The bucket covers only community centres, public plazas and
+  libraries, which is why its counts are an order of magnitude smaller than the
+  others. Source truth won over the product wish.
+
+**Filtering**, from the observed national distribution rather than invented
+thresholds:
+
+| Rule                                     | Effect                                                                          |
+| ---------------------------------------- | ------------------------------------------------------------------------------- |
+| `operating_status` excluded              | `permanently_closed` (371,808) and `temporarily_closed` (21)                    |
+| `operating_status` **kept**              | `null` (6.8M, 38%) — Overture does not know, and dropping it would gut coverage |
+| `confidence = 0` excluded                | 126 places; Overture defines this as _certain_ the place no longer exists       |
+| No other confidence threshold            | A cut at 0.5 would have dropped 3.1M places (17%) on no stated basis            |
+| Duplicate ids                            | Counted once; the release contained **0 duplicates**                            |
+| Missing geometry or id                   | Excluded (none observed)                                                        |
+| `basic_category` absent from the mapping | Unclassified — enters no bucket                                                 |
+
+**Only derived metro-level counts are stored.** No raw Overture place record is
+committed or persisted.
+
+### Category subscores
+
+```
+placesPer100k         = uniquePlaceCount / metroPopulation × 100,000
+breadthPercentile     = percentile(uniquePlaceCount,  higher is better)
+perCapitaPercentile   = percentile(placesPer100k,     higher is better)
+
+categoryScore = 0.40 × breadthPercentile + 0.60 × perCapitaPercentile
+```
+
+Population is the ACS metro population DreamDestination already stores; no
+additional population source was fetched. A non-positive population is rejected
+rather than divided by.
+
+Percentile rank against the eligible candidate set, as everywhere else. `log1p`
+is deliberately **not** applied before ranking: percentile rank is
+order-preserving, so a monotone transform would change nothing and be purely
+decorative.
+
+Both signals are needed and they disagree. Raw counts alone would hand every
+category to New York, Los Angeles and Chicago for being large; per-capita alone
+would hand it to whichever small metro has a high ratio. **The 40/60 split is a
+product-design choice, not an empirically learned coefficient**, and it is a
+sub-weight: it decides what "lifestyle" means, never how much Social counts.
+
+### Personalised and general bases
+
+| Basis                    | When                            | What is scored                                        |
+| ------------------------ | ------------------------------- | ----------------------------------------------------- |
+| `personalized_lifestyle` | one or more categories selected | the equal-weight mean of the selected category scores |
+| `general_lifestyle`      | none selected, or never asked   | the equal-weight mean across every supported category |
+
+Equal weight because the UI collects _which_ categories matter, not how much
+each matters relative to the others. Inventing a relative strength would put
+words in the user's mouth.
+
+**`general_lifestyle` is not a penalty.** It is the intended measurement for
+someone who expressed no particular preference, in exactly the way
+`general_labor_market` is the intended answer for a user who named no
+occupation. A legacy profile that predates this phase, and a profile that was
+asked and selected nothing, both get it and neither is discounted.
+
+### Missing evidence
+
+A **measured zero is evidence, not a gap**: a metro with no comedy clubs has
+been measured, not missed, and is scored at the bottom of that category. Only a
+category with no usable measurement at all reduces coverage.
+
+```
+rawScore           = mean of the category scores that could be measured
+coverage           = measured categories / requested categories
+evidenceConfidence = coverage
+effectiveScore     = rawScore × evidenceConfidence
+```
+
+DreamScore consumes the effective score, following the Career and Family
+precedent. A fully covered score is numerically unchanged. If none of the
+requested categories can be measured, Lifestyle Fit is `null` and the ordinary
+missing-dimension redistribution applies.
+
+`basis`, `rawScore`, `score`, `coverage`, `evidenceConfidence` and the
+per-category detail are all persisted in `reason_json`.
+
+### Coverage
+
+|                                 |           |
+| ------------------------------- | --------- |
+| Candidate metros                | 100       |
+| Matched to a CBSA polygon       | **100**   |
+| Metros with a Lifestyle Fit     | **100**   |
+| Classified US places considered | 6,292,806 |
+| Duplicate ids collapsed         | 0         |
+| Places inside candidate metros  | 2,959,370 |
+| Metro/category rows             | 800       |
+| Zero-count rows                 | **0**     |
+
+### Limitations
+
+- **A count is availability, not quality.** It says nothing about whether the
+  venues are good, popular, well reviewed or worth visiting.
+- Counts do not measure popularity, ratings or customer satisfaction.
+- Per-capita supply is **not walkability**. It says how much exists per
+  resident, not how easily anyone can reach it.
+- A CBSA is a large area containing dense urban, suburban and rural parts. A
+  metro-wide count cannot speak to any one neighbourhood, and says nothing
+  about what would be near the user's eventual home.
+- Overture coverage varies geographically and by category; a low count can mean
+  fewer venues or thinner source coverage, and the data cannot distinguish
+  them.
+- The source may lag real openings and closures, and 38% of places carry no
+  `operating_status` at all.
+- The category buckets are **DreamDestination product definitions**, not
+  Overture concepts. `community_spaces` in particular is narrower than the
+  phrase suggests.
+- The 40/60 breadth/per-capita weighting is a design choice, not a learned
+  model.
+
+### Licensing and attribution
+
+**Overture Places is not published under a single licence.** It aggregates
+upstream datasets under different terms, and describing the whole release as
+CDLA Permissive 2.0 would be wrong:
+
+| Licence             | Upstream sources                                             |
+| ------------------- | ------------------------------------------------------------ |
+| CDLA Permissive 2.0 | Meta, Microsoft, PinMeTo, Krick, RenderSEO, DAC, BrightQuery |
+| Apache 2.0          | **Foursquare**                                               |
+| CC0 1.0             | AllThePlaces                                                 |
+
+Foursquare data carries the notice **"Copyright 2024 Foursquare Labs, Inc. All
+rights reserved."**, with full terms in `NOTICE.txt` at
+[opensource.foursquare.com](https://opensource.foursquare.com). The
+authoritative and current breakdown is Overture's own
+[attribution page](https://docs.overturemaps.org/attribution/); it is linked
+rather than restated so it cannot drift out of date here.
+
+**What DreamDestination publishes.** Not Overture records — _DreamDestination-derived
+aggregate metro/category statistics_ built from the pinned release. Only counts
+and rates per metro per category are stored; no raw place record is committed or
+persisted anywhere in this repository.
+
+**No row-level attribution is claimed.** The extraction aggregates to
+metro/category counts and does not retain each place's `sources` field, so
+DreamDestination cannot say which upstream provider contributed any particular
+count. Upstream licensing is therefore documented at release level and pointed
+at the official page. Fabricating per-record attribution the extraction never
+preserved would be worse than declining to.
+
+The citation for publications using Overture data is
+**Overture Maps Foundation, overturemaps.org**. The same information is recorded
+in the seeded `metric_sources` row and in
+`data/processed/lifestyle-provenance.json`.
+
+### Algorithm version
+
+`MATCHING_ALGORITHM_VERSION` moved `v2.1` → **`v2.2`**. The format constraint on
+`recommendations.algorithm_version` already accepts an optional minor component
+(widened in Phase 6B), so no schema change was needed and **`v1`, `v2` and
+`v2.1` snapshots remain readable and are never rewritten**.

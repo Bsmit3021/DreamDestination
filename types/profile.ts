@@ -2,6 +2,7 @@ import type {
   AGE_RANGES,
   CLIMATE_PREFERENCES,
   DESIRED_BEDROOMS,
+  LIFESTYLE_CATEGORIES,
   PREFERENCE_WEIGHT_KEYS,
   RELATIONSHIP_STATUSES,
   US_STATE_CODES,
@@ -22,6 +23,7 @@ export type WorkPreference = (typeof WORK_PREFERENCES)[number];
 export type UsStateCode = (typeof US_STATE_CODES)[number];
 export type DesiredBedrooms = (typeof DESIRED_BEDROOMS)[number];
 export type ClimatePreference = (typeof CLIMATE_PREFERENCES)[number];
+export type LifestyleCategory = (typeof LIFESTYLE_CATEGORIES)[number];
 
 /**
  * A value normalised to the inclusive range 0–1.
@@ -66,6 +68,16 @@ export interface Profile {
    * judged against a target they never chose.
    */
   climatePreference: ClimatePreference | null;
+  /**
+   * Lifestyle categories the user said they care about.
+   *
+   * An empty array is a real answer meaning "nothing in particular", which is
+   * scored as a broad lifestyle mix rather than penalised. It is distinct from
+   * a legacy profile that was never asked (null), which reads the same way —
+   * both get the general basis. The two are kept apart in the data because
+   * "asked and answered nothing" and "never asked" are different facts.
+   */
+  lifestylePreferences: LifestyleCategory[] | null;
   workPreference: WorkPreference;
   /** Free-form description of what the user wants out of a move. */
   freeTextGoals: string | null;

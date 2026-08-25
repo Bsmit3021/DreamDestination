@@ -8,6 +8,8 @@ import {
   RELATIONSHIP_STATUSES,
   US_STATE_CODES,
   WORK_PREFERENCES,
+  LIFESTYLE_CATEGORIES,
+  MAX_LIFESTYLE_SELECTIONS,
 } from "@/lib/constants";
 import { formNullableString, formNumber, formString } from "@/lib/forms";
 import type { ProfileInput } from "@/types/profile";
@@ -64,6 +66,21 @@ export const profileInputSchema = z
 
     climatePreference: z.enum(CLIMATE_PREFERENCES).nullable(),
 
+    /**
+     * Optional, and capped rather than required: a user who cares about
+     * everything has told us nothing to personalise on, and one who selects
+     * nothing is scored on a broad mix rather than penalised.
+     */
+    lifestylePreferences: z
+      .array(z.enum(LIFESTYLE_CATEGORIES))
+      .max(MAX_LIFESTYLE_SELECTIONS, {
+        message: `Choose at most ${MAX_LIFESTYLE_SELECTIONS} lifestyle categories`,
+      })
+      .refine((values) => new Set(values).size === values.length, {
+        message: "Each lifestyle category can only be chosen once",
+      })
+      .nullable(),
+
     workPreference: z.enum(WORK_PREFERENCES),
 
     freeTextGoals: z.string().max(FREE_TEXT_GOALS_MAX_LENGTH).nullable(),
@@ -96,6 +113,8 @@ export function parseProfileFormData(formData: FormData) {
     // An empty select is "not stated", which the schema accepts as null.
     desiredBedrooms: formNullableString(formData, "desiredBedrooms"),
     climatePreference: formNullableString(formData, "climatePreference"),
+    // Checkboxes share a name, so every checked box arrives as its own entry.
+    lifestylePreferences: formData.getAll("lifestylePreferences").map(String),
     workPreference: formString(formData, "workPreference"),
     freeTextGoals: formNullableString(formData, "freeTextGoals"),
   });

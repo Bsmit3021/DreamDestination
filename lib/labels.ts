@@ -2,6 +2,7 @@ import type {
   AgeRange,
   ClimatePreference,
   DesiredBedrooms,
+  LifestyleCategory,
   PreferenceWeightKey,
   RelationshipStatus,
   WorkPreference,
@@ -66,6 +67,17 @@ export const CLIMATE_PREFERENCE_LABELS = {
   cool: "Cool",
   no_preference: "No preference",
 } satisfies Record<ClimatePreference, string>;
+
+export const LIFESTYLE_CATEGORY_LABELS = {
+  food_drink: "Food & drink",
+  nightlife: "Nightlife",
+  arts_culture: "Arts & culture",
+  live_entertainment: "Live entertainment",
+  fitness_recreation: "Fitness & recreation",
+  parks_outdoors: "Parks & outdoors",
+  shopping: "Shopping",
+  community_spaces: "Community spaces",
+} satisfies Record<LifestyleCategory, string>;
 
 /** Label and explanation for each scoring dimension. */
 export const PREFERENCE_LABELS = {

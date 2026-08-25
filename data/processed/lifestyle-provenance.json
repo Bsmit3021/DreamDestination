@@ -1,0 +1,62 @@
+{
+  "places": {
+    "organization": "Overture Maps Foundation",
+    "dataset": "Overture Maps Places, release 2026-08-19.0 (schema v1.18.0)",
+    "release": "2026-08-19.0",
+    "schemaVersion": "v1.18.0",
+    "accessLocation": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=places/type=place/",
+    "provider": "Overture Maps Foundation public S3 bucket (us-west-2)",
+    "classifiedOn": "basic_category",
+    "taxonomyMappingVersion": "2026-08-24.1",
+    "taxonomyMappingFile": "scripts/lifestyle/taxonomy-mapping.json",
+    "extractedAt": "2026-08-24T06:01:58+00:00",
+    "placesConsidered": 6292806,
+    "placesClassifiedInsideMetros": 2959370,
+    "duplicateRowsCollapsed": 0,
+    "exclusions": {
+      "operatingStatus": "permanently_closed excluded; NULL kept as 'not recorded'",
+      "confidence": "confidence = 0 excluded (Overture: certain the place no longer exists)",
+      "geometry": "NULL geometry or NULL id excluded",
+      "unclassified": "basic_category absent from the mapping enters no bucket"
+    },
+    "licensing": {
+      "summary": "Mixed upstream licensing. DreamDestination publishes derived aggregate metro/category statistics built from the Overture Places release, not the underlying records.",
+      "upstreamLicenses": {
+        "CDLA Permissive 2.0": [
+          "Meta",
+          "Microsoft",
+          "PinMeTo",
+          "Krick",
+          "RenderSEO",
+          "DAC",
+          "BrightQuery"
+        ],
+        "Apache 2.0": ["Foursquare"],
+        "CC0 1.0": ["AllThePlaces"]
+      },
+      "foursquareNotice": "Copyright 2024 Foursquare Labs, Inc. All rights reserved. See NOTICE.txt at opensource.foursquare.com.",
+      "attributionPage": "https://docs.overturemaps.org/attribution/",
+      "citation": "Overture Maps Foundation, overturemaps.org",
+      "rowLevelAttributionRetained": false,
+      "rowLevelAttributionNote": "The extraction aggregates to metro/category counts and discards the per-place `sources` field, so upstream licensing is documented at release level. No per-record attribution is claimed or fabricated."
+    },
+    "rawRecordsCommitted": false
+  },
+  "boundaries": {
+    "organization": "U.S. Census Bureau",
+    "dataset": "TIGER/Line Shapefiles, Core Based Statistical Areas, 2025",
+    "vintage": "2025",
+    "url": "https://www2.census.gov/geo/tiger/TIGER2025/CBSA/tl_2025_us_cbsa.zip",
+    "archive": "tl_2025_us_cbsa.zip",
+    "sha256": "8b0424f077280caaa5e09442fd0b0aec32b3e8d7d5fa909988304663bc0a761d",
+    "bytes": 34964000,
+    "joinKey": "CBSAFP (five-digit CBSA code)",
+    "retrievedOn": "2026-08-24"
+  },
+  "population": {
+    "organization": "U.S. Census Bureau",
+    "dataset": "American Community Survey 5-Year Estimates, Table-Based Summary File — B01003 (total population)",
+    "period": "2019-2023",
+    "note": "Reuses the ACS metro population DreamDestination already stores. No additional population source was fetched for this phase."
+  }
+}

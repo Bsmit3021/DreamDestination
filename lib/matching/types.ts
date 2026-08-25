@@ -5,6 +5,10 @@ import type {
 } from "@/lib/matching/career";
 import type { ClimateDetail } from "@/lib/matching/climate";
 import type { FamilyDetail, MetroSchoolStats } from "@/lib/matching/family";
+import type {
+  LifestyleDetail,
+  MetroLifestyleStats,
+} from "@/lib/matching/lifestyle";
 import type { MetroSafetyStats, SafetyDetail } from "@/lib/matching/safety";
 import type { HousingDetail, MetroBedroomRents } from "@/lib/matching/housing";
 import type {
@@ -12,6 +16,7 @@ import type {
   DesiredBedrooms,
   PreferenceWeightKey,
   UsStateCode,
+  LifestyleCategory,
 } from "@/types/profile";
 
 /**
@@ -88,6 +93,12 @@ export interface CandidateCity {
    * Counts availability, never quality.
    */
   schools?: MetroSchoolStats | null;
+  /**
+   * Overture place counts per lifestyle category for this metro.
+   *
+   * Counts availability and breadth, never quality or popularity.
+   */
+  lifestyle?: MetroLifestyleStats | null;
 }
 
 /**
@@ -111,6 +122,14 @@ export interface Personalization {
    * distinction because a city with no OEWS row looks the same either way.
    */
   occupation: OccupationTarget | null;
+  /**
+   * The lifestyle categories the user selected, or null when they were never
+   * asked.
+   *
+   * Null and an empty selection read the same way: no particular preference,
+   * scored on a broad mix rather than penalised.
+   */
+  lifestylePreferences: LifestyleCategory[] | null;
 }
 
 /**
@@ -119,7 +138,12 @@ export interface Personalization {
  * field off a housing score.
  */
 export type DimensionDetail =
-  CareerDetail | HousingDetail | ClimateDetail | SafetyDetail | FamilyDetail;
+  | CareerDetail
+  | HousingDetail
+  | ClimateDetail
+  | SafetyDetail
+  | FamilyDetail
+  | LifestyleDetail;
 
 /** Per-dimension detail behind a city's total score. */
 export interface DimensionScore {

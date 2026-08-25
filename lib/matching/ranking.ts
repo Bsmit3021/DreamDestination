@@ -41,13 +41,17 @@ import type {
  *       priorities whose weight was redistributed away for lack of a metric;
  *       that weight now lands where the user put it, which changes rankings
  *       for anyone who weighted either.
+ * v2.2: social becomes measurable from Overture place counts, and optional
+ *       lifestyle preferences make it personal. The last dimension that could
+ *       never be scored now can be, so social weight is no longer
+ *       redistributed away either.
  *
  * A minor bump rather than v3 because no existing dimension's definition
  * changed — two previously unscored ones were filled in. Stored on every row,
  * so results from different versions are never silently compared. Old
  * snapshots keep their own version string and stay readable.
  */
-export const MATCHING_ALGORITHM_VERSION = "v2.1";
+export const MATCHING_ALGORITHM_VERSION = "v2.2";
 
 export const DEFAULT_RECOMMENDATION_LIMIT = 5;
 
@@ -107,6 +111,7 @@ export function generateMatches(
     climatePreference: profile.climatePreference,
     housingBudget: profile.housingBudget,
     occupation: options.occupation ?? null,
+    lifestylePreferences: profile.lifestylePreferences,
   };
 
   /**

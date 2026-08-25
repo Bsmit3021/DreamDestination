@@ -8,9 +8,10 @@ import type { PreferenceWeightKey } from "@/types/profile";
  * The dimension keys are exactly the ten weights onboarding already collects
  * (`PREFERENCE_WEIGHT_KEYS`). Nothing here invents a dimension.
  *
- * One of the ten still has no measured metric. That is recorded here rather
- * than papered over, because the missing-data policy needs to know the
- * difference between "we measured zero" and "we have nothing".
+ * Every one of the ten now has a measurement behind it. The registry keeps the
+ * machinery for an unscored dimension anyway, because the missing-data policy
+ * still needs to know the difference between "we measured zero" and "we have
+ * nothing" for any individual metro.
  */
 
 /** How a raw measurement relates to a good outcome. */
@@ -214,15 +215,23 @@ export const DIMENSIONS: Record<PreferenceWeightKey, DimensionDefinition> = {
     },
   },
 
-  // --- dimensions with no credible measurement yet --------------------------
-
   social: {
     key: "social",
     label: "Social life",
-    description: "Not scored yet — no metric is wired up.",
-    metric: null,
-    unavailableReason:
-      "No authoritative federal dataset measures social opportunity at metro level. Proxies such as bar or restaurant counts would overstate what the data supports.",
+    description:
+      "How many places to eat, drink, play, watch, shop and gather this " +
+      "metro has, in the categories the user cares about, both in total and " +
+      "per resident. Measures availability, never quality or popularity.",
+    metric: {
+      // The lead measurement. Per-category counts and rates live in
+      // `metro_lifestyle_stats`, selected against the user's own preferences,
+      // so one shared metric key cannot describe them all.
+      key: "lifestyle_places_per_100k",
+      label: "Places per 100,000 residents, across lifestyle categories",
+      unit: "index",
+      direction: "higher_is_better",
+      normalization: "personalized_composite",
+    },
   },
 };
 

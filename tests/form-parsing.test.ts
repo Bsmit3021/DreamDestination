@@ -142,6 +142,9 @@ describe("parseProfileFormData", () => {
       housingBudget: 3200,
       desiredBedrooms: "two",
       climatePreference: "warm",
+      // No checkbox was ticked, so the form yields an empty selection rather
+      // than null: this submission was asked and answered "nothing specific".
+      lifestylePreferences: [],
       workPreference: "remote",
       freeTextGoals: "More space.",
     });

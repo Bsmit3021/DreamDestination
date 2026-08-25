@@ -1,6 +1,10 @@
 import { usesGeneralLaborMarket } from "@/lib/matching/career";
 import type { FamilyComponentKey } from "@/lib/matching/family";
-import { BEDROOM_SHORT_LABELS, CLIMATE_PREFERENCE_LABELS } from "@/lib/labels";
+import {
+  BEDROOM_SHORT_LABELS,
+  CLIMATE_PREFERENCE_LABELS,
+  LIFESTYLE_CATEGORY_LABELS,
+} from "@/lib/labels";
 import { DIMENSIONS } from "@/lib/matching/dimensions";
 import type {
   CityScore,
@@ -109,6 +113,8 @@ export function measurementLabel(dimension: DimensionScore): string {
       return `Violent crime rate, ${detail.dataYear} (metro-wide)`;
     case "family":
       return "Public schools per 10,000 residents aged 5-17";
+    case "lifestyle":
+      return "Places per 100,000 residents, averaged across the categories scored";
   }
 }
 
@@ -308,6 +314,47 @@ function describeFamily(dimension: DimensionScore): string {
   return `${detail.publicSchoolCount.toLocaleString("en-US")} public schools, or ${detail.schoolsPer10kSchoolAge.toFixed(1)} per 10,000 residents aged 5-17 (${detail.schoolYear})${combined}.${partial}`;
 }
 
+/**
+ * Lifestyle evidence.
+ *
+ * Quotes the per-capita figure for each category actually scored, because that
+ * is what separates the metros, and names the categories rather than implying a
+ * verdict. A count measures how much of something exists; it cannot speak to
+ * whether any of it is good, popular, well reviewed, currently open, or near
+ * where the user would live.
+ */
+function describeLifestyle(dimension: DimensionScore): string {
+  const detail = dimension.detail;
+  if (detail?.kind !== "lifestyle") return describeGeneric(dimension);
+
+  const named = detail.categories
+    .map(
+      (entry) =>
+        `${entry.placesPer100k.toFixed(1)} ${LIFESTYLE_CATEGORY_LABELS[entry.category].toLowerCase()} places per 100,000 residents`,
+    )
+    .join(", ");
+
+  if (detail.basis === "general_lifestyle") {
+    // No preferences were stated, so the breadth of the mix is the point
+    // rather than any one category's figure.
+    const labels = detail.categories
+      .map((entry) => LIFESTYLE_CATEGORY_LABELS[entry.category].toLowerCase())
+      .join(", ");
+    return `No lifestyle categories were selected, so this reflects a broad mix — ${labels} — with ${named}`;
+  }
+
+  const asked = detail.requestedCategories
+    .map((category) => LIFESTYLE_CATEGORY_LABELS[category].toLowerCase())
+    .join(", ");
+
+  const gap =
+    detail.coverage < 1
+      ? ` (only ${detail.categories.length} of the ${detail.requestedCategories.length} categories you chose could be measured here, so this score's influence is reduced to match)`
+      : "";
+
+  return `Your lifestyle preferences emphasise ${asked}: ${named}${gap}`;
+}
+
 function describe(dimension: DimensionScore, isTopPriority: boolean): string {
   const score = Math.round(dimension.normalizedScore ?? 0);
   const priority = isTopPriority ? ", your highest-weighted priority" : "";
@@ -323,7 +370,9 @@ function describe(dimension: DimensionScore, isTopPriority: boolean): string {
             ? describeSafety(dimension)
             : dimension.detail?.kind === "family"
               ? describeFamily(dimension)
-              : describeGeneric(dimension);
+              : dimension.detail?.kind === "lifestyle"
+                ? describeLifestyle(dimension)
+                : describeGeneric(dimension);
 
   return `${evidence} — scores ${score}/100 against the other candidates${priority}.`;
 }

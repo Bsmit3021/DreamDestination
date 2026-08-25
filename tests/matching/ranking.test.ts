@@ -230,9 +230,10 @@ describe("missing data", () => {
     );
   });
 
-  it("returns nothing when the user only weights unmeasurable dimensions", () => {
-    // Social has no metric; a fit score here would be pure extrapolation.
-    // Safety and family used to sit here too and became measurable in Phase 6B.
+  it("returns nothing when a city set can measure none of the weighted dimensions", () => {
+    // The golden fixture carries no Overture lifestyle counts, so social
+    // cannot be scored *for these cities* even though it is now scorable in
+    // principle. Every candidate falls below the coverage floor.
     const result = generateMatches(
       GOLDEN_CITIES,
       testProfile(),
@@ -240,7 +241,6 @@ describe("missing data", () => {
     );
 
     expect(result.recommendations).toHaveLength(0);
-    expect(result.unscoredWeightedDimensions).toContain("social");
     expect(result.excluded).toHaveLength(GOLDEN_CITIES.length);
   });
 
@@ -252,10 +252,10 @@ describe("missing data", () => {
     );
 
     // Registry-level: dimensions nothing can ever score, not dimensions this
-    // particular city set happens to lack data for. Phase 6B left social as
-    // the only one — a user's safety and family weight is no longer
-    // redistributed away before it is ever applied.
-    expect(result.unscoredWeightedDimensions).toEqual(["social"]);
-    expect(UNSCORED_DIMENSIONS).toEqual(["social"]);
+    // particular city set happens to lack data for. Phase 6C emptied this set
+    // entirely — every priority onboarding collects now has a measurement
+    // behind it, so no weight is redistributed away before it is ever applied.
+    expect(result.unscoredWeightedDimensions).toEqual([]);
+    expect(UNSCORED_DIMENSIONS).toEqual([]);
   });
 });

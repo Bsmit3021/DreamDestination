@@ -294,8 +294,8 @@ describe("Safety Fit is untouched by the family evidence correction", () => {
 });
 
 describe("algorithm version", () => {
-  it("stays at v2.1", () => {
-    expect(MATCHING_ALGORITHM_VERSION).toBe("v2.1");
+  it("advances to v2.2 in Phase 6C", () => {
+    expect(MATCHING_ALGORITHM_VERSION).toBe("v2.2");
   });
 
   it("matches the database's widened version format", () => {
@@ -312,6 +312,13 @@ describe("algorithm version", () => {
   it("leaves safety and family out of the unscored registry", () => {
     expect(UNSCORED_DIMENSIONS).not.toContain("safety");
     expect(UNSCORED_DIMENSIONS).not.toContain("family");
+  });
+
+  it("keeps historical version strings valid under the same format", () => {
+    const format = /^v\d+(\.\d+)?$/;
+    for (const version of ["v1", "v2", "v2.1", "v2.2"]) {
+      expect(format.test(version)).toBe(true);
+    }
   });
 });
 
@@ -431,5 +438,172 @@ describe("deterministic explanations", () => {
     ]) {
       expect(detail).not.toContain(forbidden);
     }
+  });
+});
+
+describe("Phase 6C: lifestyle does not disturb the earlier dimensions", () => {
+  /** The Phase 6B set, plus lifestyle counts. */
+  function withLifestyle() {
+    return fullSet().map((city, index) =>
+      withMetroData(city, {
+        lifestyle:
+          index === 0
+            ? { food_drink: 5_000, nightlife: 700, parks_outdoors: 400 }
+            : { food_drink: 2_000, nightlife: 200, parks_outdoors: 900 },
+      }),
+    );
+  }
+
+  it("leaves career, housing, climate, safety and family untouched", () => {
+    // The only difference between the runs is the presence of Overture counts.
+    const weights = normalizeWeights(
+      weightsWith({
+        career: 1,
+        housing: 1,
+        climate: 1,
+        safety: 1,
+        family: 1,
+      }),
+    );
+    const personalization = personalizationFor(
+      testProfile({ climatePreference: "mild" }),
+      NURSE,
+    );
+
+    const withData = scoreCities(withLifestyle(), weights, personalization);
+    const withoutData = scoreCities(fullSet(), weights, personalization);
+
+    for (const dimension of [
+      "career",
+      "housing",
+      "climate",
+      "safety",
+      "family",
+    ] as const) {
+      expect(
+        withData.map((c) => c.dimensions[dimension].normalizedScore),
+      ).toEqual(
+        withoutData.map((c) => c.dimensions[dimension].normalizedScore),
+      );
+    }
+  });
+
+  it("keeps DreamScore the weighted sum with social in play", () => {
+    const result = generateMatches(
+      withLifestyle(),
+      testProfile({ climatePreference: "mild" }),
+      weightsWith({ social: 1, safety: 1, family: 1, housing: 0.5 }),
+      { limit: 2 },
+    );
+
+    for (const recommendation of result.recommendations) {
+      const summed = Object.values(recommendation.dimensions).reduce(
+        (total, dimension) => total + dimension.contribution,
+        0,
+      );
+      expect(summed).toBeCloseTo(recommendation.totalScore, 10);
+      expect(recommendation.totalScore).toBeGreaterThanOrEqual(0);
+      expect(recommendation.totalScore).toBeLessThanOrEqual(100);
+    }
+  });
+
+  it("still generates recommendations for a legacy profile", () => {
+    // Never asked about bedrooms, climate, occupation or lifestyle.
+    const result = generateMatches(
+      withLifestyle(),
+      testProfile({
+        desiredBedrooms: null,
+        climatePreference: null,
+        lifestylePreferences: null,
+      }),
+      weightsWith({ social: 1, housing: 1 }),
+      { limit: 2 },
+    );
+
+    expect(result.recommendations).toHaveLength(2);
+    for (const recommendation of result.recommendations) {
+      const social = recommendation.dimensions.social;
+      expect(social.available).toBe(true);
+      if (social.detail?.kind !== "lifestyle") continue;
+      // The broad mix, and not penalised for it.
+      expect(social.detail.basis).toBe("general_lifestyle");
+      expect(social.detail.evidenceConfidence).toBe(1);
+    }
+  });
+
+  it("stays deterministic with all six composites in play", () => {
+    const cities = withLifestyle();
+    const run = () =>
+      generateMatches(
+        cities,
+        testProfile({ climatePreference: "mild" }),
+        weightsWith({ social: 1, safety: 1, family: 1, career: 1, housing: 1 }),
+        { limit: 2, occupation: NURSE },
+      );
+
+    expect(JSON.stringify(run())).toBe(JSON.stringify(run()));
+  });
+
+  describe("lifestyle explanations", () => {
+    function lifestyleLine(
+      preferences: Parameters<typeof testProfile>[0] extends never
+        ? never
+        : ("food_drink" | "nightlife" | "parks_outdoors")[] | null,
+    ) {
+      const scored = scoreCities(
+        withLifestyle(),
+        normalizeWeights(weightsWith({ social: 1 })),
+        personalizationFor(testProfile({ lifestylePreferences: preferences })),
+      );
+      // A social line only appears for a metro that clears the strength
+      // threshold or falls to the tradeoff one; take whichever metro produced
+      // it, since the wording is what is under test, not which city won.
+      for (const city of scored) {
+        const line =
+          buildReasons(city).find((r) => r.dimension === "social") ??
+          buildTradeoffs(city).find((r) => r.dimension === "social");
+        if (line) return line.detail;
+      }
+      return "";
+    }
+
+    it("names the selected categories and quotes per-capita figures", () => {
+      const detail = lifestyleLine(["food_drink", "nightlife"]);
+
+      expect(detail).toContain("lifestyle preferences emphasise");
+      expect(detail).toContain("food & drink");
+      expect(detail).toContain("nightlife");
+      expect(detail).toContain("per 100,000 residents");
+    });
+
+    it("says a broad mix was used when nothing was selected", () => {
+      const detail = lifestyleLine(null);
+
+      expect(detail).toContain("No lifestyle categories were selected");
+      expect(detail).toContain("broad mix");
+    });
+
+    it("never claims quality, popularity or walkability", () => {
+      for (const preferences of [["nightlife"] as const, null]) {
+        const detail = lifestyleLine(
+          preferences as
+            ("food_drink" | "nightlife" | "parks_outdoors")[] | null,
+        ).toLowerCase();
+
+        for (const forbidden of [
+          "best ",
+          "quality",
+          "popular",
+          "top-rated",
+          "rating",
+          "walkab",
+          "vibrant",
+          "satisfaction",
+          "open now",
+        ]) {
+          expect(detail).not.toContain(forbidden);
+        }
+      }
+    });
   });
 });

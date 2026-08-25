@@ -9,6 +9,7 @@ import {
   loadOccupationStatsForScoring,
 } from "@/lib/data/opportunity";
 import {
+  loadLifestyleStatsForScoring,
   loadSafetyStatsForScoring,
   loadSchoolStatsForScoring,
 } from "@/lib/data/place-intelligence";
@@ -80,15 +81,21 @@ export async function generateRecommendationsForCurrentUser(
   // loaded at all, and career fit falls back to the metro-wide labour market.
   const careerTarget = await getCurrentUserCareerTarget();
 
-  const [occupationStats, bedroomRents, safetyStats, schoolStats] =
-    await Promise.all([
-      careerTarget
-        ? loadOccupationStatsForScoring(careerTarget.socCode)
-        : Promise.resolve(null),
-      loadBedroomRentsForScoring(),
-      loadSafetyStatsForScoring(),
-      loadSchoolStatsForScoring(),
-    ]);
+  const [
+    occupationStats,
+    bedroomRents,
+    safetyStats,
+    schoolStats,
+    lifestyleStats,
+  ] = await Promise.all([
+    careerTarget
+      ? loadOccupationStatsForScoring(careerTarget.socCode)
+      : Promise.resolve(null),
+    loadBedroomRentsForScoring(),
+    loadSafetyStatsForScoring(),
+    loadSchoolStatsForScoring(),
+    loadLifestyleStatsForScoring(),
+  ]);
 
   const enriched: CandidateCity[] = cities.map((city) => ({
     ...city,
@@ -98,6 +105,7 @@ export async function generateRecommendationsForCurrentUser(
     // scorer records missing data rather than inventing a rate.
     safety: safetyStats.get(city.id) ?? null,
     schools: schoolStats.get(city.id) ?? null,
+    lifestyle: lifestyleStats.get(city.id) ?? null,
   }));
 
   const result = generateMatches(enriched, profile, preferences.weights, {

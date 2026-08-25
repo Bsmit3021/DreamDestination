@@ -1,0 +1,215 @@
+{
+  "version": "2026-08-24.1",
+  "overtureRelease": "2026-08-19.0",
+  "overtureSchemaVersion": "v1.18.0",
+  "classifiedOn": "basic_category",
+  "notes": [
+    "Every mapping entry names an Overture `basic_category` value verified to exist in the pinned release, together with the `taxonomy.hierarchy[0]` root it was observed under. The root is a guard, not a selector: if Overture moves a category to a different root the extractor reports it rather than silently reclassifying.",
+    "Exclusivity is structural. Overture gives each place exactly one `basic_category`, and each `basic_category` appears in exactly one DreamDestination bucket below, so a place can never be counted in two buckets or twice in one.",
+    "The deprecated `categories` property is not used anywhere. Overture removes it in September 2026.",
+    "A place whose `basic_category` is absent from this file is unclassified and enters no bucket. It is never guessed at from the venue name or from `taxonomy.alternates`.",
+    "These buckets are DreamDestination product definitions, not Overture concepts. Overture has no notion of `nightlife` or `community_spaces`."
+  ],
+  "excluded": {
+    "notes": [
+      "Categories deliberately left out of `shopping`, so the bucket describes retail people choose to visit rather than errands. Recorded here so the omission is auditable rather than invisible."
+    ],
+    "shopping": [
+      "auto_dealer",
+      "vehicle_dealer",
+      "vehicle_parts_store",
+      "pharmacy_and_drug_store",
+      "office_supply_store",
+      "convenience_store",
+      "kiosk"
+    ]
+  },
+  "categories": {
+    "food_drink": {
+      "label": "Food & drink",
+      "definition": "Places to eat and non-alcoholic places to drink.",
+      "members": [
+        { "basicCategory": "restaurant", "root": "food_and_drink" },
+        { "basicCategory": "casual_eatery", "root": "food_and_drink" },
+        { "basicCategory": "fast_food_restaurant", "root": "food_and_drink" },
+        { "basicCategory": "coffee_shop", "root": "food_and_drink" },
+        { "basicCategory": "cafe", "root": "food_and_drink" },
+        { "basicCategory": "food_truck_stand", "root": "food_and_drink" },
+        { "basicCategory": "smoothie_juice_bar", "root": "food_and_drink" },
+        {
+          "basicCategory": "non_alcoholic_beverage_venue",
+          "root": "food_and_drink"
+        },
+        { "basicCategory": "food_court", "root": "food_and_drink" },
+        { "basicCategory": "food_and_drink", "root": "food_and_drink" }
+      ]
+    },
+    "nightlife": {
+      "label": "Nightlife",
+      "definition": "Drinking venues and late-evening entertainment. Alcohol-producing venues with taprooms (brewery, winery, distillery) sit here rather than in food & drink, so a single venue is never counted in both.",
+      "members": [
+        { "basicCategory": "bar", "root": "food_and_drink" },
+        { "basicCategory": "lounge", "root": "food_and_drink" },
+        {
+          "basicCategory": "alcoholic_beverage_venue",
+          "root": "food_and_drink"
+        },
+        { "basicCategory": "brewery", "root": "food_and_drink" },
+        { "basicCategory": "winery", "root": "food_and_drink" },
+        { "basicCategory": "distillery", "root": "food_and_drink" },
+        { "basicCategory": "dance_club", "root": "arts_and_entertainment" },
+        { "basicCategory": "comedy_club", "root": "arts_and_entertainment" },
+        { "basicCategory": "casino", "root": "arts_and_entertainment" },
+        { "basicCategory": "gaming_venue", "root": "arts_and_entertainment" },
+        {
+          "basicCategory": "adult_entertainment_venue",
+          "root": "arts_and_entertainment"
+        }
+      ]
+    },
+    "arts_culture": {
+      "label": "Arts & culture",
+      "definition": "Places to look at art, history and science rather than to watch a performance.",
+      "members": [
+        { "basicCategory": "art_gallery", "root": "arts_and_entertainment" },
+        { "basicCategory": "museum", "root": "arts_and_entertainment" },
+        { "basicCategory": "aquarium", "root": "arts_and_entertainment" },
+        { "basicCategory": "zoo", "root": "arts_and_entertainment" },
+        {
+          "basicCategory": "science_attraction",
+          "root": "arts_and_entertainment"
+        },
+        {
+          "basicCategory": "arts_and_crafts_space",
+          "root": "arts_and_entertainment"
+        },
+        {
+          "basicCategory": "sculpture_statue",
+          "root": "arts_and_entertainment"
+        },
+        { "basicCategory": "street_art", "root": "arts_and_entertainment" },
+        { "basicCategory": "historic_site", "root": "cultural_and_historic" },
+        { "basicCategory": "monument", "root": "cultural_and_historic" },
+        { "basicCategory": "cultural_center", "root": "cultural_and_historic" },
+        { "basicCategory": "lighthouse", "root": "cultural_and_historic" }
+      ]
+    },
+    "live_entertainment": {
+      "label": "Live entertainment",
+      "definition": "Venues that host performances, screenings and events.",
+      "members": [
+        { "basicCategory": "music_venue", "root": "arts_and_entertainment" },
+        { "basicCategory": "theatre_venue", "root": "arts_and_entertainment" },
+        {
+          "basicCategory": "performing_arts_venue",
+          "root": "arts_and_entertainment"
+        },
+        { "basicCategory": "movie_theater", "root": "arts_and_entertainment" },
+        { "basicCategory": "stadium_arena", "root": "arts_and_entertainment" },
+        { "basicCategory": "event_venue", "root": "arts_and_entertainment" },
+        { "basicCategory": "festival_venue", "root": "arts_and_entertainment" },
+        { "basicCategory": "amusement_park", "root": "arts_and_entertainment" },
+        { "basicCategory": "arcade", "root": "arts_and_entertainment" }
+      ]
+    },
+    "fitness_recreation": {
+      "label": "Fitness & recreation",
+      "definition": "Built places to exercise and play sport.",
+      "members": [
+        { "basicCategory": "gym", "root": "sports_and_recreation" },
+        { "basicCategory": "fitness_studio", "root": "sports_and_recreation" },
+        {
+          "basicCategory": "sport_or_fitness_facility",
+          "root": "sports_and_recreation"
+        },
+        {
+          "basicCategory": "sport_or_recreation_club",
+          "root": "sports_and_recreation"
+        },
+        { "basicCategory": "golf_course", "root": "sports_and_recreation" },
+        { "basicCategory": "swimming_pool", "root": "sports_and_recreation" },
+        { "basicCategory": "sport_court", "root": "sports_and_recreation" },
+        { "basicCategory": "sport_field", "root": "sports_and_recreation" },
+        { "basicCategory": "skate_park", "root": "sports_and_recreation" },
+        { "basicCategory": "skating_rink", "root": "sports_and_recreation" },
+        {
+          "basicCategory": "recreational_equipment_rental",
+          "root": "sports_and_recreation"
+        }
+      ]
+    },
+    "parks_outdoors": {
+      "label": "Parks & outdoors",
+      "definition": "Open space and natural features people visit.",
+      "members": [
+        { "basicCategory": "park", "root": "sports_and_recreation" },
+        { "basicCategory": "national_park", "root": "sports_and_recreation" },
+        { "basicCategory": "dog_park", "root": "sports_and_recreation" },
+        { "basicCategory": "playground", "root": "sports_and_recreation" },
+        {
+          "basicCategory": "recreational_trail_or_path",
+          "root": "sports_and_recreation"
+        },
+        { "basicCategory": "nature_reserve", "root": "geographic_entities" },
+        { "basicCategory": "garden", "root": "geographic_entities" },
+        { "basicCategory": "beach", "root": "geographic_entities" },
+        { "basicCategory": "forest", "root": "geographic_entities" },
+        { "basicCategory": "waterfall", "root": "geographic_entities" },
+        { "basicCategory": "marina", "root": "geographic_entities" }
+      ]
+    },
+    "shopping": {
+      "label": "Shopping",
+      "definition": "Retail people choose to visit. Vehicle, pharmacy, office-supply and convenience retail are excluded as errands rather than lifestyle; see `excluded.shopping`.",
+      "members": [
+        { "basicCategory": "fashion_and_apparel_store", "root": "shopping" },
+        { "basicCategory": "food_and_beverage_store", "root": "shopping" },
+        {
+          "basicCategory": "hardware_home_and_garden_store",
+          "root": "shopping"
+        },
+        { "basicCategory": "electronics_store", "root": "shopping" },
+        { "basicCategory": "specialty_store", "root": "shopping" },
+        { "basicCategory": "flowers_and_gifts_store", "root": "shopping" },
+        { "basicCategory": "second_hand_store", "root": "shopping" },
+        { "basicCategory": "sporting_goods_store", "root": "shopping" },
+        { "basicCategory": "arts_crafts_and_hobby_store", "root": "shopping" },
+        { "basicCategory": "books_music_and_video_store", "root": "shopping" },
+        {
+          "basicCategory": "personal_care_and_beauty_store",
+          "root": "shopping"
+        },
+        { "basicCategory": "animal_and_pet_store", "root": "shopping" },
+        { "basicCategory": "shopping_mall", "root": "shopping" },
+        { "basicCategory": "farmers_market", "root": "shopping" },
+        { "basicCategory": "department_store", "root": "shopping" },
+        {
+          "basicCategory": "musical_instrument_and_pro_audio_store",
+          "root": "shopping"
+        },
+        { "basicCategory": "toys_and_games_store", "root": "shopping" },
+        { "basicCategory": "discount_store", "root": "shopping" },
+        { "basicCategory": "warehouse_club_store", "root": "shopping" },
+        { "basicCategory": "superstore", "root": "shopping" },
+        { "basicCategory": "market", "root": "shopping" },
+        { "basicCategory": "shopping", "root": "shopping" }
+      ]
+    },
+    "community_spaces": {
+      "label": "Community spaces",
+      "definition": "NARROWED. Overture has no broad 'community space' concept. Its community root is dominated by social_or_community_service (257k), government_office (128k) and civic_organization (90k) — organisations, not places people spend time. This bucket is therefore limited to the three basic categories that are unambiguously public gathering places, and is smaller than the other seven by design.",
+      "narrowed": true,
+      "members": [
+        {
+          "basicCategory": "community_center",
+          "root": "community_and_government"
+        },
+        {
+          "basicCategory": "public_plaza",
+          "root": "community_and_government"
+        },
+        { "basicCategory": "library", "root": "education" }
+      ]
+    }
+  }
+}

@@ -43,6 +43,24 @@ export const FBI_CIUS_YEAR = 2025;
 export const FBI_CDE_DOWNLOADS_URL =
   "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/downloads";
 
+/**
+ * The pinned Overture Maps release.
+ *
+ * Verified against the official release calendar as the current *published*
+ * release rather than taken from a schedule: proposed future dates appear
+ * there before their data exists, and a pipeline must never silently follow
+ * one. Pinned so a re-run reproduces the same dataset.
+ */
+export const OVERTURE_RELEASE = "2026-08-19.0";
+export const OVERTURE_S3_BASE = "s3://overturemaps-us-west-2/release";
+
+/** Schools counted per this many residents; places per this many residents. */
+export const LIFESTYLE_PLACES_PER = 100_000;
+
+export const CENSUS_CBSA_VINTAGE = "2025";
+export const CENSUS_CBSA_BOUNDARY_URL =
+  "https://www2.census.gov/geo/tiger/TIGER2025/CBSA/tl_2025_us_cbsa.zip";
+
 export const NCES_SCHOOL_YEAR = "2024-2025";
 export const NCES_EDGE_URL =
   "https://nces.ed.gov/programs/edge/data/EDGE_GEOCODE_PUBLICSCH_2425.zip";
@@ -114,6 +132,30 @@ export const SOURCES = {
     geographyLevel: "cbsa" as const,
     notes:
       "Point locations for public elementary and secondary schools, joined to metros on the file's own CBSA identifier (OMB July 2023 definitions). Measures where public schools are, and nothing else: NCES EDGE publishes locations, not quality, achievement, ratings or teaching. The geocode file carries no open/closed status field, so no status filtering is applied.",
+  },
+  overture: {
+    key: "overture-places-2026-08-19",
+    organization: "Overture Maps Foundation",
+    dataset: "Overture Maps Places, release 2026-08-19.0 (schema v1.18.0)",
+    url: "https://docs.overturemaps.org/guides/places/",
+    period: OVERTURE_RELEASE,
+    geographyLevel: "cbsa" as const,
+    /**
+     * Places is an aggregation of upstream datasets under *different* licences,
+     * not a single one. Calling the whole release CDLA Permissive 2.0 would be
+     * wrong, and DreamDestination cannot attribute row by row because the
+     * extraction aggregates counts and never retains the per-place `sources`
+     * field. The honest description is therefore: derived aggregate statistics
+     * built from the release, with the upstream breakdown pointed at Overture's
+     * official attribution page rather than restated or guessed.
+     */
+    license:
+      "Mixed upstream licensing (CDLA Permissive 2.0, Apache 2.0, CC0 1.0)",
+    licenseUrl: "https://docs.overturemaps.org/attribution/",
+    attribution:
+      'Derived from Overture Maps Places (Overture Maps Foundation, overturemaps.org). The Places release aggregates upstream sources under different licences — CDLA Permissive 2.0 (Meta, Microsoft, PinMeTo, Krick, RenderSEO, DAC, BrightQuery), Apache 2.0 (Foursquare) and CC0 1.0 (AllThePlaces). Foursquare data carries the notice "Copyright 2024 Foursquare Labs, Inc. All rights reserved."; see NOTICE.txt at opensource.foursquare.com. Full breakdown: https://docs.overturemaps.org/attribution/',
+    notes:
+      "Point locations for real-world entities, assigned to metros by point-in-polygon against official Census TIGER/Line 2025 CBSA boundaries. Classified on `basic_category` under the current taxonomy; the deprecated `categories` property is not used. Counts measure availability and breadth only — never quality, popularity, ratings, opening hours or walkability. Permanently closed places and places Overture is certain no longer exist (confidence 0) are excluded; a place whose category is absent from the committed mapping enters no bucket. DreamDestination stores only derived per-metro, per-category aggregate counts — never raw place records — and does not retain per-place source attribution, so upstream licensing is documented at the release level rather than per row.",
   },
   gazetteer: {
     key: "census-gazetteer-2024",

@@ -35,7 +35,12 @@
     "data:family:fetch": "tsx scripts/family/pipeline.ts fetch",
     "data:family:transform": "tsx scripts/family/pipeline.ts transform",
     "data:family:validate": "tsx scripts/family/pipeline.ts validate",
-    "data:family:seed": "tsx --env-file=.env.local scripts/family/seed.ts"
+    "data:family:seed": "tsx --env-file=.env.local scripts/family/seed.ts",
+    "data:lifestyle:fetch": "tsx scripts/lifestyle/pipeline.ts fetch",
+    "data:lifestyle:extract": "python3 scripts/lifestyle/extract_places.py",
+    "data:lifestyle:transform": "tsx scripts/lifestyle/pipeline.ts transform",
+    "data:lifestyle:validate": "tsx scripts/lifestyle/pipeline.ts validate",
+    "data:lifestyle:seed": "tsx --env-file=.env.local scripts/lifestyle/seed.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",

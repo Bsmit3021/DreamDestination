@@ -3,6 +3,10 @@ import "server-only";
 import { DataAccessError } from "@/lib/data/errors";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { MetroSchoolStats } from "@/lib/matching/family";
+import type {
+  MetroLifestyleCategoryStat,
+  MetroLifestyleStats,
+} from "@/lib/matching/lifestyle";
 import type { MetroSafetyStats } from "@/lib/matching/safety";
 import type { MetricSourceRef } from "@/lib/matching/types";
 
@@ -125,4 +129,70 @@ export async function loadSchoolStatsForScoring(): Promise<
       } satisfies MetroSchoolStats,
     ]),
   );
+}
+
+/** Overture lifestyle counts per metro, keyed by city id. */
+export async function loadLifestyleStatsForScoring(): Promise<
+  Map<string, MetroLifestyleStats>
+> {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase.from("metro_lifestyle_stats").select(
+    `city_id, category, place_count, population, places_per_100k,
+       source_release, taxonomy_mapping_version, extracted_on,
+       metric_sources ( key, organization, dataset, url, period, geography_level )`,
+  );
+
+  if (error) {
+    throw new DataAccessError("Could not load metro lifestyle statistics.", {
+      cause: error,
+    });
+  }
+
+  const rows = (data ?? []) as unknown as {
+    city_id: string;
+    category: MetroLifestyleCategoryStat["category"];
+    place_count: number;
+    population: number;
+    places_per_100k: number;
+    source_release: string;
+    taxonomy_mapping_version: string;
+    extracted_on: string;
+    metric_sources: SourceRow | null;
+  }[];
+
+  // One row per (metro, category), folded into one record per metro so the
+  // scorer sees a metro's whole lifestyle picture at once.
+  const byCity = new Map<string, MetroLifestyleStats>();
+
+  for (const row of rows) {
+    const existing = byCity.get(row.city_id);
+    const stat: MetroLifestyleCategoryStat = {
+      category: row.category,
+      placeCount: row.place_count,
+      population: row.population,
+      placesPer100k: Number(row.places_per_100k),
+    };
+
+    if (existing) {
+      existing.categories.push(stat);
+      continue;
+    }
+
+    byCity.set(row.city_id, {
+      sourceRelease: row.source_release,
+      taxonomyMappingVersion: row.taxonomy_mapping_version,
+      extractedOn: row.extracted_on,
+      categories: [stat],
+      source: toSourceRef(row.metric_sources),
+    });
+  }
+
+  // Sorted so a metro's categories arrive in a stable order regardless of how
+  // the database returned the rows.
+  for (const stats of byCity.values()) {
+    stats.categories.sort((a, b) => a.category.localeCompare(b.category));
+  }
+
+  return byCity;
 }

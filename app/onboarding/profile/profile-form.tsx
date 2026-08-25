@@ -18,6 +18,8 @@ import {
   CLIMATE_PREFERENCES,
   DESIRED_BEDROOMS,
   FREE_TEXT_GOALS_MAX_LENGTH,
+  LIFESTYLE_CATEGORIES,
+  MAX_LIFESTYLE_SELECTIONS,
   RELATIONSHIP_STATUSES,
   US_STATE_CODES,
   WORK_PREFERENCES,
@@ -27,6 +29,7 @@ import {
   AGE_RANGE_LABELS,
   CLIMATE_PREFERENCE_LABELS,
   DESIRED_BEDROOMS_LABELS,
+  LIFESTYLE_CATEGORY_LABELS,
   RELATIONSHIP_STATUS_LABELS,
   WORK_PREFERENCE_LABELS,
 } from "@/lib/labels";
@@ -246,7 +249,47 @@ export function ProfileForm({ profile }: { profile: Profile | null }) {
           </p>
           <FieldError field="climatePreference" state={state} />
         </div>
+      </div>
 
+      <fieldset className="flex flex-col gap-2">
+        <legend className="text-sm font-medium">
+          Lifestyle you want nearby{" "}
+          <span className="font-normal text-muted-foreground">(optional)</span>
+        </legend>
+        <p
+          id="lifestylePreferences-hint"
+          className="text-xs text-muted-foreground"
+        >
+          Choose up to {MAX_LIFESTYLE_SELECTIONS}. Matching counts how many
+          places of each kind a metro has, in total and per resident — it
+          measures how much is there, not how good it is. Choose none and
+          you&rsquo;re scored on a broad mix instead.
+        </p>
+        <div className="grid gap-2 sm:grid-cols-2">
+          {LIFESTYLE_CATEGORIES.map((value) => (
+            <label
+              key={value}
+              className="flex items-center gap-2 text-sm"
+              htmlFor={`lifestyle-${value}`}
+            >
+              <input
+                id={`lifestyle-${value}`}
+                type="checkbox"
+                name="lifestylePreferences"
+                value={value}
+                defaultChecked={
+                  profile?.lifestylePreferences?.includes(value) ?? false
+                }
+                className="size-4 rounded border-input"
+              />
+              {LIFESTYLE_CATEGORY_LABELS[value]}
+            </label>
+          ))}
+        </div>
+        <FieldError field="lifestylePreferences" state={state} />
+      </fieldset>
+
+      <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
           <Label htmlFor="occupation">Occupation</Label>
           <Input

@@ -1,0 +1,56 @@
+{
+  "source": "overture-places-2026-08-19",
+  "overtureRelease": "2026-08-19.0",
+  "overtureSchemaVersion": "v1.18.0",
+  "taxonomyMappingVersion": "2026-08-24.1",
+  "censusBoundaryVintage": "2025",
+  "extractedOn": "2026-08-24",
+  "candidateMetros": 100,
+  "metrosMatchedToPolygon": 100,
+  "metrosWithAnyPlace": 100,
+  "metrosWithEveryCategory": 100,
+  "metrosWithLifestyleFit": 100,
+  "supportedCategories": [
+    "arts_culture",
+    "community_spaces",
+    "fitness_recreation",
+    "food_drink",
+    "live_entertainment",
+    "nightlife",
+    "parks_outdoors",
+    "shopping"
+  ],
+  "classifiedUsPlacesConsidered": 6292806,
+  "duplicateRowsCollapsed": 0,
+  "placesInsideCandidateMetros": 2959370,
+  "classificationCoverage": {
+    "placesInsideCandidateMetros": 2959370,
+    "shareOfClassifiedUsPlaces": 0.4702782828518788
+  },
+  "populationCoverage": {
+    "metrosWithPositivePopulation": 100
+  },
+  "countsByCategory": {
+    "arts_culture": 167743,
+    "community_spaces": 30034,
+    "fitness_recreation": 275699,
+    "food_drink": 964462,
+    "live_entertainment": 75322,
+    "nightlife": 118059,
+    "parks_outdoors": 135114,
+    "shopping": 1192937
+  },
+  "zeroCountRows": [],
+  "exclusions": {
+    "operatingStatus": "permanently_closed excluded; NULL kept as 'not recorded'",
+    "confidence": "confidence = 0 excluded (Overture: certain the place no longer exists)",
+    "geometry": "NULL geometry or NULL id excluded",
+    "unclassified": "basic_category absent from the mapping enters no bucket"
+  },
+  "notes": [
+    "Places are assigned to a metro by point-in-polygon against the official Census CBSA boundary, joined on the five-digit CBSA code. No radius, city limit, principal-city boundary, county guess, geocode or name match is involved.",
+    "Each Overture place carries exactly one basic_category, and each basic_category belongs to exactly one DreamDestination bucket, so a place is counted at most once overall.",
+    "A place whose basic_category is absent from the committed mapping is unclassified and enters no bucket.",
+    "Counts measure availability and breadth. They say nothing about quality, popularity, ratings, opening hours or walkability."
+  ]
+}

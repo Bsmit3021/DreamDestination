@@ -309,8 +309,20 @@ itself does not require them.
 
 ## Next milestone
 
-Wire up the one remaining unscored dimension (social) once a credible source is
-available. The ranking itself should stay deterministic and auditable.
+Every priority onboarding collects is now scored. The ranking itself should stay
+deterministic and auditable.
+
+Social/lifestyle is scored as of Phase 6C, from Overture Maps place counts
+joined to official Census CBSA boundaries by point-in-polygon, with optional
+lifestyle-category preferences. Place counts measure availability and breadth —
+never quality, popularity or walkability.
+
+What ships here is DreamDestination-derived aggregate metro/category statistics
+built from the Overture Places release, not the underlying records. Places
+aggregates upstream sources under mixed licensing — CDLA Permissive 2.0,
+Apache 2.0 (Foursquare) and CC0 1.0 — documented at
+[Overture's attribution page](https://docs.overturemaps.org/attribution/).
+Citation: Overture Maps Foundation, overturemaps.org.
 
 Safety and family friendliness are scored as of Phase 6B, from FBI CIUS 2025
 metro crime rates and NCES public-school counts against the ACS school-age

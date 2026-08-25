@@ -67,6 +67,32 @@ export const CLIMATE_PREFERENCES = [
 ] as const;
 
 /**
+ * Lifestyle categories a user can say they care about.
+ *
+ * These are DreamDestination product definitions, not Overture labels. Each is
+ * backed by an explicit, committed mapping from verified Overture
+ * `basic_category` values — see scripts/lifestyle/taxonomy-mapping.json.
+ *
+ * `community_spaces` is deliberately narrow: Overture has no broad "community
+ * space" concept, so it covers community centres, public plazas and libraries
+ * rather than the civic organisations and government offices that dominate its
+ * community root. Those are organisations, not places people go.
+ */
+export const LIFESTYLE_CATEGORIES = [
+  "food_drink",
+  "nightlife",
+  "arts_culture",
+  "live_entertainment",
+  "fitness_recreation",
+  "parks_outdoors",
+  "shopping",
+  "community_spaces",
+] as const;
+
+/** How many lifestyle categories a user may select. Selecting none is valid. */
+export const MAX_LIFESTYLE_SELECTIONS = 5;
+
+/**
  * The scoring dimensions a user can weight during onboarding. The same keys
  * name the `*_weight` columns on `preferences` and the `*_score` columns on
  * `city_metrics`.
