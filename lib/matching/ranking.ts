@@ -53,7 +53,15 @@ import type {
  */
 export const MATCHING_ALGORITHM_VERSION = "v2.2";
 
-export const DEFAULT_RECOMMENDATION_LIMIT = 5;
+/**
+ * How many ranked cities are returned and stored.
+ *
+ * Not part of the scoring model: the limit is applied after ranking, so
+ * changing it shows more or fewer rows of the same ordering and never alters
+ * any city's score, rank or tie-break. It therefore does not bump
+ * MATCHING_ALGORITHM_VERSION.
+ */
+export const DEFAULT_RECOMMENDATION_LIMIT = 12;
 
 export interface MatchingOptions {
   /** How many recommendations to return. */

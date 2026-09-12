@@ -34,6 +34,17 @@ insert into public.cities (id, slug, city, state, latitude, longitude)
 values ('22222222-2222-4222-8222-222222222222', 'p3-testville-tx', 'Testville',
         'TX', 31.0, -97.0);
 
+-- Eleven more, so a full twelve-row ranking can be written below.
+insert into public.cities (id, slug, city, state, latitude, longitude)
+select
+  ('22222222-2222-4222-8222-2222222222' || lpad(n::text, 2, '0'))::uuid,
+  'p3-rank-city-' || n || '-tx',
+  'Rank City ' || n,
+  'TX'::public.us_state_code,
+  31.0,
+  -97.0
+from generate_series(1, 11) as n;
+
 insert into public.metric_sources (
   id, key, organization, dataset, url, period, retrieved_on, geography_level
 ) values (
@@ -209,6 +220,41 @@ begin
     raise notice 'PASS  RPC rerun replaces instead of duplicating';
   else
     raise exception 'FAIL: rerun left % rows', owned;
+  end if;
+end $$;
+
+-- The application stores twelve matches by default. Nothing in the schema or
+-- the function may cap a set below that, and every rank must land once.
+do $$
+declare n int; v_ranks int[]; v_cities int;
+begin
+  n := public.replace_my_recommendations('v2.2', (
+    select jsonb_agg(
+             jsonb_build_object(
+               'city_id', ranked.id,
+               'dream_score', 0.9 - ranked.position * 0.01,
+               'rank', ranked.position,
+               'reason_json', '{}'::jsonb
+             )
+             order by ranked.position
+           )
+      from (
+        select id, row_number() over (order by id) as position
+          from public.cities
+         where slug like 'p3-%'
+      ) as ranked
+  ));
+
+  select array_agg("rank" order by "rank"), count(distinct city_id)
+    into v_ranks, v_cities
+    from public.recommendations;
+
+  if n = 12
+     and v_cities = 12
+     and v_ranks = array(select generate_series(1, 12)) then
+    raise notice 'PASS  RPC stores a twelve-row ranking with ranks 1-12';
+  else
+    raise exception 'FAIL: inserted=% ranks=% cities=%', n, v_ranks, v_cities;
   end if;
 end $$;
 

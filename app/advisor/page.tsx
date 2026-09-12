@@ -29,6 +29,17 @@ export const metadata: Metadata = {
 };
 
 /**
+ * How many matches the "Match context" sidebar lists.
+ *
+ * Deliberately fewer than are stored. On wide screens the sidebar is sticky
+ * beside the conversation, and a sticky panel taller than the viewport hides
+ * its own lower rows and the compare link. The full ranked set is one click
+ * away on the comparison page, and the advisor's answers are still grounded in
+ * every stored match — this caps the display, not the context.
+ */
+const MATCH_CONTEXT_LIMIT = 5;
+
+/**
  * The advisor.
  *
  * Market intelligence and the advisor fail independently: when no provider is
@@ -181,23 +192,25 @@ export default async function AdvisorPage() {
             Your leading destinations, in saved fit order.
           </p>
           <ol className="my-5 divide-y">
-            {recommendations.slice(0, 5).map((recommendation) => (
-              <li key={recommendation.id} className="py-3 first:pt-0">
-                <Link
-                  href={`/recommendations/${recommendation.city.id}`}
-                  className="flex items-start justify-between gap-3 text-sm underline-offset-4 hover:underline"
-                >
-                  <span>
-                    {recommendation.rank}. {recommendation.city.city},{" "}
-                    {recommendation.city.state}
-                  </span>
-                  <span className="shrink-0 font-semibold text-primary tabular-nums">
-                    {Math.round(recommendation.score)}
-                    <span className="sr-only"> out of 100 fit score</span>
-                  </span>
-                </Link>
-              </li>
-            ))}
+            {recommendations
+              .slice(0, MATCH_CONTEXT_LIMIT)
+              .map((recommendation) => (
+                <li key={recommendation.id} className="py-3 first:pt-0">
+                  <Link
+                    href={`/recommendations/${recommendation.city.id}`}
+                    className="flex items-start justify-between gap-3 text-sm underline-offset-4 hover:underline"
+                  >
+                    <span>
+                      {recommendation.rank}. {recommendation.city.city},{" "}
+                      {recommendation.city.state}
+                    </span>
+                    <span className="shrink-0 font-semibold text-primary tabular-nums">
+                      {Math.round(recommendation.score)}
+                      <span className="sr-only"> out of 100 fit score</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
           </ol>
           <Button variant="outline" size="sm" className="w-full" asChild>
             <Link href={ROUTES.compare}>Compare all matches</Link>

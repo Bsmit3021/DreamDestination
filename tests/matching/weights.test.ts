@@ -1,14 +1,80 @@
 import { describe, expect, it } from "vitest";
 
 import { PREFERENCE_WEIGHT_KEYS } from "@/lib/constants";
-import { effectiveWeightsFor, normalizeWeights } from "@/lib/matching/weights";
-import type { PreferenceWeightKey } from "@/types/profile";
+import {
+  UNIFORM_WEIGHT_TOLERANCE,
+  effectiveWeightsFor,
+  hasUniformWeights,
+  normalizeWeights,
+} from "@/lib/matching/weights";
+import type { PreferenceWeightKey, PreferenceWeights } from "@/types/profile";
 
 import { weightsWith, zeroWeights } from "./fixtures";
 
 function sum(values: Record<PreferenceWeightKey, number>): number {
   return PREFERENCE_WEIGHT_KEYS.reduce((total, key) => total + values[key], 0);
 }
+
+function uniformAt(value: number): PreferenceWeights {
+  return Object.fromEntries(
+    PREFERENCE_WEIGHT_KEYS.map((key) => [key, value]),
+  ) as PreferenceWeights;
+}
+
+describe("hasUniformWeights", () => {
+  it("reports every slider at zero as uniform", () => {
+    expect(hasUniformWeights(zeroWeights())).toBe(true);
+  });
+
+  it.each([0.05, 0.5, 1])("reports every slider at %s as uniform", (value) => {
+    expect(hasUniformWeights(uniformAt(value))).toBe(true);
+  });
+
+  it("agrees with normalisation: uniform sliders mean equal shares", () => {
+    const normalized = normalizeWeights(uniformAt(0.7));
+
+    for (const key of PREFERENCE_WEIGHT_KEYS) {
+      expect(normalized[key]).toBeCloseTo(1 / PREFERENCE_WEIGHT_KEYS.length);
+    }
+  });
+
+  it("treats one slider moved a single step as varied", () => {
+    expect(hasUniformWeights({ ...uniformAt(0.5), career: 0.55 })).toBe(false);
+  });
+
+  it.each(PREFERENCE_WEIGHT_KEYS)(
+    "treats the smallest storable difference on %s as varied",
+    (key) => {
+      // 0.001 is the precision of the numeric(4, 3) weight columns.
+      expect(hasUniformWeights({ ...uniformAt(0.5), [key]: 0.501 })).toBe(
+        false,
+      );
+      expect(hasUniformWeights({ ...uniformAt(0.5), [key]: 0.499 })).toBe(
+        false,
+      );
+    },
+  );
+
+  it("treats a single non-zero slider as varied", () => {
+    expect(hasUniformWeights(weightsWith({ safety: 0.001 }))).toBe(false);
+  });
+
+  it("absorbs floating-point noise, not user-visible differences", () => {
+    // 0.1 + 0.2 is 0.30000000000000004 in IEEE 754.
+    expect(hasUniformWeights({ ...uniformAt(0.3), cost: 0.1 + 0.2 })).toBe(
+      true,
+    );
+    expect(
+      hasUniformWeights({ ...zeroWeights(), family: UNIFORM_WEIGHT_TOLERANCE }),
+    ).toBe(true);
+    expect(
+      hasUniformWeights({
+        ...zeroWeights(),
+        family: UNIFORM_WEIGHT_TOLERANCE * 2,
+      }),
+    ).toBe(false);
+  });
+});
 
 describe("normalizeWeights", () => {
   it("rescales to sum to exactly 1", () => {

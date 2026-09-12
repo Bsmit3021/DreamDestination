@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { EqualWeightingNotice } from "@/app/recommendations/equal-weighting-notice";
 import { GenerateButton } from "@/app/recommendations/generate-button";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { getOnboardingStatus } from "@/lib/data/preferences";
+import {
+  getCurrentUserPreferences,
+  getOnboardingStatus,
+} from "@/lib/data/preferences";
 import {
   getStoredRecommendations,
   snapshotDimensions,
@@ -37,7 +41,10 @@ export default async function RecommendationsPage() {
     redirect(ROUTES.onboarding);
   }
 
-  const recommendations = await getStoredRecommendations();
+  const [recommendations, preferences] = await Promise.all([
+    getStoredRecommendations(),
+    getCurrentUserPreferences(),
+  ]);
 
   return (
     <div className="flex flex-col gap-8">
@@ -66,6 +73,8 @@ export default async function RecommendationsPage() {
           )}
         </div>
       </div>
+
+      <EqualWeightingNotice weights={preferences?.weights ?? null} />
 
       {recommendations.length === 0 ? (
         <Card>
