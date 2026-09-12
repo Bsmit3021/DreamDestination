@@ -15,8 +15,21 @@ export const ROUTES = {
   onboardingPreferences: "/onboarding/preferences",
   onboardingOccupation: "/onboarding/occupation",
   recommendations: "/recommendations",
+  compare: "/recommendations/compare",
   advisor: "/advisor",
 } as const;
+
+export function resolveOnboardingDestination({
+  hasProfile,
+  hasPreferences,
+}: {
+  hasProfile: boolean;
+  hasPreferences: boolean;
+}): string {
+  if (!hasProfile) return ROUTES.onboardingProfile;
+  if (!hasPreferences) return ROUTES.onboardingPreferences;
+  return ROUTES.recommendations;
+}
 
 /** Prefixes that require an authenticated user. */
 const PROTECTED_PREFIXES = [

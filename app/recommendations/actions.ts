@@ -37,7 +37,7 @@ export async function generateRecommendationsAction(
       };
     }
 
-    revalidatePath(ROUTES.recommendations);
+    revalidatePath(ROUTES.recommendations, "layout");
 
     return {
       status: "success",

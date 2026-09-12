@@ -53,10 +53,11 @@ export function ProfileForm({ profile }: { profile: Profile | null }) {
     <form action={formAction} className="flex flex-col gap-6" noValidate>
       <FormAlert state={state} />
 
-      {/* Tells the action whether to continue the flow or return to the summary. */}
+      {/* Tells the action whether to continue the flow or return through the hub. */}
       <input type="hidden" name="mode" value={isEdit ? "edit" : "create"} />
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <fieldset className="grid min-w-0 gap-5 sm:grid-cols-2">
+        <legend className="mb-5 text-base font-semibold">Your household</legend>
         <div className="flex flex-col gap-2">
           <Label htmlFor="ageRange">Age range</Label>
           <NativeSelect
@@ -141,7 +142,12 @@ export function ProfileForm({ profile }: { profile: Profile | null }) {
           />
           <FieldError field="children" state={state} />
         </div>
+      </fieldset>
 
+      <fieldset className="grid min-w-0 gap-5 border-t pt-2 sm:grid-cols-2">
+        <legend className="mb-4 pr-3 text-base font-semibold">
+          Budget and environment
+        </legend>
         <div className="flex flex-col gap-2">
           <Label htmlFor="householdIncome">Annual household income (USD)</Label>
           <Input
@@ -249,10 +255,10 @@ export function ProfileForm({ profile }: { profile: Profile | null }) {
           </p>
           <FieldError field="climatePreference" state={state} />
         </div>
-      </div>
+      </fieldset>
 
-      <fieldset className="flex flex-col gap-2">
-        <legend className="text-sm font-medium">
+      <fieldset className="flex min-w-0 flex-col gap-3 border-t pt-2">
+        <legend className="mb-4 pr-3 text-base font-semibold">
           Lifestyle you want nearby{" "}
           <span className="font-normal text-muted-foreground">(optional)</span>
         </legend>
@@ -269,7 +275,7 @@ export function ProfileForm({ profile }: { profile: Profile | null }) {
           {LIFESTYLE_CATEGORIES.map((value) => (
             <label
               key={value}
-              className="flex items-center gap-2 text-sm"
+              className="flex min-h-10 items-center gap-2 rounded-md border px-3 py-2 text-sm has-checked:border-primary has-checked:bg-primary/5"
               htmlFor={`lifestyle-${value}`}
             >
               <input
@@ -289,7 +295,10 @@ export function ProfileForm({ profile }: { profile: Profile | null }) {
         <FieldError field="lifestylePreferences" state={state} />
       </fieldset>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <fieldset className="grid min-w-0 gap-5 border-t pt-2 sm:grid-cols-2">
+        <legend className="mb-4 pr-3 text-base font-semibold">
+          Work and current location
+        </legend>
         <div className="flex flex-col gap-2">
           <Label htmlFor="occupation">Occupation</Label>
           <Input
@@ -370,7 +379,7 @@ export function ProfileForm({ profile }: { profile: Profile | null }) {
           </NativeSelect>
           <FieldError field="currentState" state={state} />
         </div>
-      </div>
+      </fieldset>
 
       <div className="flex flex-col gap-2">
         <Label htmlFor="freeTextGoals">

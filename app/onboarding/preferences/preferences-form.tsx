@@ -9,7 +9,6 @@ import {
   SubmitButton,
 } from "@/components/forms/form-feedback";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import {
   NORMALIZED_MAX,
   NORMALIZED_MIN,
@@ -58,15 +57,16 @@ export function PreferencesForm({
     <form action={formAction} className="flex flex-col gap-6" noValidate>
       <FormAlert state={state} />
 
-      <ul className="flex flex-col gap-6">
-        {PREFERENCE_WEIGHT_KEYS.map((key, index) => {
+      <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+        {PREFERENCE_WEIGHT_KEYS.map((key) => {
           const { label, description } = PREFERENCE_LABELS[key];
           const descriptionId = `${key}-description`;
 
           return (
-            <li key={key} className="flex flex-col gap-2">
-              {index > 0 && <Separator className="mb-4" />}
-
+            <li
+              key={key}
+              className="flex min-w-0 flex-col gap-3 rounded-lg border p-4"
+            >
               <div className="flex items-baseline justify-between gap-4">
                 <Label htmlFor={key}>{label}</Label>
                 <span
@@ -97,7 +97,7 @@ export function PreferencesForm({
                     [key]: Number(event.target.value),
                   }))
                 }
-                className="h-2 w-full cursor-pointer appearance-none rounded-full bg-muted accent-primary outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                className="mt-auto h-6 w-full cursor-pointer accent-primary focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
               />
 
               <FieldError field={key} state={state} />

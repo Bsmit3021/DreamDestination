@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { PageHeader } from "@/components/layout/page-header";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -55,35 +57,70 @@ export default async function DestinationPage({
         Back to your matches
       </Link>
 
-      <header className="flex flex-col gap-2">
-        <h1 className="font-heading text-2xl font-semibold tracking-tight">
-          {city.city}, {city.state}
-        </h1>
-        <p className="text-sm text-muted-foreground">
-          {city.metro ?? city.city}
-        </p>
-        <p className="text-sm">
-          <span className="font-heading text-lg font-semibold tabular-nums">
-            {Math.round(fit.score)}
-          </span>
-          <span className="text-muted-foreground">
-            {" "}
-            / 100 DreamDestination Fit
-          </span>
-          <span className="text-muted-foreground"> · rank {fit.rank}</span>
-        </p>
-      </header>
+      <PageHeader
+        eyebrow="Destination overview"
+        title={`${city.city}, ${city.state}`}
+        description={city.metro ?? city.city}
+        actions={
+          <Button variant="outline" asChild>
+            <Link href={ROUTES.compare}>Compare matches</Link>
+          </Button>
+        }
+      />
+      <dl className="grid gap-4 sm:grid-cols-3">
+        <div className="rounded-xl border bg-primary/5 p-5">
+          <dt className="text-sm text-muted-foreground">
+            DreamDestination Fit
+          </dt>
+          <dd className="mt-2 text-3xl font-semibold text-primary tabular-nums">
+            {Math.round(fit.score)}{" "}
+            <span className="text-sm font-normal text-muted-foreground">
+              / 100
+            </span>
+          </dd>
+        </div>
+        <div className="rounded-xl border bg-card p-5">
+          <dt className="text-sm text-muted-foreground">Your match ranking</dt>
+          <dd className="mt-2 text-3xl font-semibold tabular-nums">
+            #{fit.rank}
+          </dd>
+        </div>
+        <div className="rounded-xl border bg-card p-5">
+          <dt className="text-sm text-muted-foreground">
+            Weighted priorities measured
+          </dt>
+          <dd className="mt-2 text-3xl font-semibold tabular-nums">
+            {Math.round(fit.dataCoverage * 100)}%
+          </dd>
+        </div>
+      </dl>
+      <nav
+        aria-label="Destination sections"
+        className="flex flex-wrap gap-5 border-b pb-3 text-sm font-medium"
+      >
+        <a href="#fit" className="underline-offset-4 hover:underline">
+          Why it matched
+        </a>
+        <a href="#career" className="underline-offset-4 hover:underline">
+          Career
+        </a>
+        <a href="#housing" className="underline-offset-4 hover:underline">
+          Housing
+        </a>
+      </nav>
 
       {/* ---- Phase 3 match, passed through unchanged ---- */}
-      <Card>
+      <Card id="fit" className="scroll-mt-6">
         <CardHeader>
-          <CardTitle className="text-lg">Why it matched</CardTitle>
+          <CardTitle as="h2" className="text-lg">
+            Why it matched
+          </CardTitle>
           <CardDescription>
             From your saved priorities. {Math.round(fit.dataCoverage * 100)}% of
             what you weighted could be measured here.
           </CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-col gap-4">
+        <CardContent className="grid gap-6 md:grid-cols-2">
           {fit.reasons.length > 0 && (
             <section className="flex flex-col gap-2">
               <h3 className="flex items-center gap-1.5 text-sm font-medium">
@@ -131,12 +168,31 @@ export default async function DestinationPage({
         </CardContent>
       </Card>
 
-      <CareerSection career={career} careerTarget={opportunity.careerTarget} />
-      <HousingSection housing={housing} />
+      <div className="grid items-start gap-6 xl:grid-cols-2">
+        <section
+          id="career"
+          aria-label="Career intelligence"
+          className="min-w-0 scroll-mt-6"
+        >
+          <CareerSection
+            career={career}
+            careerTarget={opportunity.careerTarget}
+          />
+        </section>
+        <section
+          id="housing"
+          aria-label="Housing intelligence"
+          className="min-w-0 scroll-mt-6"
+        >
+          <HousingSection housing={housing} />
+        </section>
+      </div>
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Current opportunities</CardTitle>
+          <CardTitle as="h2" className="text-lg">
+            Current opportunities
+          </CardTitle>
           <CardDescription>
             No live job or property listing provider is configured, so none are
             shown. The figures above describe the market, not vacancies or
@@ -167,7 +223,9 @@ function CareerSection({
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Career</CardTitle>
+          <CardTitle as="h2" className="text-lg">
+            Career
+          </CardTitle>
           <CardDescription>
             Confirm which standard occupation matches your job title to see
             local employment and wage estimates.
@@ -191,7 +249,9 @@ function CareerSection({
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Career</CardTitle>
+          <CardTitle as="h2" className="text-lg">
+            Career
+          </CardTitle>
           <CardDescription>
             {careerTarget.title} · SOC {careerTarget.socCode}
           </CardDescription>
@@ -219,7 +279,9 @@ function CareerSection({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Career</CardTitle>
+        <CardTitle as="h2" className="text-lg">
+          Career
+        </CardTitle>
         <CardDescription>
           {career.occupation.title} · SOC {career.occupation.socCode}
         </CardDescription>
@@ -313,7 +375,9 @@ function HousingSection({ housing }: { housing: HousingIntelligence | null }) {
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Housing</CardTitle>
+          <CardTitle as="h2" className="text-lg">
+            Housing
+          </CardTitle>
           <CardDescription>
             No housing benchmarks are loaded for this metro.
           </CardDescription>
@@ -327,7 +391,9 @@ function HousingSection({ housing }: { housing: HousingIntelligence | null }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Housing</CardTitle>
+        <CardTitle as="h2" className="text-lg">
+          Housing
+        </CardTitle>
         <CardDescription>
           Median gross rent includes utilities. Bedroom figures are shown
           separately — your household size is not used to assume how many

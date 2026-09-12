@@ -28,9 +28,11 @@ export default async function OnboardingPreferencesPage() {
   const preferences = await getCurrentUserPreferences();
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg">What matters most to you?</CardTitle>
+    <Card className="[--card-spacing:--spacing(6)]">
+      <CardHeader className="border-b">
+        <CardTitle as="h1" className="text-2xl">
+          What matters most to you?
+        </CardTitle>
         <CardDescription>
           Move each slider to say how much weight a factor should carry. There
           are no wrong answers — this is about your priorities, not a ranking of

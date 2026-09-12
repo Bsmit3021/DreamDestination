@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { DestinationComparison } from "@/app/recommendations/comparison";
 import { GenerateButton } from "@/app/recommendations/generate-button";
+import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getOnboardingStatus } from "@/lib/data/preferences";
-import { getDestinationComparisonForCurrentUser } from "@/lib/opportunity/service";
 import {
   getStoredRecommendations,
   snapshotDimensions,
@@ -39,34 +38,34 @@ export default async function RecommendationsPage() {
   }
 
   const recommendations = await getStoredRecommendations();
-  const comparison = await getDestinationComparisonForCurrentUser();
 
   return (
-    <div className="flex flex-col gap-6">
-      <header className="flex flex-col gap-2">
-        <h1 className="font-heading text-2xl font-semibold tracking-tight">
-          Your best matches
-        </h1>
+    <div className="flex flex-col gap-8">
+      <PageHeader
+        eyebrow="Your research"
+        title="Your best matches"
+        description="Ranked by how closely each metro’s measured data lines up with your priorities. A fit score compares candidate metros — it does not predict how happy you would be."
+        actions={<GenerateButton hasExisting={recommendations.length > 0} />}
+      />
+
+      <div className="flex flex-wrap items-center justify-between gap-3 border-y py-3">
         <p className="text-sm text-muted-foreground">
-          Ranked by how closely each metro&apos;s measured data lines up with
-          the priorities you set. A fit score is a comparison against the other
-          candidate metros — not a prediction about how happy you would be.
+          {recommendations.length} ranked destinations
         </p>
-      </header>
-
-      <GenerateButton hasExisting={recommendations.length > 0} />
-
-      {recommendations.length > 0 && (
-        <div className="flex flex-col items-start gap-2">
-          <Button variant="outline" asChild>
-            <Link href={ROUTES.advisor}>Ask DreamDestination</Link>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="outline" size="sm" asChild>
+            <Link href={ROUTES.compare}>Compare matches</Link>
           </Button>
-          <p className="text-xs text-muted-foreground">
-            Have the advisor explain these results in plain language. It
-            interprets your matches — it never changes them.
-          </p>
+          <Button variant="ghost" size="sm" asChild>
+            <Link href={ROUTES.onboardingPreferences}>Edit priorities</Link>
+          </Button>
+          {recommendations.length > 0 && (
+            <Button variant="ghost" size="sm" asChild>
+              <Link href={ROUTES.advisor}>Ask the advisor</Link>
+            </Button>
+          )}
         </div>
-      )}
+      </div>
 
       {recommendations.length === 0 ? (
         <Card>
@@ -86,20 +85,13 @@ export default async function RecommendationsPage() {
           </CardHeader>
         </Card>
       ) : (
-        <ul className="flex flex-col gap-4">
+        <ul className="grid items-start gap-5 xl:grid-cols-2">
           {recommendations.map((recommendation) => (
-            <li key={recommendation.id}>
+            <li key={recommendation.id} className="min-w-0">
               <RecommendationCard recommendation={recommendation} />
             </li>
           ))}
         </ul>
-      )}
-
-      {recommendations.length > 0 && (
-        <DestinationComparison
-          rows={comparison.rows}
-          occupation={comparison.occupation}
-        />
       )}
 
       {recommendations.length > 0 && (
@@ -115,9 +107,8 @@ export default async function RecommendationsPage() {
             .
           </p>
           <p>
-            Safety, social life and family friendliness are collected as
-            priorities but are not scored yet — no authoritative dataset is
-            wired up for them, so they are excluded rather than guessed at.
+            Coverage varies by metro and priority. Review each breakdown for
+            measured dimensions and sources; missing data is not a zero score.
           </p>
         </footer>
       )}
@@ -134,13 +125,21 @@ function RecommendationCard({
   const dimensions = snapshotDimensions(reason);
 
   return (
-    <Card>
-      <CardHeader>
-        <div className="flex items-baseline justify-between gap-4">
-          <CardTitle className="text-lg">
-            {recommendation.rank}. {city.city}, {city.state}
+    <Card className="min-w-0 overflow-hidden">
+      <CardHeader className="border-b bg-muted/30">
+        <div className="flex items-start justify-between gap-3">
+          <CardTitle as="h2" className="min-w-0 text-xl">
+            <span className="mb-2 block text-xs font-medium text-muted-foreground">
+              MATCH {String(recommendation.rank).padStart(2, "0")}
+            </span>
+            <Link
+              href={`/recommendations/${city.id}`}
+              className="underline-offset-4 hover:underline"
+            >
+              {city.city}, {city.state}
+            </Link>
           </CardTitle>
-          <span className="font-heading text-lg font-semibold tabular-nums">
+          <span className="shrink-0 rounded-lg bg-primary/10 px-3 py-2 font-heading text-xl font-semibold text-primary tabular-nums">
             {Math.round(recommendation.score)}
             <span className="text-sm font-normal text-muted-foreground">
               {" "}
@@ -216,53 +215,63 @@ function RecommendationCard({
             View breakdown
           </summary>
 
-          <table className="mt-3 w-full text-sm">
-            <caption className="sr-only">
-              Per-dimension scores for {city.city}
-            </caption>
-            <thead>
-              <tr className="text-left text-xs text-muted-foreground">
-                <th scope="col" className="pb-2 font-medium">
-                  Dimension
-                </th>
-                <th scope="col" className="pb-2 text-right font-medium">
-                  Measured
-                </th>
-                <th scope="col" className="pb-2 text-right font-medium">
-                  Score
-                </th>
-                <th scope="col" className="pb-2 text-right font-medium">
-                  Weight
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {dimensions.map((key) => {
-                const snapshot = reason.dimensions[key]!;
-                const definition = DIMENSIONS[key];
+          <div
+            className="mt-3 overflow-x-auto rounded-md focus-visible:outline-2 focus-visible:outline-ring"
+            role="region"
+            aria-label={`Score breakdown for ${city.city}`}
+            tabIndex={0}
+          >
+            <table className="w-full min-w-80 text-sm">
+              <caption className="sr-only">
+                Per-dimension scores for {city.city}
+              </caption>
+              <thead>
+                <tr className="text-left text-xs text-muted-foreground">
+                  <th scope="col" className="pb-2 font-medium">
+                    Dimension
+                  </th>
+                  <th scope="col" className="pb-2 text-right font-medium">
+                    Measured
+                  </th>
+                  <th scope="col" className="pb-2 text-right font-medium">
+                    Score
+                  </th>
+                  <th scope="col" className="pb-2 text-right font-medium">
+                    Weight
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {dimensions.map((key) => {
+                  const snapshot = reason.dimensions[key]!;
+                  const definition = DIMENSIONS[key];
 
-                return (
-                  <tr key={key} className="border-t border-border/60">
-                    <th scope="row" className="py-2 pr-2 text-left font-normal">
-                      {definition.label}
-                      <span className="block text-xs text-muted-foreground">
-                        {definition.metric?.label}
-                      </span>
-                    </th>
-                    <td className="py-2 text-right tabular-nums">
-                      {formatRawValue(snapshot.rawValue, snapshot.unit)}
-                    </td>
-                    <td className="py-2 text-right tabular-nums">
-                      {Math.round(snapshot.normalizedScore)}
-                    </td>
-                    <td className="py-2 text-right text-muted-foreground tabular-nums">
-                      {Math.round(snapshot.effectiveWeight * 100)}%
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                  return (
+                    <tr key={key} className="border-t border-border/60">
+                      <th
+                        scope="row"
+                        className="py-2 pr-2 text-left font-normal"
+                      >
+                        {definition.label}
+                        <span className="block text-xs text-muted-foreground">
+                          {definition.metric?.label}
+                        </span>
+                      </th>
+                      <td className="py-2 text-right tabular-nums">
+                        {formatRawValue(snapshot.rawValue, snapshot.unit)}
+                      </td>
+                      <td className="py-2 text-right tabular-nums">
+                        {Math.round(snapshot.normalizedScore)}
+                      </td>
+                      <td className="py-2 text-right text-muted-foreground tabular-nums">
+                        {Math.round(snapshot.effectiveWeight * 100)}%
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
 
           <p className="mt-3 text-xs text-muted-foreground">
             Sources:{" "}
