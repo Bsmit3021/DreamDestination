@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 import { type FormState, collectValues, validationFailed } from "@/lib/forms";
 import { ROUTES, safeRedirectPath } from "@/lib/routes";
+import { absoluteUrl } from "@/lib/site-url";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { signInSchema, signUpSchema } from "@/lib/validation/auth";
 
@@ -38,6 +39,13 @@ export async function signUpAction(
   const { data, error } = await supabase.auth.signUp({
     email: parsed.data.email,
     password: parsed.data.password,
+    options: {
+      // Hosted Supabase enables email confirmation by default, unlike the
+      // local config. Stating the destination explicitly means the link works
+      // the same way on production and on a preview deployment, instead of
+      // depending on whichever Site URL the project happens to carry.
+      emailRedirectTo: absoluteUrl(ROUTES.onboarding),
+    },
   });
 
   if (error) {
@@ -45,18 +53,26 @@ export async function signUpAction(
   }
 
   // With email confirmation enabled there is no session yet, and the user must
-  // confirm before signing in. Locally confirmation is off and a session comes
-  // back immediately. Handle both rather than assuming one.
-  if (!data.session) {
-    return {
-      status: "success",
-      message:
-        "Account created. Check your email for a confirmation link, then sign in.",
-    };
+  // confirm before signing in. Otherwise, end the automatic session so the user
+  // can sign in manually. Handle both rather than assuming one.
+  if (data.session) {
+    const { error: signOutError } = await supabase.auth.signOut({
+      scope: "local",
+    });
+    if (signOutError) {
+      return {
+        status: "error",
+        message:
+          "Your account was created, but we could not end the automatic session. Reload the page to continue.",
+        values: echoed,
+      };
+    }
   }
 
   revalidatePath("/", "layout");
-  redirect(ROUTES.onboarding);
+  redirect(
+    `${ROUTES.signIn}?signup=${data.session ? "success" : "confirmation-required"}`,
+  );
 }
 
 export async function signInAction(
