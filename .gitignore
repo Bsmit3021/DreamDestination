@@ -45,5 +45,8 @@ next-env.d.ts
 /data/raw/
 
 # Derived from the manually-downloaded BLS archive (also ignored); 12 MB.
+# The uncompressed 12 MB build artefact. The gzipped copy beside it (1.4 MB) IS
+# committed, because production bootstrap must work from a fresh clone and BLS
+# blocks automated download of the archive it is derived from.
 # Reproduce with: npm run data:career:extract && npm run data:career:transform
 /data/processed/career-stats.json

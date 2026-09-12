@@ -51,6 +51,9 @@ export const FBI_CDE_DOWNLOADS_URL =
  * there before their data exists, and a pipeline must never silently follow
  * one. Pinned so a re-run reproduces the same dataset.
  */
+/** OEWS reporting period, shared by the transform and the seed. */
+export const OEWS_PERIOD = "May 2025";
+
 export const OVERTURE_RELEASE = "2026-08-19.0";
 export const OVERTURE_S3_BASE = "s3://overturemaps-us-west-2/release";
 

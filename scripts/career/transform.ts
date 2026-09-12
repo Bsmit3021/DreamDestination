@@ -18,6 +18,7 @@
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
+import { OEWS_PERIOD } from "../city-data/config";
 import { PROCESSED_DIR, RAW_DIR, log } from "../city-data/shared";
 
 const SOURCE_TSV = path.join(RAW_DIR, "oews-msa.tsv");
@@ -26,7 +27,9 @@ const REPORT_FILE = path.join(PROCESSED_DIR, "career-coverage.json");
 
 /** May 2025 OEWS top code, used only to explain `#` in the UI. */
 export const OEWS_TOP_CODE_ANNUAL = 239_200;
-export const OEWS_PERIOD = "May 2025";
+// Re-exported from config so the seed can read the period without importing
+// this module, whose body runs the whole transform on load.
+export { OEWS_PERIOD };
 
 export interface ProcessedCareerStat {
   cbsaGeoid: string;
