@@ -27,6 +27,13 @@ vi.mock("@/lib/opportunity/service", () => ({
   getDestinationComparisonForCurrentUser: vi.fn(),
 }));
 
+function compareProps(view?: string): Parameters<typeof ComparePage>[0] {
+  return {
+    params: Promise.resolve({}),
+    searchParams: Promise.resolve(view === undefined ? {} : { view }),
+  };
+}
+
 beforeEach(() => {
   vi.clearAllMocks();
   vi.mocked(getCurrentUser).mockResolvedValue(null);
@@ -37,6 +44,7 @@ beforeEach(() => {
   vi.mocked(getDestinationComparisonForCurrentUser).mockResolvedValue({
     rows: [],
     occupation: null,
+    hasRecommendations: false,
   });
 });
 
@@ -76,20 +84,57 @@ describe("workspace server routing", () => {
         hasProfile,
         hasPreferences,
       });
-      await expect(ComparePage()).rejects.toThrow(`REDIRECT:${path}`);
+      await expect(ComparePage(compareProps())).rejects.toThrow(
+        `REDIRECT:${path}`,
+      );
       expect(getDestinationComparisonForCurrentUser).not.toHaveBeenCalled();
     },
   );
 
   it("comparison offers a route to generate matches when there are no results", async () => {
-    const html = renderToStaticMarkup(await ComparePage());
-    expect(html).toContain("Your comparison starts with your matches");
+    const html = renderToStaticMarkup(await ComparePage(compareProps()));
+    expect(html).toContain("Find your matches before comparing places");
     expect(html).toContain(`href="${ROUTES.recommendations}"`);
     expect(html).not.toContain("<table");
   });
 
+  it("comparison of alternatives asks for matches first when nothing is saved", async () => {
+    const html = renderToStaticMarkup(
+      await ComparePage(compareProps("alternatives")),
+    );
+    expect(html).toContain("Find your matches before comparing places");
+    expect(html).not.toContain("No other places to compare");
+    expect(html).not.toContain("could not find additional cities");
+  });
+
+  it("comparison uses the best matches by default", async () => {
+    await ComparePage(compareProps());
+    expect(getDestinationComparisonForCurrentUser).toHaveBeenCalledWith("best");
+  });
+
+  it("comparison follows the alternatives view and links back to it", async () => {
+    // Recommendations exist, but no rank 6-10 city qualified.
+    vi.mocked(getDestinationComparisonForCurrentUser).mockResolvedValue({
+      rows: [],
+      occupation: null,
+      hasRecommendations: true,
+    });
+    const html = renderToStaticMarkup(
+      await ComparePage(compareProps("alternatives")),
+    );
+    expect(getDestinationComparisonForCurrentUser).toHaveBeenCalledWith(
+      "alternatives",
+    );
+    expect(html).toContain("Compare other places worth exploring");
+    expect(html).toContain("No other places to compare");
+    expect(html).toContain("could not find additional cities");
+    expect(html).toContain('href="/recommendations?view=alternatives"');
+    expect(html).not.toContain("Find your matches before comparing places");
+  });
+
   it("comparison preserves supplied rank order and missing-data disclosures", async () => {
     vi.mocked(getDestinationComparisonForCurrentUser).mockResolvedValue({
+      hasRecommendations: true,
       occupation: null,
       rows: [
         {
@@ -118,7 +163,7 @@ describe("workspace server routing", () => {
         },
       ],
     });
-    const html = renderToStaticMarkup(await ComparePage());
+    const html = renderToStaticMarkup(await ComparePage(compareProps()));
     expect(html.indexOf("First City")).toBeLessThan(
       html.indexOf("Second City"),
     );

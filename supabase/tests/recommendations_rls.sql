@@ -223,8 +223,9 @@ begin
   end if;
 end $$;
 
--- The application stores twelve matches by default. Nothing in the schema or
--- the function may cap a set below that, and every rank must land once.
+-- A recalculation stores a ten-city snapshot: the best matches (ranks 1-5)
+-- and the alternatives (ranks 6-10). Nothing in the schema or the function
+-- may cap a set below that, and every rank must land once.
 do $$
 declare n int; v_ranks int[]; v_cities int;
 begin
@@ -243,18 +244,63 @@ begin
           from public.cities
          where slug like 'p3-%'
       ) as ranked
+     where ranked.position <= 10
   ));
 
   select array_agg("rank" order by "rank"), count(distinct city_id)
     into v_ranks, v_cities
     from public.recommendations;
 
-  if n = 12
-     and v_cities = 12
-     and v_ranks = array(select generate_series(1, 12)) then
-    raise notice 'PASS  RPC stores a twelve-row ranking with ranks 1-12';
+  if n = 10
+     and v_cities = 10
+     and v_ranks = array(select generate_series(1, 10)) then
+    raise notice 'PASS  RPC stores a ten-row snapshot with ranks 1-10';
   else
     raise exception 'FAIL: inserted=% ranks=% cities=%', n, v_ranks, v_cities;
+  end if;
+end $$;
+
+-- Replacement is atomic: a new snapshot that fails part-way (a duplicate rank
+-- on its last row) must leave the previous ten rows exactly as they were.
+do $$
+declare v_before jsonb; v_after jsonb;
+begin
+  select jsonb_agg(jsonb_build_array("rank", city_id, dream_score) order by "rank")
+    into v_before
+    from public.recommendations;
+
+  begin
+    perform public.replace_my_recommendations('v2.2', (
+      select jsonb_agg(
+               jsonb_build_object(
+                 'city_id', ranked.id,
+                 'dream_score', 0.5,
+                 'rank', least(ranked.position, 9),
+                 'reason_json', '{}'::jsonb
+               )
+               order by ranked.position
+             )
+        from (
+          select id, row_number() over (order by id desc) as position
+            from public.cities
+           where slug like 'p3-%'
+        ) as ranked
+       where ranked.position <= 10
+    ));
+    raise exception 'FAIL: RPC accepted a snapshot with a duplicate rank';
+  exception
+    when unique_violation then null;
+  end;
+
+  select jsonb_agg(jsonb_build_array("rank", city_id, dream_score) order by "rank")
+    into v_after
+    from public.recommendations;
+
+  if v_after = v_before and jsonb_array_length(v_after) = 10 then
+    raise notice 'PASS  failed replacement leaves the previous snapshot intact';
+  else
+    raise exception 'FAIL: snapshot changed after a failed replacement: % -> %',
+      v_before, v_after;
   end if;
 end $$;
 

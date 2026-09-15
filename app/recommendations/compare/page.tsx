@@ -13,30 +13,55 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getOnboardingStatus } from "@/lib/data/preferences";
+import {
+  NO_ALTERNATIVES_MESSAGE,
+  parseRecommendationView,
+} from "@/lib/matching/snapshot";
 import { getDestinationComparisonForCurrentUser } from "@/lib/opportunity/service";
-import { ROUTES, resolveOnboardingDestination } from "@/lib/routes";
+import {
+  ROUTES,
+  recommendationsViewPath,
+  resolveOnboardingDestination,
+} from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "Compare matches · DreamDestination",
 };
 
-export default async function ComparePage() {
+export default async function ComparePage({
+  searchParams,
+}: PageProps<"/recommendations/compare">) {
   const status = await getOnboardingStatus();
   if (!status.hasProfile || !status.hasPreferences) {
     redirect(resolveOnboardingDestination(status));
   }
 
-  const comparison = await getDestinationComparisonForCurrentUser();
+  // Compares the best matches by default. The alternatives view compares only
+  // the other places the matches page is showing, from the same snapshot.
+  const view = parseRecommendationView((await searchParams).view);
+  const comparison = await getDestinationComparisonForCurrentUser(view);
+  const matchesPath = recommendationsViewPath(view);
+  const isAlternatives = view === "alternatives";
 
   return (
     <div className="flex min-w-0 flex-col gap-8">
       <PageHeader
         eyebrow="Side by side"
-        title="Compare your matches"
-        description="See fit, career wages, and housing benchmarks together. Your destinations stay in their original fit ranking, so you can weigh the tradeoffs without losing sight of your priorities."
+        title={
+          isAlternatives
+            ? "Compare other places worth exploring"
+            : "Compare your matches"
+        }
+        description={
+          isAlternatives
+            ? "Cities ranked immediately below your best matches that meet the minimum DreamScore, in their overall fit ranking."
+            : "See fit, career wages, and housing benchmarks together. Your destinations stay in their original fit ranking, so you can weigh the tradeoffs without losing sight of your priorities."
+        }
         actions={
           <Button variant="outline" asChild>
-            <Link href={ROUTES.recommendations}>Back to matches</Link>
+            <Link href={matchesPath}>
+              {isAlternatives ? "Back to other places" : "Back to matches"}
+            </Link>
           </Button>
         }
       />
@@ -59,11 +84,25 @@ export default async function ComparePage() {
             </Button>
           </div>
         </>
+      ) : isAlternatives && comparison.hasRecommendations ? (
+        <Card className="max-w-2xl">
+          <CardHeader>
+            <CardTitle as="h2">No other places to compare</CardTitle>
+            <CardDescription>{NO_ALTERNATIVES_MESSAGE}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button asChild>
+              <Link href={matchesPath}>Back to other places</Link>
+            </Button>
+          </CardContent>
+        </Card>
       ) : (
         <Card className="max-w-2xl">
           <CardHeader>
+            {/* Nothing saved yet, in either view: "no alternatives" would
+                wrongly imply a ranking had been calculated. */}
             <CardTitle as="h2">
-              Your comparison starts with your matches
+              Find your matches before comparing places
             </CardTitle>
             <CardDescription>
               Generate your recommendations first, then return here to compare

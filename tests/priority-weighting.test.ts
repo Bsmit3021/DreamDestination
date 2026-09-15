@@ -34,9 +34,9 @@ vi.mock("@/lib/data/recommendations", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/data/recommendations")>()),
   getStoredRecommendations: vi.fn(),
 }));
-// Both pull in server actions and the scoring service; neither is under test.
-vi.mock("@/app/recommendations/generate-button", () => ({
-  GenerateButton: () => null,
+// Both pull in the scoring service or data writes; neither is under test.
+vi.mock("@/app/recommendations/actions", () => ({
+  recalculateRecommendationsAction: vi.fn(),
 }));
 vi.mock("@/app/onboarding/actions", () => ({
   savePreferencesAction: vi.fn(),
@@ -48,6 +48,10 @@ function uniformAt(value: number): PreferenceWeights {
   return Object.fromEntries(
     PREFERENCE_WEIGHT_KEYS.map((key) => [key, value]),
   ) as PreferenceWeights;
+}
+
+function pageProps(): Parameters<typeof RecommendationsPage>[0] {
+  return { params: Promise.resolve({}), searchParams: Promise.resolve({}) };
 }
 
 function stored(rank: number): StoredRecommendation {
@@ -93,7 +97,7 @@ beforeEach(() => {
     hasPreferences: true,
   });
   vi.mocked(getStoredRecommendations).mockResolvedValue(
-    Array.from({ length: 12 }, (_, index) => stored(index + 1)),
+    Array.from({ length: 10 }, (_, index) => stored(index + 1)),
   );
 });
 
@@ -136,18 +140,20 @@ describe("EqualWeightingNotice", () => {
 });
 
 describe("matches page", () => {
-  it("shows the notice alongside twelve matches when weights are uniform", async () => {
+  it("shows the notice alongside the best matches when weights are uniform", async () => {
     vi.mocked(getCurrentUserPreferences).mockResolvedValue(
       savedPreferences(uniformAt(0.5)),
     );
 
-    const html = renderToStaticMarkup(await RecommendationsPage());
+    const html = renderToStaticMarkup(await RecommendationsPage(pageProps()));
 
     expect(html).toContain(NOTICE_TITLE);
-    expect(html).toContain("12 ranked destinations");
+    expect(html).toContain("5 best matches");
     expect(html).toContain("MATCH 01");
-    expect(html).toContain("MATCH 12");
-    expect(html.match(/href="\/recommendations\/city-\d+"/g)).toHaveLength(24);
+    expect(html).toContain("MATCH 05");
+    expect(html).not.toContain("MATCH 06");
+    // Two links per card: the title and "Explore destination".
+    expect(html.match(/href="\/recommendations\/city-\d+"/g)).toHaveLength(10);
   });
 
   it("omits the notice when priorities are varied", async () => {
@@ -155,10 +161,10 @@ describe("matches page", () => {
       savedPreferences({ ...uniformAt(0.5), housing: 1, climate: 0.1 }),
     );
 
-    const html = renderToStaticMarkup(await RecommendationsPage());
+    const html = renderToStaticMarkup(await RecommendationsPage(pageProps()));
 
     expect(html).not.toContain(NOTICE_TITLE);
-    expect(html).toContain("MATCH 12");
+    expect(html).toContain("MATCH 05");
   });
 
   it("still redirects before loading anything when onboarding is incomplete", async () => {
@@ -167,7 +173,7 @@ describe("matches page", () => {
       hasPreferences: false,
     });
 
-    await expect(RecommendationsPage()).rejects.toThrow(
+    await expect(RecommendationsPage(pageProps())).rejects.toThrow(
       `REDIRECT:${ROUTES.onboarding}`,
     );
     expect(getStoredRecommendations).not.toHaveBeenCalled();

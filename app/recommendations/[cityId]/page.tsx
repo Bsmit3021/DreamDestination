@@ -22,7 +22,8 @@ import type {
   CareerIntelligence,
   HousingIntelligence,
 } from "@/lib/opportunity/types";
-import { ROUTES } from "@/lib/routes";
+import { PRIMARY_MATCH_COUNT } from "@/lib/matching/snapshot";
+import { ROUTES, recommendationsViewPath } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "Destination · DreamDestination",
@@ -47,14 +48,20 @@ export default async function DestinationPage({
 
   const { city, fit, career, housing } = opportunity;
 
+  // A city ranked below the best matches was reached from the alternatives
+  // view, so the way back and the comparison return there.
+  const matchesView = fit.rank > PRIMARY_MATCH_COUNT ? "alternatives" : "best";
+
   return (
     <div className="flex flex-col gap-6">
       <Link
-        href={ROUTES.recommendations}
+        href={recommendationsViewPath(matchesView)}
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground underline-offset-4 hover:underline"
       >
         <ArrowLeft aria-hidden="true" className="size-4" />
-        Back to your matches
+        {matchesView === "alternatives"
+          ? "Back to other places"
+          : "Back to your matches"}
       </Link>
 
       <PageHeader
@@ -63,7 +70,9 @@ export default async function DestinationPage({
         description={city.metro ?? city.city}
         actions={
           <Button variant="outline" asChild>
-            <Link href={ROUTES.compare}>Compare matches</Link>
+            <Link href={recommendationsViewPath(matchesView, ROUTES.compare)}>
+              Compare matches
+            </Link>
           </Button>
         }
       />

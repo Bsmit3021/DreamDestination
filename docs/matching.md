@@ -167,6 +167,38 @@ Generated from the scoring output only.
 Every line quotes the measurement behind it. A reason can only name a dimension
 that was actually measured for that metro.
 
+### 8. Recalculating and exploring
+
+Two separate actions on the matches page, with different meanings.
+
+- **Recalculate best matches** recomputes the user's true ranking. It loads
+  their latest saved profile and priorities, runs the whole pipeline above once,
+  and atomically replaces the stored snapshot through
+  `replace_my_recommendations`. The snapshot holds the top
+  `RECOMMENDATION_SNAPSHOT_SIZE` (10) cities with their overall ranks; ranks 1–5
+  are shown as the user's best matches.
+- **Explore different places** shows the next qualifying cities. It is plain
+  navigation (`/recommendations?view=alternatives`): nothing is rescored,
+  deleted or replaced. It shows ranks 6–10 from the **same stored snapshot**,
+  keeps each city's overall rank ("Overall rank #6"), and never repeats a best
+  match. An alternative must score at least `MIN_ALTERNATIVE_DREAM_SCORE` (50);
+  best matches are shown whatever they score. When fewer than five qualify, the
+  page says which limit applied: cities below the minimum, or fewer cities
+  ranked at all because of the budget filter and the coverage gate.
+
+Both views, the comparison and the advisor read that one snapshot, split by rank
+in `lib/matching/snapshot.ts`, so they cannot disagree. Scoring twice could
+produce two snapshots that did. The comparison and the advisor use the best
+matches unless the user is viewing alternatives; the advisor never discusses
+alternatives.
+
+Recalculation is **deterministic, not random**. The same profile, priorities and
+data always produce the same ranking, so recalculating without changing anything
+returns the same cities — that is the correct result. Changing priorities
+changes each city's weights and can reorder the list, but it does not guarantee
+a different top five: a city that is strong on most of what the user weighted
+can stay on top under several different weightings.
+
 ## Worked example
 
 Affordability-first user (housing 1.0, cost 0.9, career 0.2) → **Wichita, KS**:

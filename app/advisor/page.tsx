@@ -22,22 +22,15 @@ import {
   getMessages,
 } from "@/lib/data/advisor";
 import { getStoredRecommendations } from "@/lib/data/recommendations";
+import {
+  PRIMARY_MATCH_COUNT,
+  partitionSnapshot,
+} from "@/lib/matching/snapshot";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "Advisor · DreamDestination",
 };
-
-/**
- * How many matches the "Match context" sidebar lists.
- *
- * Deliberately fewer than are stored. On wide screens the sidebar is sticky
- * beside the conversation, and a sticky panel taller than the viewport hides
- * its own lower rows and the compare link. The full ranked set is one click
- * away on the comparison page, and the advisor's answers are still grounded in
- * every stored match — this caps the display, not the context.
- */
-const MATCH_CONTEXT_LIMIT = 5;
 
 /**
  * The advisor.
@@ -81,9 +74,13 @@ export default async function AdvisorPage() {
     (await getLatestConversation()) ?? (await createConversation());
   const messages = await getMessages(conversation.id);
 
-  const recommendations = await getStoredRecommendations();
+  // The advisor discusses the best matches only — the same ranks 1-5 its
+  // answers are grounded in. Alternatives stay on the matches page.
+  const { primary: primaryMatches } = partitionSnapshot(
+    await getStoredRecommendations(),
+  );
   const suggestions = buildSuggestedQuestions(
-    recommendations.map((r) => ({
+    primaryMatches.map((r) => ({
       name: `${r.city.city}, ${r.city.state}`,
       rank: r.rank,
     })),
@@ -189,35 +186,34 @@ export default async function AdvisorPage() {
         <aside className="min-w-0 rounded-xl border bg-card p-5 xl:sticky xl:top-6">
           <h2 className="font-semibold">Match context</h2>
           <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-            Your leading destinations, in saved fit order.
+            Your best matches, in saved fit order.
           </p>
           <ol className="my-5 divide-y">
-            {recommendations
-              .slice(0, MATCH_CONTEXT_LIMIT)
-              .map((recommendation) => (
-                <li key={recommendation.id} className="py-3 first:pt-0">
-                  <Link
-                    href={`/recommendations/${recommendation.city.id}`}
-                    className="flex items-start justify-between gap-3 text-sm underline-offset-4 hover:underline"
-                  >
-                    <span>
-                      {recommendation.rank}. {recommendation.city.city},{" "}
-                      {recommendation.city.state}
-                    </span>
-                    <span className="shrink-0 font-semibold text-primary tabular-nums">
-                      {Math.round(recommendation.score)}
-                      <span className="sr-only"> out of 100 fit score</span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
+            {primaryMatches.map((recommendation) => (
+              <li key={recommendation.id} className="py-3 first:pt-0">
+                <Link
+                  href={`/recommendations/${recommendation.city.id}`}
+                  className="flex items-start justify-between gap-3 text-sm underline-offset-4 hover:underline"
+                >
+                  <span>
+                    {recommendation.rank}. {recommendation.city.city},{" "}
+                    {recommendation.city.state}
+                  </span>
+                  <span className="shrink-0 font-semibold text-primary tabular-nums">
+                    {Math.round(recommendation.score)}
+                    <span className="sr-only"> out of 100 fit score</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
           </ol>
           <Button variant="outline" size="sm" className="w-full" asChild>
             <Link href={ROUTES.compare}>Compare all matches</Link>
           </Button>
           <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-            The advisor interprets your saved results. To change the ranking,
-            update your priorities and regenerate your matches.
+            The advisor discusses your {PRIMARY_MATCH_COUNT} best matches. To
+            change the ranking, update your priorities and recalculate your best
+            matches.
           </p>
         </aside>
       </div>

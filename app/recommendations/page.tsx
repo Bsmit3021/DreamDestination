@@ -1,11 +1,12 @@
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown, ArrowUp, Info, TriangleAlert } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { EqualWeightingNotice } from "@/app/recommendations/equal-weighting-notice";
-import { GenerateButton } from "@/app/recommendations/generate-button";
+import { RecommendationActions } from "@/app/recommendations/recommendation-actions";
 import { PageHeader } from "@/components/layout/page-header";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -26,13 +27,61 @@ import {
 } from "@/lib/data/recommendations";
 import { DIMENSIONS } from "@/lib/matching/dimensions";
 import { formatRawValue } from "@/lib/matching/explanations";
-import { ROUTES } from "@/lib/routes";
+import {
+  describeAlternativesShortfall,
+  describeWeakBestMatches,
+  parseRecommendationView,
+  partitionSnapshot,
+  type RecommendationView,
+} from "@/lib/matching/snapshot";
+import { ROUTES, recommendationsViewPath } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "Your matches · DreamDestination",
 };
 
-export default async function RecommendationsPage() {
+const VIEW_COPY = {
+  best: {
+    eyebrow: "Your research",
+    title: "Your best matches",
+    description:
+      "Ranked by how closely each metro’s measured data lines up with your priorities. A fit score compares candidate metros — it does not predict how happy you would be.",
+  },
+  alternatives: {
+    eyebrow: "Beyond your best matches",
+    title: "Other places worth exploring",
+    description:
+      "These cities ranked immediately below your five strongest matches and meet the minimum DreamScore requirement.",
+  },
+} as const satisfies Record<
+  RecommendationView,
+  { eyebrow: string; title: string; description: string }
+>;
+
+function summarize(
+  view: RecommendationView,
+  shown: readonly StoredRecommendation[],
+): string {
+  if (view === "best") {
+    return `${shown.length} best ${shown.length === 1 ? "match" : "matches"}`;
+  }
+  if (shown.length === 0) {
+    return "No other places to show";
+  }
+
+  const first = shown[0]!.rank;
+  const last = shown[shown.length - 1]!.rank;
+  const ranks =
+    first === last
+      ? `overall rank #${first}`
+      : `overall ranks #${first}–#${last}`;
+
+  return `${shown.length} other ${shown.length === 1 ? "place" : "places"} · ${ranks}`;
+}
+
+export default async function RecommendationsPage({
+  searchParams,
+}: PageProps<"/recommendations">) {
   const { hasProfile, hasPreferences } = await getOnboardingStatus();
 
   // The engine needs both halves of onboarding; send the user to whichever is
@@ -41,28 +90,56 @@ export default async function RecommendationsPage() {
     redirect(ROUTES.onboarding);
   }
 
+  const view = parseRecommendationView((await searchParams).view);
+
   const [recommendations, preferences] = await Promise.all([
     getStoredRecommendations(),
     getCurrentUserPreferences(),
   ]);
 
+  // Both views read the same stored snapshot, split by the ranks the engine
+  // assigned. Nothing is rescored or reordered here.
+  const partition = partitionSnapshot(recommendations);
+  const shown =
+    view === "alternatives" ? partition.alternatives : partition.primary;
+  const shortfall =
+    view === "alternatives" && recommendations.length > 0
+      ? describeAlternativesShortfall(partition)
+      : null;
+  // Best matches are never filtered by score; a weak absolute fit is flagged
+  // instead.
+  const weakBestMatches =
+    view === "best" ? describeWeakBestMatches(partition.primary) : null;
+  const copy = VIEW_COPY[view];
+
   return (
     <div className="flex flex-col gap-8">
       <PageHeader
-        eyebrow="Your research"
-        title="Your best matches"
-        description="Ranked by how closely each metro’s measured data lines up with your priorities. A fit score compares candidate metros — it does not predict how happy you would be."
-        actions={<GenerateButton hasExisting={recommendations.length > 0} />}
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
+        actions={
+          <RecommendationActions
+            hasExisting={recommendations.length > 0}
+            view={view}
+          />
+        }
       />
 
       <div className="flex flex-wrap items-center justify-between gap-3 border-y py-3">
         <p className="text-sm text-muted-foreground">
-          {recommendations.length} ranked destinations
+          {recommendations.length > 0
+            ? summarize(view, shown)
+            : "No ranked destinations yet"}
         </p>
         <div className="flex flex-wrap gap-2">
-          <Button variant="outline" size="sm" asChild>
-            <Link href={ROUTES.compare}>Compare matches</Link>
-          </Button>
+          {(view === "best" || shown.length > 0) && (
+            <Button variant="outline" size="sm" asChild>
+              <Link href={recommendationsViewPath(view, ROUTES.compare)}>
+                {view === "best" ? "Compare matches" : "Compare these places"}
+              </Link>
+            </Button>
+          )}
           <Button variant="ghost" size="sm" asChild>
             <Link href={ROUTES.onboardingPreferences}>Edit priorities</Link>
           </Button>
@@ -75,6 +152,18 @@ export default async function RecommendationsPage() {
       </div>
 
       <EqualWeightingNotice weights={preferences?.weights ?? null} />
+
+      {weakBestMatches && (
+        <Alert role="status" className="px-4 py-3">
+          <TriangleAlert aria-hidden="true" />
+          <AlertTitle>{weakBestMatches.message}</AlertTitle>
+          <AlertDescription>
+            {weakBestMatches.details.map((detail) => (
+              <p key={detail}>{detail}</p>
+            ))}
+          </AlertDescription>
+        </Alert>
+      )}
 
       {recommendations.length === 0 ? (
         <Card>
@@ -93,14 +182,55 @@ export default async function RecommendationsPage() {
             </CardDescription>
           </CardHeader>
         </Card>
+      ) : shown.length === 0 && shortfall ? (
+        <Card role="status">
+          <CardHeader>
+            <CardTitle as="h2" className="text-lg">
+              No other places to show
+            </CardTitle>
+            <CardDescription className="flex flex-col gap-2">
+              <span>{shortfall.message}</span>
+              {shortfall.details.map((detail) => (
+                <span key={detail}>{detail}</span>
+              ))}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-wrap gap-2">
+            <Button asChild>
+              <Link href={ROUTES.recommendations}>Back to best matches</Link>
+            </Button>
+            <Button variant="outline" asChild>
+              <Link href={ROUTES.onboardingPreferences}>Adjust priorities</Link>
+            </Button>
+            <Button variant="outline" asChild>
+              <Link href={ROUTES.onboardingProfile}>Update housing budget</Link>
+            </Button>
+          </CardContent>
+        </Card>
       ) : (
-        <ul className="grid items-start gap-5 xl:grid-cols-2">
-          {recommendations.map((recommendation) => (
-            <li key={recommendation.id} className="min-w-0">
-              <RecommendationCard recommendation={recommendation} />
-            </li>
-          ))}
-        </ul>
+        <>
+          {shortfall && (
+            <Alert role="status" className="px-4 py-3">
+              <Info aria-hidden="true" />
+              <AlertTitle>{shortfall.message}</AlertTitle>
+              <AlertDescription>
+                {shortfall.details.map((detail) => (
+                  <p key={detail}>{detail}</p>
+                ))}
+              </AlertDescription>
+            </Alert>
+          )}
+          <ul className="grid items-start gap-5 xl:grid-cols-2">
+            {shown.map((recommendation) => (
+              <li key={recommendation.id} className="min-w-0">
+                <RecommendationCard
+                  recommendation={recommendation}
+                  view={view}
+                />
+              </li>
+            ))}
+          </ul>
+        </>
       )}
 
       {recommendations.length > 0 && (
@@ -116,6 +246,11 @@ export default async function RecommendationsPage() {
             .
           </p>
           <p>
+            Your best matches and other places come from the same scoring run.
+            Recalculating is deterministic: the same profile and priorities
+            always produce the same ranking.
+          </p>
+          <p>
             Coverage varies by metro and priority. Review each breakdown for
             measured dimensions and sources; missing data is not a zero score.
           </p>
@@ -127,8 +262,10 @@ export default async function RecommendationsPage() {
 
 function RecommendationCard({
   recommendation,
+  view,
 }: {
   recommendation: StoredRecommendation;
+  view: RecommendationView;
 }) {
   const { city, reason } = recommendation;
   const dimensions = snapshotDimensions(reason);
@@ -139,7 +276,11 @@ function RecommendationCard({
         <div className="flex items-start justify-between gap-3">
           <CardTitle as="h2" className="min-w-0 text-xl">
             <span className="mb-2 block text-xs font-medium text-muted-foreground">
-              MATCH {String(recommendation.rank).padStart(2, "0")}
+              {/* An alternative keeps its true overall rank; it is never
+                  renumbered as one of the user's top matches. */}
+              {view === "best"
+                ? `MATCH ${String(recommendation.rank).padStart(2, "0")}`
+                : `Overall rank #${recommendation.rank}`}
             </span>
             <Link
               href={`/recommendations/${city.id}`}

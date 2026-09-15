@@ -19,6 +19,17 @@ export const ROUTES = {
   advisor: "/advisor",
 } as const;
 
+/**
+ * The matches page, or the comparison, in one of its two views. The best
+ * matches are the default view, so that path carries no query string.
+ */
+export function recommendationsViewPath(
+  view: "best" | "alternatives",
+  path: string = ROUTES.recommendations,
+): string {
+  return view === "alternatives" ? `${path}?view=alternatives` : path;
+}
+
 export function resolveOnboardingDestination({
   hasProfile,
   hasPreferences,

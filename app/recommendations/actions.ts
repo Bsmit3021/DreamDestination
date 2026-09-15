@@ -16,13 +16,18 @@ import type { FormState } from "@/lib/forms";
 import { ROUTES } from "@/lib/routes";
 
 /**
- * Regenerates the signed-in user's recommendations.
+ * Recalculates the signed-in user's recommendations.
+ *
+ * Reruns the deterministic engine from the user's latest saved profile and
+ * priorities and atomically replaces their stored snapshot — best matches and
+ * alternatives together, from one scoring run. The same inputs give the same
+ * ranking, so an unchanged top five is a correct result, not a failure.
  *
  * Takes no arguments describing *who* to generate for — the service resolves
  * that from the session. There is deliberately no way for the browser to name
  * a profile.
  */
-export async function generateRecommendationsAction(
+export async function recalculateRecommendationsAction(
   _prevState: FormState,
 ): Promise<FormState> {
   try {
@@ -37,11 +42,14 @@ export async function generateRecommendationsAction(
       };
     }
 
+    // The layout covers the matches page, the comparison and destination pages,
+    // which all read the snapshot that was just replaced.
     revalidatePath(ROUTES.recommendations, "layout");
 
     return {
       status: "success",
-      message: `Generated ${result.recommendations.length} matches.`,
+      message:
+        "Your best matches were recalculated using your latest profile and priorities.",
     };
   } catch (error) {
     if (

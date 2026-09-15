@@ -7,6 +7,7 @@ import {
   generateMatches,
 } from "@/lib/matching/ranking";
 import { scoreCities } from "@/lib/matching/scoring";
+import { RECOMMENDATION_SNAPSHOT_SIZE } from "@/lib/matching/snapshot";
 import { normalizeWeights } from "@/lib/matching/weights";
 
 import { GOLDEN_CITIES, cityWith, testProfile, weightsWith } from "./fixtures";
@@ -48,7 +49,7 @@ describe("ranking order and limits", () => {
     expect(recommendations.map((r) => r.rank)).toEqual([1, 2]);
   });
 
-  it("defaults to twelve recommendations", () => {
+  it("defaults to ten recommendations, the full stored snapshot", () => {
     const many = Array.from({ length: 15 }, (_, index) =>
       cityWith(fixtureId(index), {
         housing: 1000 + index * 10,
@@ -59,10 +60,11 @@ describe("ranking order and limits", () => {
 
     const { recommendations } = generateMatches(many, testProfile(), BALANCED);
 
-    expect(DEFAULT_RECOMMENDATION_LIMIT).toBe(12);
-    expect(recommendations).toHaveLength(12);
+    expect(DEFAULT_RECOMMENDATION_LIMIT).toBe(RECOMMENDATION_SNAPSHOT_SIZE);
+    expect(DEFAULT_RECOMMENDATION_LIMIT).toBe(10);
+    expect(recommendations).toHaveLength(10);
     expect(recommendations.map((r) => r.rank)).toEqual(
-      Array.from({ length: 12 }, (_, index) => index + 1),
+      Array.from({ length: 10 }, (_, index) => index + 1),
     );
   });
 
@@ -99,24 +101,39 @@ describe("ranking order and limits", () => {
       }));
 
     const everything = snapshot(cities.length);
-    const twelve = snapshot();
+    const ten = snapshot();
     const five = snapshot(5);
 
-    expect(twelve).toEqual(everything.slice(0, 12));
-    // The previous default's top five are exactly the new list's first five.
-    expect(five).toEqual(twelve.slice(0, 5));
+    expect(ten).toEqual(everything.slice(0, 10));
+    // The best matches (ranks 1-5) are exactly the snapshot's first five.
+    expect(five).toEqual(ten.slice(0, 5));
   });
 
-  it("breaks ties at the twelfth-place cutoff by city id, whatever the input order", () => {
-    // Fourteen identical cities tie on score and coverage, so which twelve
-    // make the cut is decided by the stable id alone.
+  it("returns an identical ranking on repeated runs with identical inputs", () => {
+    const cities = Array.from({ length: 15 }, (_, index) =>
+      cityWith(fixtureId(index), {
+        housing: 900 + ((index * 7) % 15) * 100,
+        career: 2.5 + ((index * 11) % 15) * 0.3,
+        climate: 45 + ((index * 4) % 15) * 2,
+      }),
+    );
+
+    const first = generateMatches(cities, testProfile(), BALANCED);
+    const second = generateMatches(cities, testProfile(), BALANCED);
+
+    expect(second).toEqual(first);
+  });
+
+  it("breaks ties at the tenth-place cutoff by city id, whatever the input order", () => {
+    // Fourteen identical cities tie on score and coverage, so which ten make
+    // the cut is decided by the stable id alone.
     const tied = Array.from({ length: 14 }, (_, index) =>
       cityWith(fixtureId(index), { housing: 1000, career: 4, climate: 57 }),
     );
     const expected = tied
       .map((city) => city.id)
       .sort((a, b) => a.localeCompare(b))
-      .slice(0, 12);
+      .slice(0, 10);
 
     const interleaved = [
       ...tied.filter((_, index) => index % 2 === 1),
@@ -133,7 +150,7 @@ describe("ranking order and limits", () => {
     }
   });
 
-  it("produces a different twelve when priorities differ", () => {
+  it("produces a different ranking when priorities differ", () => {
     // Rent worsens as the index rises while unemployment improves, so the two
     // priorities pull the ranking in opposite directions.
     const opposed = Array.from({ length: 15 }, (_, index) =>
@@ -155,8 +172,8 @@ describe("ranking order and limits", () => {
       weightsWith({ housing: 0.1, career: 1, climate: 0.1 }),
     ).recommendations.map((r) => r.city.id);
 
-    expect(housingFirst).toHaveLength(12);
-    expect(careerFirst).toHaveLength(12);
+    expect(housingFirst).toHaveLength(10);
+    expect(careerFirst).toHaveLength(10);
     expect(housingFirst[0]).toBe(fixtureId(0));
     expect(careerFirst[0]).toBe(fixtureId(14));
     expect(housingFirst).not.toEqual(careerFirst);
