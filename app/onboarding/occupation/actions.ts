@@ -66,7 +66,7 @@ export async function confirmOccupationAction(
     throw error;
   }
 
-  revalidatePath(ROUTES.recommendations);
+  revalidatePath(ROUTES.recommendations, "layout");
   revalidatePath("/onboarding/occupation");
 
   return { status: "success", message: "Occupation saved." };

@@ -69,6 +69,31 @@ export function normalizeWeights(
   return normalized;
 }
 
+/**
+ * Largest gap between two sliders still read as "the same value".
+ *
+ * Far below the 0.001 precision the `*_weight` columns store, so it absorbs
+ * floating-point representation noise and nothing else — any difference a user
+ * can actually save is treated as a real difference.
+ */
+export const UNIFORM_WEIGHT_TOLERANCE = 1e-9;
+
+/**
+ * Whether every slider holds the same value, including all at zero.
+ *
+ * Uniform weights normalise to equal importance. That is a legitimate answer,
+ * but it is also what a user gets by saving without moving anything, so the UI
+ * uses this to say so plainly instead of implying an emphasis nobody chose.
+ * Reports on the saved sliders only; it never changes how they are scored.
+ */
+export function hasUniformWeights(weights: PreferenceWeights): boolean {
+  const first = weights[PREFERENCE_WEIGHT_KEYS[0]];
+
+  return PREFERENCE_WEIGHT_KEYS.every(
+    (key) => Math.abs(weights[key] - first) <= UNIFORM_WEIGHT_TOLERANCE,
+  );
+}
+
 export interface EffectiveWeights {
   /** Weights renormalised across the dimensions this city can be scored on. */
   weights: NormalizedWeights;

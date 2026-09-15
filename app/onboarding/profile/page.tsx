@@ -20,14 +20,14 @@ export default async function OnboardingProfilePage() {
   const profile = await getCurrentUserProfile();
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg">
+    <Card className="[--card-spacing:--spacing(6)]">
+      <CardHeader className="border-b">
+        <CardTitle as="h1" className="text-2xl">
           {profile ? "Edit your profile" : "Tell us about your situation"}
         </CardTitle>
         <CardDescription>
-          This is the structured picture of your life that future matching will
-          work from. You can change any of it later.
+          The circumstances, budget, and goals behind your matches. You can
+          change any of these details as your plans evolve.
         </CardDescription>
       </CardHeader>
 

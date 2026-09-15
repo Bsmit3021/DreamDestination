@@ -54,9 +54,11 @@ export default async function OccupationPage() {
   );
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg">Confirm your occupation</CardTitle>
+    <Card className="[--card-spacing:--spacing(6)]">
+      <CardHeader className="border-b">
+        <CardTitle as="h1" className="text-2xl">
+          Confirm your occupation
+        </CardTitle>
         <CardDescription>
           Career statistics come from the U.S. Bureau of Labor Statistics, which
           organises jobs by standard occupation code. Matching your job title to

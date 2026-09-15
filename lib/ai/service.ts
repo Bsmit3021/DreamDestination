@@ -26,6 +26,7 @@ import { MissingProfileError } from "@/lib/data/errors";
 import { getCurrentUserPreferences } from "@/lib/data/preferences";
 import { getCurrentUserProfile } from "@/lib/data/profiles";
 import { getStoredRecommendations } from "@/lib/data/recommendations";
+import { partitionSnapshot } from "@/lib/matching/snapshot";
 import { getDestinationOpportunityForCurrentUser } from "@/lib/opportunity/service";
 import type { DestinationOpportunity } from "@/lib/opportunity/types";
 
@@ -103,18 +104,21 @@ export async function getAdvisorReadiness(): Promise<AdvisorReadiness> {
   return { ready: true };
 }
 
-/** Loads the caller's destinations with full Phase 4 intelligence. */
+/**
+ * Loads the caller's best matches with full Phase 4 intelligence.
+ *
+ * Only the primary matches (ranks 1-5). The stored snapshot also holds the
+ * alternatives, but those are an opt-in view on the matches page, not part of
+ * what the advisor presents as the user's matches.
+ */
 async function loadDestinations(): Promise<DestinationOpportunity[]> {
-  const recommendations = await getStoredRecommendations();
+  const { primary } = partitionSnapshot(await getStoredRecommendations());
 
   // City ids come from the user's own stored recommendations, never from input.
   const destinations = await Promise.all(
-    recommendations
-      .slice()
-      .sort((a, b) => a.rank - b.rank)
-      .map((recommendation) =>
-        getDestinationOpportunityForCurrentUser(recommendation.city.id),
-      ),
+    primary.map((recommendation) =>
+      getDestinationOpportunityForCurrentUser(recommendation.city.id),
+    ),
   );
 
   return destinations.filter(

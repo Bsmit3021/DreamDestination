@@ -90,7 +90,7 @@ export async function saveProfileAction(
   revalidatePath(ROUTES.onboarding, "layout");
 
   // First time through, continue to the next step. When editing an existing
-  // profile, go back to the summary instead of forcing the whole flow again.
+  // profile, return through the hub instead of forcing the whole flow again.
   redirect(isEdit ? ROUTES.onboarding : ROUTES.onboardingPreferences);
 }
 

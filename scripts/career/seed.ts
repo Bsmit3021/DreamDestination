@@ -8,6 +8,7 @@
  */
 
 import { readFile } from "node:fs/promises";
+import { gunzipSync } from "node:zlib";
 import path from "node:path";
 
 import { createClient } from "@supabase/supabase-js";
@@ -15,7 +16,9 @@ import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/types/database";
 
 import { PROCESSED_DIR, log } from "../city-data/shared";
-import { OEWS_PERIOD, type ProcessedCareerStat } from "./transform";
+import { SeedRequestError, withSeedRetry } from "../shared/retry";
+import { OEWS_PERIOD } from "../city-data/config";
+import type { ProcessedCareerStat } from "./transform";
 
 const OEWS_SOURCE = {
   key: "bls-oews-may-2025",
@@ -35,6 +38,42 @@ const OEWS_SOURCE = {
     "cc3e6fa80edf64ab8fd0e8a6472ef1b513a6bcaef2f5018e9649c485793b0b99.",
 };
 
+/**
+ * Reads the career statistics, preferring the uncompressed build artefact and
+ * falling back to the committed gzip.
+ *
+ * The 12 MB JSON is a local build product and is gitignored; the 1.3 MB gzip
+ * beside it is committed. That asymmetry exists because BLS blocks automated
+ * download of the archive the JSON is derived from, so a fresh clone — or a
+ * production bootstrap — has no way to regenerate it. Without the committed
+ * copy, career data could not be seeded at all and every user would silently
+ * fall back to the metro-wide labour market.
+ */
+async function readCareerStats(): Promise<ProcessedCareerStat[]> {
+  const plain = path.join(PROCESSED_DIR, "career-stats.json");
+  const compressed = `${plain}.gz`;
+
+  try {
+    return JSON.parse(await readFile(plain, "utf8")) as ProcessedCareerStat[];
+  } catch {
+    // Not a fallback for a corrupt file: only for a clone that never built it.
+  }
+
+  try {
+    const bytes = await readFile(compressed);
+    return JSON.parse(
+      gunzipSync(bytes).toString("utf8"),
+    ) as ProcessedCareerStat[];
+  } catch (error) {
+    throw new Error(
+      `Could not read career statistics from ${plain} or ${compressed}. ` +
+        `Run \`npm run data:career:extract && npm run data:career:transform\` ` +
+        `(needs data/raw/oesm25ma.zip, which BLS only serves to a browser). ` +
+        `Cause: ${error instanceof Error ? error.message : String(error)}`,
+    );
+  }
+}
+
 function requireEnv(name: string): string {
   const value = process.env[name];
   if (!value) throw new Error(`${name} is not set`);
@@ -48,9 +87,7 @@ async function main(): Promise<void> {
     { auth: { persistSession: false, autoRefreshToken: false } },
   );
 
-  const stats: ProcessedCareerStat[] = JSON.parse(
-    await readFile(path.join(PROCESSED_DIR, "career-stats.json"), "utf8"),
-  );
+  const stats: ProcessedCareerStat[] = await readCareerStats();
 
   const { error: sourceError } = await supabase
     .from("metric_sources")
@@ -106,16 +143,42 @@ async function main(): Promise<void> {
     );
   }
 
+  // 1,000 rows per request, unchanged. Production logs showed every batch the
+  // server actually received returned 200/201, so the payload size is not the
+  // problem and shrinking it would only lengthen the run and widen the window
+  // for another transport blip.
   const CHUNK = 1000;
-  for (let i = 0; i < payload.length; i += CHUNK) {
-    const { error } = await supabase
-      .from("metro_occupation_stats")
-      .upsert(payload.slice(i, i + CHUNK), {
-        onConflict: "city_id,soc_code,period",
-      });
-    if (error) throw new Error(`metro_occupation_stats: ${error.message}`);
+  const totalBatches = Math.ceil(payload.length / CHUNK);
 
-    if ((i / CHUNK) % 10 === 0) log(`  seeded ${i}/${payload.length}…`);
+  for (let i = 0; i < payload.length; i += CHUNK) {
+    const batchNumber = i / CHUNK + 1;
+    const end = Math.min(i + CHUNK, payload.length);
+    const label = `batch ${batchNumber}/${totalBatches} (rows ${i}-${end - 1})`;
+
+    // Retried as a unit. Safe because the upsert key is the natural key
+    // (city_id, soc_code, period): a batch that in fact landed server-side
+    // before the connection dropped is simply rewritten to the same values.
+    await withSeedRetry({ label, onLog: log }, async () => {
+      // `supabase-js` returns `{ error }` for a PostgREST failure but *throws*
+      // for a transport failure, so both are funnelled into one throw that
+      // carries the status the classifier needs.
+      const { error, status } = await supabase
+        .from("metro_occupation_stats")
+        .upsert(payload.slice(i, end), {
+          onConflict: "city_id,soc_code,period",
+        });
+
+      if (error) {
+        throw new SeedRequestError(`metro_occupation_stats: ${error.message}`, {
+          status,
+          code: error.code,
+        });
+      }
+    });
+
+    if (batchNumber % 10 === 1 || batchNumber === totalBatches) {
+      log(`  seeded ${end}/${payload.length}…`);
+    }
   }
 
   log(`Seeded ${payload.length} career records (${OEWS_PERIOD}).`);

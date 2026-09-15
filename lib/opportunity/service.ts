@@ -11,6 +11,10 @@ import {
 } from "@/lib/data/opportunity";
 import { getCurrentUserProfile } from "@/lib/data/profiles";
 import { getStoredRecommendations } from "@/lib/data/recommendations";
+import {
+  partitionSnapshot,
+  type RecommendationView,
+} from "@/lib/matching/snapshot";
 import { compareBudget } from "@/lib/opportunity/calculations";
 import type { DestinationOpportunity } from "@/lib/opportunity/types";
 
@@ -114,22 +118,37 @@ export interface DestinationComparisonRow {
 /**
  * Side-by-side view of the user's recommendations.
  *
+ * Compares the best matches (ranks 1-5) by default, or the qualifying
+ * alternatives when that view is asked for — the same split of the same
+ * stored snapshot the matches page shows.
+ *
  * Ordering is the stored Phase 3 rank. Wages and rents are shown as columns,
  * never used to re-sort — re-ranking on salary would silently replace the
  * user's own stated priorities with ours.
  */
-export async function getDestinationComparisonForCurrentUser(): Promise<{
+export async function getDestinationComparisonForCurrentUser(
+  view: RecommendationView = "best",
+): Promise<{
   rows: DestinationComparisonRow[];
   occupation: { socCode: string; title: string } | null;
+  /**
+   * Whether any recommendations are saved at all, so an empty comparison can
+   * tell "nothing calculated yet" apart from "no alternative qualified".
+   */
+  hasRecommendations: boolean;
 }> {
   await requireUser();
 
   const profile = await getCurrentUserProfile();
   if (!profile) throw new MissingProfileError();
 
-  const recommendations = await getStoredRecommendations();
+  const stored = await getStoredRecommendations();
+  const hasRecommendations = stored.length > 0;
+  const partition = partitionSnapshot(stored);
+  const recommendations =
+    view === "alternatives" ? partition.alternatives : partition.primary;
   if (recommendations.length === 0) {
-    return { rows: [], occupation: null };
+    return { rows: [], occupation: null, hasRecommendations };
   }
 
   const cityIds = recommendations.map((r) => r.city.id);
@@ -169,5 +188,6 @@ export async function getDestinationComparisonForCurrentUser(): Promise<{
     occupation: careerTarget
       ? { socCode: careerTarget.socCode, title: careerTarget.title }
       : null,
+    hasRecommendations,
   };
 }

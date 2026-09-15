@@ -15,8 +15,32 @@ export const ROUTES = {
   onboardingPreferences: "/onboarding/preferences",
   onboardingOccupation: "/onboarding/occupation",
   recommendations: "/recommendations",
+  compare: "/recommendations/compare",
   advisor: "/advisor",
 } as const;
+
+/**
+ * The matches page, or the comparison, in one of its two views. The best
+ * matches are the default view, so that path carries no query string.
+ */
+export function recommendationsViewPath(
+  view: "best" | "alternatives",
+  path: string = ROUTES.recommendations,
+): string {
+  return view === "alternatives" ? `${path}?view=alternatives` : path;
+}
+
+export function resolveOnboardingDestination({
+  hasProfile,
+  hasPreferences,
+}: {
+  hasProfile: boolean;
+  hasPreferences: boolean;
+}): string {
+  if (!hasProfile) return ROUTES.onboardingProfile;
+  if (!hasPreferences) return ROUTES.onboardingPreferences;
+  return ROUTES.recommendations;
+}
 
 /** Prefixes that require an authenticated user. */
 const PROTECTED_PREFIXES = [

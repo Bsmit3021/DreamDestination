@@ -38,9 +38,11 @@ export function DestinationComparison({
   };
 
   return (
-    <Card>
+    <Card className="min-w-0">
       <CardHeader>
-        <CardTitle className="text-lg">Compare your matches</CardTitle>
+        <CardTitle as="h2" className="text-lg">
+          Market comparison
+        </CardTitle>
         <CardDescription>
           {occupation
             ? `Wages are the metro median for ${occupation.title}.`
@@ -51,34 +53,45 @@ export function DestinationComparison({
 
       <CardContent>
         {/* Desktop */}
-        <div className="hidden overflow-x-auto sm:block">
-          <table className="w-full text-sm">
+        <div
+          className="hidden overflow-x-auto rounded-md focus-visible:outline-2 focus-visible:outline-ring sm:block"
+          role="region"
+          aria-label="Destination comparison"
+          tabIndex={0}
+        >
+          <table className="w-full min-w-[640px] text-sm">
             <caption className="sr-only">
               Fit score, occupation wage and rent for each recommended metro
             </caption>
             <thead>
               <tr className="text-left text-xs text-muted-foreground">
-                <th scope="col" className="pb-2 font-medium">
+                <th scope="col" className="px-3 pb-3 font-medium">
                   Metro
                 </th>
-                <th scope="col" className="pb-2 text-right font-medium">
+                <th scope="col" className="px-3 pb-3 text-right font-medium">
                   Fit
                 </th>
-                <th scope="col" className="pb-2 text-right font-medium">
+                <th scope="col" className="px-3 pb-3 text-right font-medium">
                   Median wage
                 </th>
-                <th scope="col" className="pb-2 text-right font-medium">
+                <th scope="col" className="px-3 pb-3 text-right font-medium">
                   Median rent
                 </th>
-                <th scope="col" className="pb-2 text-right font-medium">
+                <th scope="col" className="px-3 pb-3 text-right font-medium">
                   Budget gap
                 </th>
               </tr>
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.cityId} className="border-t border-border/60">
-                  <th scope="row" className="py-2 pr-2 text-left font-normal">
+                <tr
+                  key={row.cityId}
+                  className="border-t border-border/60 even:bg-muted/30"
+                >
+                  <th
+                    scope="row"
+                    className="px-3 py-4 pr-2 text-left font-normal"
+                  >
                     <Link
                       href={`/recommendations/${row.cityId}`}
                       className="font-medium underline-offset-4 hover:underline"
@@ -86,16 +99,16 @@ export function DestinationComparison({
                       {row.rank}. {row.name}
                     </Link>
                   </th>
-                  <td className="py-2 text-right tabular-nums">
+                  <td className="px-3 py-4 text-right tabular-nums">
                     {Math.round(row.fitScore)}
                   </td>
-                  <td className="py-2 text-right tabular-nums">
+                  <td className="px-3 py-4 text-right tabular-nums">
                     {money(row.medianWage)}
                   </td>
-                  <td className="py-2 text-right tabular-nums">
+                  <td className="px-3 py-4 text-right tabular-nums">
                     {money(row.medianRent)}
                   </td>
-                  <td className="py-2 text-right tabular-nums">
+                  <td className="px-3 py-4 text-right tabular-nums">
                     {budget(row.budgetDifference)}
                   </td>
                 </tr>

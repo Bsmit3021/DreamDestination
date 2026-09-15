@@ -76,11 +76,20 @@ to a default.
 Copy `.env.example` to `.env.local`. All values come from your Supabase project
 under **Project Settings → API**.
 
-| Variable                        | Scope      | Purpose                                                                                                             |
-| ------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SUPABASE_URL`      | Public     | Base URL of the Supabase project, e.g. `https://<project-ref>.supabase.co`. Inlined into the browser bundle.        |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Public     | Anon key. Safe in the browser: every query it makes is constrained by Row Level Security.                           |
-| `SUPABASE_SERVICE_ROLE_KEY`     | **Server** | Service-role key. **Bypasses Row Level Security.** Read only by server-side code. Never prefix with `NEXT_PUBLIC_`. |
+| Variable                        | Scope      | Purpose                                                                                                                                                                                                                                |
+| ------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`      | Public     | Base URL of the Supabase project, e.g. `https://<project-ref>.supabase.co`. Inlined into the browser bundle.                                                                                                                           |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Public     | Anon key. Safe in the browser: every query it makes is constrained by Row Level Security.                                                                                                                                              |
+| `SUPABASE_SERVICE_ROLE_KEY`     | **Server** | Service-role key. **Bypasses Row Level Security.** Read only by offline seed scripts — never by request-time code. Never prefix with `NEXT_PUBLIC_`.                                                                                   |
+| `OPENAI_API_KEY`                | **Server** | Advisor credential. Read only in `lib/ai/`, never sent to the browser. Never prefix with `NEXT_PUBLIC_`.                                                                                                                               |
+| `OPENAI_MODEL`                  | **Server** | Model id for the Responses API, e.g. `gpt-5.6-luna`.                                                                                                                                                                                   |
+| `NEXT_PUBLIC_SITE_URL`          | Public     | Canonical origin, used to build the sign-up confirmation link. **Set it on Production only** — resolution keys on `VERCEL_ENV`, and Preview deliberately ignores it in favour of its own `VERCEL_URL`. Match Supabase's Auth Site URL. |
+
+Required in every environment: the two `NEXT_PUBLIC_SUPABASE_*` values. The
+advisor is optional — without `OPENAI_API_KEY` the app runs and the advisor
+reports itself unconfigured rather than failing. `SUPABASE_SERVICE_ROLE_KEY` is
+needed only to seed a database, not to serve requests, so it does **not** belong
+in the Vercel runtime environment.
 
 `.env.local` is gitignored. `.env.example` is committed and contains
 placeholders only — no real credentials are in version control.
@@ -303,9 +312,89 @@ Conventions worth knowing:
 
 ## Deployment
 
-`vercel.json` pins the framework, install and build commands. Set the three
-environment variables in the Vercel project before the first deploy; the build
-itself does not require them.
+`vercel.json` pins the framework, install command, build command and region.
+
+### Production architecture
+
+```mermaid
+flowchart TD
+    B[Browser] --> V[Next.js on Vercel]
+    V --> P[proxy.ts<br/>session refresh + route guard]
+    P --> A[Supabase Auth]
+    V --> D[(Supabase Postgres<br/>RLS on every user table)]
+    V --> M[Deterministic matching<br/>lib/matching]
+    M --> D
+    V --> ADV[Grounded advisor<br/>lib/ai]
+    ADV --> D
+    ADV --> O[OpenAI Responses API]
+
+    OFF[Offline pipelines<br/>scripts/**] -.seed only.-> D
+    SRC[BLS · ACS · NOAA · FBI · NCES · Overture · Census] -.-> OFF
+```
+
+The request path touches Supabase and, for the advisor only, OpenAI. It never
+reads the filesystem, never calls a places API, and never uses the service-role
+key. Every dataset reaches production through the database, not the bundle.
+
+### One-time production setup
+
+1. **Create a Supabase project** (dashboard). Note the project ref.
+2. **Apply migrations.** With the Supabase CLI:
+   `supabase link --project-ref <ref>` then `supabase db push`.
+   Migrations in `supabase/migrations/` are the only source of schema truth.
+3. **Seed reference data** against the new project:
+   ```bash
+   NEXT_PUBLIC_SUPABASE_URL=https://<ref>.supabase.co \
+   SUPABASE_SERVICE_ROLE_KEY=<service-role-key> \
+   npm run data:bootstrap
+   ```
+   This runs all seven seeds in dependency order and then asserts row counts,
+   so a partial seed fails loudly instead of silently degrading everyone's
+   recommendations. It only ever writes canonical reference tables — it cannot
+   touch `profiles`, `preferences`, `recommendations` or advisor data.
+   Re-verify at any time with `npm run data:bootstrap:verify`.
+4. **Configure Supabase Auth** → URL Configuration:
+   - Site URL: the exact production origin, e.g. `https://dreamdestination.example`
+   - Redirect URLs: that origin's `/onboarding`, plus the Vercel preview
+     wildcard if preview deployments need sign-up. Avoid a wildcard on the
+     production domain.
+
+   Supabase documents the preview wildcard as
+   `https://*-<team-or-account-slug>.vercel.app/**`. The wildcard goes on the
+   **left**, because a Vercel preview hostname is
+   `<project>-<hash>-<team-slug>.vercel.app` — the part that varies per
+   deployment is the prefix, and the team slug is the stable suffix. A
+   prefix-anchored pattern like `https://<project>-*.vercel.app/**` does not
+   match and will silently reject every preview sign-up.
+
+   For this project that is:
+
+   ```
+   https://*-briansmith01cs-7446.vercel.app/**
+   ```
+
+   The preview wildcard is required rather than optional: preview URLs are
+   generated per deployment, and `lib/site-url.ts` resolves a preview to its own
+   `VERCEL_URL` precisely so a tester's confirmation email does not send them to
+   production. Without the wildcard, Supabase rejects that redirect.
+
+5. **Configure Vercel environment variables** per environment. Production and
+   Preview should point at different Supabase projects where practical; do not
+   copy production secrets into Preview.
+6. **Deploy a Preview first**, smoke-test it, then promote to Production.
+
+### Data bootstrap and the career artefact
+
+Every seed reads from `data/processed/`, which is committed. Nothing in
+production needs `data/raw/`, which is deliberately not in the repository.
+
+One exception is worth knowing about: `career-stats.json` is a 12 MB build
+artefact and stays gitignored, but the gzipped copy beside it
+(`career-stats.json.gz`, 1.3 MB) **is** committed and the seed falls back to it.
+That asymmetry exists because BLS serves `oesm25ma.zip` only to a browser and
+blocks automated clients, so a fresh clone has no way to regenerate the JSON.
+Without the committed gzip, career data could not be seeded at all and every
+user would silently fall back to the metro-wide labour market.
 
 ## Next milestone
 

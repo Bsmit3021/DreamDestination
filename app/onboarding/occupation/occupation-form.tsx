@@ -48,7 +48,10 @@ export function OccupationForm({
         </legend>
 
         {candidates.map((candidate, index) => (
-          <div key={candidate.socCode} className="flex items-start gap-3">
+          <div
+            key={candidate.socCode}
+            className="flex items-start gap-3 rounded-lg border p-4 has-checked:border-primary has-checked:bg-primary/5"
+          >
             <input
               type="radio"
               id={`soc-${candidate.socCode}`}

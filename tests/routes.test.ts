@@ -5,6 +5,7 @@ import {
   isAuthRoute,
   isProtectedRoute,
   resolveAuthRedirect,
+  resolveOnboardingDestination,
   safeRedirectPath,
 } from "@/lib/routes";
 
@@ -14,6 +15,11 @@ describe("isProtectedRoute", () => {
     "/onboarding/profile",
     "/onboarding/preferences",
     "/onboarding/anything/deeper",
+    "/onboarding/occupation",
+    "/recommendations",
+    "/recommendations/compare",
+    "/recommendations/city-id",
+    "/advisor",
   ])("treats %s as protected", (pathname) => {
     expect(isProtectedRoute(pathname)).toBe(true);
   });
@@ -97,6 +103,60 @@ describe("resolveAuthRedirect", () => {
         pathname: "/auth/sign-up",
         isAuthenticated: false,
       }),
+    ).toBeNull();
+  });
+});
+
+describe("workspace routing", () => {
+  it.each([
+    [false, false, ROUTES.onboardingProfile],
+    [false, true, ROUTES.onboardingProfile],
+    [true, false, ROUTES.onboardingPreferences],
+    [true, true, ROUTES.recommendations],
+  ])(
+    "resolves profile=%s, priorities=%s to %s",
+    (hasProfile, hasPreferences, target) => {
+      expect(resolveOnboardingDestination({ hasProfile, hasPreferences })).toBe(
+        target,
+      );
+    },
+  );
+
+  it.each([
+    "/recommendations",
+    "/recommendations/compare",
+    "/recommendations/city-id",
+    "/advisor",
+    "/onboarding/occupation",
+  ])("protects %s without blocking signed-in navigation", (pathname) => {
+    expect(resolveAuthRedirect({ pathname, isAuthenticated: false })).toBe(
+      ROUTES.signIn,
+    );
+    expect(resolveAuthRedirect({ pathname, isAuthenticated: true })).toBeNull();
+  });
+
+  it("does not protect lookalike research URLs", () => {
+    expect(isProtectedRoute("/recommendations-public")).toBe(false);
+    expect(isProtectedRoute("/advisor-public")).toBe(false);
+  });
+
+  it("preserves a comparison deep link through sign-in", () => {
+    expect(safeRedirectPath("/recommendations/compare")).toBe(
+      "/recommendations/compare",
+    );
+  });
+
+  it("takes returning users from the auth gateway to matches without a loop", () => {
+    expect(
+      resolveAuthRedirect({ pathname: ROUTES.signIn, isAuthenticated: true }),
+    ).toBe(ROUTES.onboarding);
+    const destination = resolveOnboardingDestination({
+      hasProfile: true,
+      hasPreferences: true,
+    });
+    expect(destination).toBe(ROUTES.recommendations);
+    expect(
+      resolveAuthRedirect({ pathname: destination, isAuthenticated: true }),
     ).toBeNull();
   });
 });

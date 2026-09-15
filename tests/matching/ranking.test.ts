@@ -2,13 +2,22 @@ import { describe, expect, it } from "vitest";
 
 import { BUDGET_TOLERANCE_MULTIPLIER } from "@/lib/matching/filters";
 import { UNSCORED_DIMENSIONS } from "@/lib/matching/dimensions";
-import { generateMatches } from "@/lib/matching/ranking";
+import {
+  DEFAULT_RECOMMENDATION_LIMIT,
+  generateMatches,
+} from "@/lib/matching/ranking";
 import { scoreCities } from "@/lib/matching/scoring";
+import { RECOMMENDATION_SNAPSHOT_SIZE } from "@/lib/matching/snapshot";
 import { normalizeWeights } from "@/lib/matching/weights";
 
 import { GOLDEN_CITIES, cityWith, testProfile, weightsWith } from "./fixtures";
 
 const BALANCED = weightsWith({ housing: 1, career: 1, climate: 1 });
+
+/** A stable, sortable city id for the index-th synthetic city. */
+function fixtureId(index: number): string {
+  return `00000000-0000-4000-8000-0000000000${String(index).padStart(2, "0")}`;
+}
 
 describe("ranking order and limits", () => {
   it("assigns ranks starting at 1 in descending score order", () => {
@@ -40,21 +49,134 @@ describe("ranking order and limits", () => {
     expect(recommendations.map((r) => r.rank)).toEqual([1, 2]);
   });
 
-  it("defaults to five recommendations", () => {
-    const many = Array.from({ length: 12 }, (_, index) =>
-      cityWith(
-        `00000000-0000-4000-8000-0000000000${String(index).padStart(2, "0")}`,
-        {
-          housing: 1000 + index * 10,
-          career: 3 + index * 0.1,
-          climate: 57,
-        },
-      ),
+  it("defaults to ten recommendations, the full stored snapshot", () => {
+    const many = Array.from({ length: 15 }, (_, index) =>
+      cityWith(fixtureId(index), {
+        housing: 1000 + index * 10,
+        career: 3 + index * 0.1,
+        climate: 57,
+      }),
     );
 
     const { recommendations } = generateMatches(many, testProfile(), BALANCED);
 
-    expect(recommendations).toHaveLength(5);
+    expect(DEFAULT_RECOMMENDATION_LIMIT).toBe(RECOMMENDATION_SNAPSHOT_SIZE);
+    expect(DEFAULT_RECOMMENDATION_LIMIT).toBe(10);
+    expect(recommendations).toHaveLength(10);
+    expect(recommendations.map((r) => r.rank)).toEqual(
+      Array.from({ length: 10 }, (_, index) => index + 1),
+    );
+  });
+
+  it("returns every ranked city when fewer than the limit qualify", () => {
+    const { recommendations } = generateMatches(
+      GOLDEN_CITIES,
+      testProfile(),
+      BALANCED,
+    );
+
+    expect(recommendations).toHaveLength(GOLDEN_CITIES.length);
+  });
+
+  it("only truncates the full ordering, never reorders or rescores it", () => {
+    // Deliberately scrambled, but fixed, metrics: no randomness in the test.
+    const cities = Array.from({ length: 15 }, (_, index) =>
+      cityWith(fixtureId(index), {
+        housing: 900 + ((index * 7) % 15) * 100,
+        career: 2.5 + ((index * 11) % 15) * 0.3,
+        climate: 45 + ((index * 4) % 15) * 2,
+      }),
+    );
+    const snapshot = (limit?: number) =>
+      generateMatches(
+        cities,
+        testProfile(),
+        BALANCED,
+        limit === undefined ? {} : { limit },
+      ).recommendations.map((r) => ({
+        id: r.city.id,
+        rank: r.rank,
+        totalScore: r.totalScore,
+        dataCoverage: r.dataCoverage,
+      }));
+
+    const everything = snapshot(cities.length);
+    const ten = snapshot();
+    const five = snapshot(5);
+
+    expect(ten).toEqual(everything.slice(0, 10));
+    // The best matches (ranks 1-5) are exactly the snapshot's first five.
+    expect(five).toEqual(ten.slice(0, 5));
+  });
+
+  it("returns an identical ranking on repeated runs with identical inputs", () => {
+    const cities = Array.from({ length: 15 }, (_, index) =>
+      cityWith(fixtureId(index), {
+        housing: 900 + ((index * 7) % 15) * 100,
+        career: 2.5 + ((index * 11) % 15) * 0.3,
+        climate: 45 + ((index * 4) % 15) * 2,
+      }),
+    );
+
+    const first = generateMatches(cities, testProfile(), BALANCED);
+    const second = generateMatches(cities, testProfile(), BALANCED);
+
+    expect(second).toEqual(first);
+  });
+
+  it("breaks ties at the tenth-place cutoff by city id, whatever the input order", () => {
+    // Fourteen identical cities tie on score and coverage, so which ten make
+    // the cut is decided by the stable id alone.
+    const tied = Array.from({ length: 14 }, (_, index) =>
+      cityWith(fixtureId(index), { housing: 1000, career: 4, climate: 57 }),
+    );
+    const expected = tied
+      .map((city) => city.id)
+      .sort((a, b) => a.localeCompare(b))
+      .slice(0, 10);
+
+    const interleaved = [
+      ...tied.filter((_, index) => index % 2 === 1),
+      ...tied.filter((_, index) => index % 2 === 0),
+    ];
+
+    for (const order of [tied, [...tied].reverse(), interleaved]) {
+      const { recommendations } = generateMatches(
+        order,
+        testProfile(),
+        BALANCED,
+      );
+      expect(recommendations.map((r) => r.city.id)).toEqual(expected);
+    }
+  });
+
+  it("produces a different ranking when priorities differ", () => {
+    // Rent worsens as the index rises while unemployment improves, so the two
+    // priorities pull the ranking in opposite directions.
+    const opposed = Array.from({ length: 15 }, (_, index) =>
+      cityWith(fixtureId(index), {
+        housing: 900 + index * 100,
+        career: 7 - index * 0.3,
+        climate: 57,
+      }),
+    );
+
+    const housingFirst = generateMatches(
+      opposed,
+      testProfile(),
+      weightsWith({ housing: 1, career: 0.1, climate: 0.1 }),
+    ).recommendations.map((r) => r.city.id);
+    const careerFirst = generateMatches(
+      opposed,
+      testProfile(),
+      weightsWith({ housing: 0.1, career: 1, climate: 0.1 }),
+    ).recommendations.map((r) => r.city.id);
+
+    expect(housingFirst).toHaveLength(10);
+    expect(careerFirst).toHaveLength(10);
+    expect(housingFirst[0]).toBe(fixtureId(0));
+    expect(careerFirst[0]).toBe(fixtureId(14));
+    expect(housingFirst).not.toEqual(careerFirst);
   });
 
   it("breaks ties deterministically by city id", () => {

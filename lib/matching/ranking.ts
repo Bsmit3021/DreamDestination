@@ -7,6 +7,7 @@ import {
   applyHardFilters,
 } from "@/lib/matching/filters";
 import { scoreCities } from "@/lib/matching/scoring";
+import { RECOMMENDATION_SNAPSHOT_SIZE } from "@/lib/matching/snapshot";
 import { normalizeWeights } from "@/lib/matching/weights";
 import type { OccupationTarget } from "@/lib/matching/career";
 import type {
@@ -53,7 +54,16 @@ import type {
  */
 export const MATCHING_ALGORITHM_VERSION = "v2.2";
 
-export const DEFAULT_RECOMMENDATION_LIMIT = 5;
+/**
+ * How many ranked cities are returned and stored: the best matches plus the
+ * alternatives, from one scoring run (see lib/matching/snapshot.ts).
+ *
+ * Not part of the scoring model: the limit is applied after ranking, so
+ * changing it shows more or fewer rows of the same ordering and never alters
+ * any city's score, rank or tie-break. It therefore does not bump
+ * MATCHING_ALGORITHM_VERSION.
+ */
+export const DEFAULT_RECOMMENDATION_LIMIT = RECOMMENDATION_SNAPSHOT_SIZE;
 
 export interface MatchingOptions {
   /** How many recommendations to return. */
